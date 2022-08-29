@@ -1,4 +1,3 @@
-import isMobile from '@/assets/js/util/isMobile.js'
 const setting= {
 	//项目名
 	title:'<%= options.name %>',
@@ -7,6 +6,6 @@ const setting= {
 	// 全局设置点击右边菜单是否刷新页面 setting.clickRefresh < route.meta.clickRefresh
 	clickRefresh:false,
 	// 设置动态title
-	dynamicTitle:isMobile() ? true : false,
+	dynamicTitle:false
 }
 export default setting

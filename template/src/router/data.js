@@ -8,7 +8,7 @@
 	props:'',
 	meta:{
 		label:'',
-		icon:'',
+		iconfont/iconpark:'', // 阿里字体库/字节字体库
 		hidden:'',  //当设置 true 的时候该路由不会再侧边栏出现，比如：详细页面
 		noRoute:'', //当设置 true 的时候该路由不会加载，比如：判断菜单权限时
 		parent:'' //上级菜单名，image有值时，children里面必需填写parent，建议children里面都写的

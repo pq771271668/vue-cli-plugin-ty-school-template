@@ -15,7 +15,10 @@
 					<el-image :style="menu.meta.image.styleActive || menu.meta.image.style" :src="require('@/'+menu.meta.image.active)"></el-image>
 				</template>
 			</template>
-			<template v-else-if="menu.meta.icon">
+			<template v-else-if="menu.meta.iconfont">
+				<i class="item-icon iconfont" :class="menu.meta.icon"></i>
+			</template>
+			<template v-else-if="menu.meta.iconpark">
 				<iconpark-icon :name="menu.meta.icon" width="18px" height="18px"></iconpark-icon>
 			</template>
 			<template v-else>
@@ -35,7 +38,10 @@
 						<el-image :style="menu.meta.image.styleActive || menu.meta.image.style" :src="require('@/'+menu.meta.image.active)"></el-image>
 					</template>
 				</template>
-				<template v-else-if="menu.meta.icon">
+				<template v-else-if="menu.meta.iconfont">
+					<i class="item-icon iconfont" :class="menu.meta.icon"></i>
+				</template>
+				<template v-else-if="menu.meta.iconpark">
 					<iconpark-icon :name="menu.meta.icon" width="18px" height="18px"></iconpark-icon>
 				</template>
 				<template v-else>
