@@ -39,5 +39,5 @@ module.exports = (api, options, rootOptions) => {
 			.forEach(path => delete files[path])
 	})
 	// 复制template模版
-	api.render('../template');
+	api.render('./template');
 };
