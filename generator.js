@@ -32,6 +32,12 @@ module.exports = (api, options, rootOptions) => {
 			"vue-template-compiler": "^2.6.11"
 		}
 	});
+	// 删除 vue-cli3 默认目录
+	api.render(files => {
+		Object.keys(files)
+			.filter(path => path.startsWith('src/') || path.startsWith('public/'))
+			.forEach(path => delete files[path])
+	})
 	// 复制template模版
 	api.render('../template');
 };
