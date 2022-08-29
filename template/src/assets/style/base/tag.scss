@@ -1,0 +1,12 @@
+.el-tag {
+	border: none;
+	margin: 0 3px;
+	&.el-tag--small {
+		height: 24px;
+		line-height: 24px;
+	}
+	&.el-tag--mini {
+		height: 20px;
+		line-height: 20px;
+	}
+}

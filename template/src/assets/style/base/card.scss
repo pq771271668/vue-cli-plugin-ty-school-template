@@ -1,0 +1,32 @@
+.el-card {
+	&.border-none {
+		border:none;
+		.el-card__header {
+			border:none;
+		}
+	}
+	&.border-line {
+		.el-card__header {
+			padding-top:0;
+			padding-bottom:0;
+			border-left: 6px solid $--color-primary;
+			margin-top:18px;
+			margin-bottom:18px;
+		}
+		
+		@each $name, $color in (
+			primary:$--color-primary,
+			success:$--color-success,
+			info:$--color-info,
+			danger:$--color-danger,
+			warning:$--color-warning
+			) {
+			&.border-line-#{$name} {
+				.el-card__header {
+					border-left-color: #{$color};
+				}
+			}
+		}
+		
+	}
+}

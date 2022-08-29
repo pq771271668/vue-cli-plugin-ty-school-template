@@ -1,0 +1,26 @@
+[
+    {
+        "code": "420100",
+         "url": "http://zhxy-gateway-7.d.huijiaoyun.com"
+    },
+    {
+        "code": "371500",
+        "url": "https://zhxy-gateway-7.lcedu.cn"
+    },
+    {
+        "code": "350000",
+        "url": "http://zhxy-gateway-7.fjedu.cn"
+    },
+    {
+        "code": "410802",
+        "url": "https://zhxy-gateway-7.jfjyyun.com"
+    },
+    {
+        "code": "440000",
+        "url": "https://zhxy-gateway-7.xyzj-7.tyhuixue.cn:10000"
+    },
+    {
+        "code": "370100",
+        "url": "https://zhxy-gateway-7.jndjg.cn"
+    }
+]

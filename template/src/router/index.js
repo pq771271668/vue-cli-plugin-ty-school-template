@@ -1,0 +1,24 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import setting from '../setting/index.js'
+
+Vue.use(Router)
+
+const routes = [
+]
+
+const router = new Router({
+  routes
+})
+
+router.beforeResolve((to, from, next) => {
+	document.title = setting.title
+	if (setting.dynamicTitle) {
+		document.title = to.meta.label
+	}
+	
+	next()
+}) 
+
+export default router

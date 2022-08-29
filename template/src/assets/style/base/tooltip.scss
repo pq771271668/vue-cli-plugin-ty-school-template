@@ -1,0 +1,7 @@
+.el-tooltip__popper {
+	max-width: 680px;
+	line-height: 18px;
+	&.is-opacity {
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+}

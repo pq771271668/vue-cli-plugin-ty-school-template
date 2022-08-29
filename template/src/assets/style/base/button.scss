@@ -1,0 +1,40 @@
+.el-button {
+	&.is-plain:not(.is-disabled) {
+		&.is-plain--reverse {
+			background-color: #FFFFFF;
+			@each $name, $color in (
+				primary:$--color-primary,
+				success:$--color-success,
+				info:$--color-info,
+				danger:$--color-danger,
+				warning:$--color-warning
+				) {
+				&.el-button--#{$name} {
+					&:hover,&:focus {
+						color: #FFFFFF;
+						border-color: #{$color};
+						background-color: #{$color};
+					}
+				}
+			}
+			
+		}
+	}
+	&.is-plain.is-disabled {
+		&.is-plain--reverse {
+			background-color: #FFFFFF;
+			@each $name, $color in (
+				primary:$--background-color-primary,
+				success:$--background-color-success,
+				info:$--background-color-info,
+				danger:$--background-color-danger,
+				warning:$--background-color-warning
+				) {
+				&.el-button--#{$name} {
+					color: #{$color};
+					border-color: #{$color};
+				}
+			}
+		}
+	}
+}

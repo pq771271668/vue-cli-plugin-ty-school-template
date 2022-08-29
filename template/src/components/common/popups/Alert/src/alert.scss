@@ -1,0 +1,247 @@
+.ty-alert-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 998;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+.ty-alert {
+	min-width: 376px;
+	max-width: 1000px;
+	min-height: 112px;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	z-index: 999;
+	box-sizing: border-box;
+	overflow: hidden;
+	.ty-alert-head {
+		width: 100%;
+		height: 50px;
+		background: #fff;
+		overflow: hidden;
+		box-sizing: border-box;
+		padding-left: 20px;
+		padding-right: 10px;
+		border-bottom: 1px solid $--border-color-base;
+		.ty-alert-title {
+			display: block;
+			float: left;
+			max-width: 50%;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			font-size: 18px;
+			line-height: 50px;
+			text-align: left;
+			color: #000;
+		}
+		.ty-alert-close {
+			float: right;
+			border: 0;
+			width: 32px;
+			height: 32px;
+			padding: 0;
+			margin: 10px 0;
+			display: block;
+			background: transparent;
+			cursor: pointer;
+			&:before {
+				content: '';
+				width: 10px;
+				height: 10px;
+				margin: 0 auto;
+				display: block;
+				background-image: url(./assets/icon-close.png);
+				background-size: 100% 100%;
+				background-repeat: repeat;
+			}
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+	.ty-alert-content {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 30px;
+		overflow: hidden;
+	}
+	.ty-alert-content-inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		width: 100%;
+		&:before {
+			width: 32px;
+			height: 32px;
+			display: block;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			margin-right: 10px;
+		}
+		.ty-alert-content-text {
+			font-size: 14px;
+			color: #333;
+			line-height: 24px;
+			padding: 0;
+			margin: 0;
+		}
+	}
+	.ty-alert-option {
+		width: 100%;
+		display: flex;
+		// justify-content: center;
+		justify-content: flex-end;
+		margin-top: 30px;
+		&.ty-alert-option_center {
+			justify-content: center;
+		}
+		.ty-alert-confirm {
+			border: 0;
+			padding: 0;
+			width: 96px;
+			height: 32px;
+			text-align: center;
+			border-radius: 3px;
+			// background: @theme-color;
+			background-color: $--color-primary;
+			color: #fff;
+			cursor: pointer;
+			margin: 0 10px;
+			&:hover {
+				// background: @theme-color-hover;
+				background-color: $--color-primary;
+			}
+		}
+		.ty-alert-confirm-load {
+			&:before {
+				content: '';
+				display: inline-block;
+				background: transparent;
+				width: 10px;
+				height: 10px;
+				vertical-align: middle;
+				border-radius: 32px;
+				border: 2px solid #fff;
+				border-right: 2px solid transparent;
+				animation: ty-alert-spinner 1000ms linear infinite both;
+			}
+		}
+		.ty-alert-cancel {
+			padding: 0;
+			width: 100px;
+			height: 32px;
+			border-radius: 3px;
+			background: #fff;
+			color: $--color-primary;
+			cursor: pointer;
+			border: 1px solid $--color-primary;
+
+			&:hover {
+				background-color: $--color-primary;
+				color: #ffffff;
+			}
+		}
+	}
+}
+
+.ty-alert-info {
+	.ty-alert-content-inner {
+		&:before {
+			content: '';
+			background-image: url(./assets/icon-info.png);
+		}
+		.ty-alert-content-text {
+			color: #555;
+			font-size: 18px;
+			line-height: 26px;
+		}
+	}
+}
+.ty-alert-success {
+	.ty-alert-content-inner {
+		&:before {
+			content: '';
+			background-image: url(./assets/icon-success.png);
+		}
+		.ty-alert-content-text {
+			color: #555;
+			font-size: 18px;
+			line-height: 26px;
+		}
+	}
+}
+.ty-alert-error {
+	.ty-alert-content-inner {
+		&:before {
+			content: '';
+			background-image: url(./assets/icon-error.png);
+		}
+		.ty-alert-content-text {
+			color: #555;
+			font-size: 18px;
+			line-height: 26px;
+		}
+	}
+}
+.ty-alert-wran {
+	.ty-alert-content-inner {
+		&:before {
+			content: '';
+			background-image: url(./assets/icon-wran.png);
+		}
+		.ty-alert-content-text {
+			color: #555;
+			font-size: 18px;
+			line-height: 26px;
+		}
+	}
+}
+
+.ty-alert-enter {
+	animation: ty-alert-fade-in 300ms both;
+}
+.ty-alert-leave {
+	animation: ty-alert-fade-out 300ms both;
+}
+
+@keyframes ty-alert-fade-in {
+	from {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+@keyframes ty-alert-fade-out {
+	from {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes ty-alert-spinner {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

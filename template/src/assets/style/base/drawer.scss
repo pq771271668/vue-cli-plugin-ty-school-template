@@ -1,0 +1,27 @@
+.el-drawer {
+	border-radius: 4px;
+	.el-drawer__header {
+		border-bottom: 1px solid $--border-color-base;
+		padding-top: 0;
+		height: 60px;
+		line-height: 60px;
+		margin-bottom: 0;
+		span {
+			font-weight: 500;
+			font-size: 20px;
+			color: $--color-text-regular;
+		}
+	}
+	.el-drawer__body {
+		display: flex;
+		flex-direction: column;
+		.drawer-body {
+			padding: 20px;
+			flex: 1;
+		}
+		.drawer-footer {
+			border-top: 1px solid $--border-color-base;
+			padding: 20px;
+		}
+	}
+}

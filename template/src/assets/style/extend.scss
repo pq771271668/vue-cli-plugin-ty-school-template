@@ -1,0 +1,35 @@
+/* 继承  -- 可使用占位选择器*/
+/* 占位选择器 % */
+/* 使用 --
+ @extend .class-name;
+ @extend %class-name;
+ 
+ */
+
+/* 公共部分 common-className */
+
+%box-style {
+	border-radius:4px;
+	background-color:#fff;
+}
+
+%tag-normal {
+	border: none;
+	line-height: 20px;
+	background-color: $--background-color-primary;
+	color: $--color-primary;
+	.el-tag__close {
+		font-size: 13px;
+		font-weight: bold;
+		background-color: transparent;
+		color: $--color-primary;
+		&:hover {
+			background-color: transparent;
+			color: $--color-primary;
+		}
+	}
+}
+
+%animate-base {
+	transition: all 0.4s ease-out;
+}

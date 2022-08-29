@@ -1,0 +1,41 @@
+/* 混入 */
+
+/* 省略号 */
+@mixin elli-line ($num:2) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $num;
+	overflow: hidden;
+}
+/* 
+ //使用
+ .elli-line{
+	@include elli-line(2);
+ }
+ */
+
+@mixin table-color ($color:$--border-color-base) {
+	th.el-table__cell.is-leaf,
+	td.el-table__cell {
+		border-bottom: 1px solid $color;
+	}
+	&.el-table--border {
+		border-top: 1px solid $color;
+		border-left: 1px solid $color;
+		.el-table__cell {
+			border-right: 1px solid $color;
+		}
+		&::after {
+			background-color: $color;
+		}
+	}
+	&::before {
+		background-color: $color;
+	}
+}
+
+@mixin ellipsis () {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

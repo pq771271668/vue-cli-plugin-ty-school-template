@@ -1,0 +1,5 @@
+.el-cascader__tags {
+	.el-tag {
+		@extend %tag-normal;
+	}
+}

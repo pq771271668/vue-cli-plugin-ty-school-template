@@ -1,1 +1,12 @@
-
+{
+	"useConfigFiles": true,
+	"plugins": {
+		"@vue/cli-plugin-babel": {},
+		"@vue/cli-plugin-router": {
+			"historyMode": false
+		},
+		"@vue/cli-plugin-vuex": {}
+	},
+	"vueVersion": "2",
+	"cssPreprocessor": "dart-sass"
+}

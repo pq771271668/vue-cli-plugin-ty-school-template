@@ -1,0 +1,20 @@
+// 导入reset css
+@import 'reset.scss';
+@import 'common.scss';
+
+@import 'base/pager.scss';
+@import 'base/scrollbar.scss';
+@import 'base/icon.scss';
+@import 'base/dialog.scss';
+@import 'base/button.scss';
+@import 'base/form.scss';
+@import 'base/table.scss';
+@import 'base/drawer.scss';
+@import 'base/cascader.scss';
+@import 'base/tabs.scss';
+@import 'base/tag.scss';
+@import 'base/tooltip.scss';
+@import 'base/card.scss';
+
+/* page */
+@import '@/assets/style/page/layout.scss';

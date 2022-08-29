@@ -1,0 +1,76 @@
+.el-form {
+	.el-form-item {
+		/* &.is-required {
+			.el-form-item__label {
+				&:before {
+					margin-left: -15px;
+				}
+			}
+		} */
+		&.content-block {
+			.el-form-item__content {
+				margin-left: 0 !important;
+			}
+		}
+		&.is-error {
+			.el-form-item__content {
+				animation:headShake 1s ease-in-out;
+			}
+		}
+	}
+	.el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
+		width: 100%;
+	}
+	.input-search {
+		&.el-form-item--small {
+			.el-input {
+				.el-input__inner {
+					width: 215px - 36px;
+					padding-right: 0px;
+				}
+				.el-input-group__append {
+					background-color: transparent;
+					padding: 0 10px;
+				}
+			}
+		}
+	}
+	
+	.el-select__tags {
+		.el-tag {
+			@extend %tag-normal;
+		}
+	}
+	
+}
+
+
+@keyframes headShake {
+  0% {
+    transform: translateX(0);
+  }
+
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+
+  18.5% {
+    transform: translateX(5px) rotateY(7deg);
+  }
+
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+
+  43.5% {
+    transform: translateX(2px) rotateY(3deg);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+}
+
+.el-cascader,.el-select ,.el-date-editor.el-input, .el-date-editor.el-input__inner{
+	width: 100%;
+}

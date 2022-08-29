@@ -1,0 +1,323 @@
+
+/* color */
+@each $name, $color in (
+	primary:$--color-primary,
+	success:$--color-success,
+	info:$--color-info,
+	danger:$--color-danger,
+	warning:$--color-warning
+	) {
+	.text-#{$name} {
+		color: #{$color};
+	}
+	.bg-#{$name}-deep,.background-#{$name}-deep,.bg-#{$name}_deep,.background-#{$name}_deep {
+		background-color: #{$color};
+	}
+}
+
+@each $name, $color in (
+	primary:$--background-color-primary,
+	success:$--background-color-success,
+	info:$--background-color-info,
+	danger:$--background-color-danger,
+	warning:$--background-color-warning
+	) {
+	.bg-#{$name},.background-#{$name}{
+		background-color: #{$color};
+	}
+}
+
+@each $name,$var in (
+	xs:10,
+	sm:12,
+	md:14,
+	lg:18,
+	xl:22
+	) {
+	.font-#{$name} {
+		font-size: #{$var}px;
+	}
+}
+
+
+@each $var in normal, bold, bolder {
+	.font-#{$var} {
+		font-weight: #{$var};
+	}
+} 
+
+@each $var in pointer, none {
+	.cursor-#{$var} {
+		cursor: #{$var};
+	}
+} 
+
+@each $var in left, center, right {
+	.text-#{$var} {
+		text-align: #{$var};
+	}
+} 
+
+@each $var in left, none, right {
+	.float-#{$var} {
+		float: #{$var};
+	}
+} 
+
+@each $var in block, inline, inline-block, none {
+	.display-#{$var} {
+		display: #{$var};
+	}
+} 
+
+@each $var in hidden, visible {
+	.visibility-#{$var} {
+		visibility: #{$var};
+	}
+} 
+
+@each $var in top, middle,bottom {
+	.vertical-#{$var} {
+		vertical-align: #{$var};
+	}
+} 
+
+
+// 定义flex等分
+@for $i from 0 through 12 {
+	.flex-#{$i} {
+		flex: $i;
+	}
+}
+
+/* 省略号*/
+@for $i from 1 through 5 {
+	.line-#{$i} {
+		@include elli-line($i);
+	}
+}
+
+// 定义字体(px)单位
+@for $i from 9 through 40 {
+	.font-#{$i} {
+		font-size: $i + px;
+	}
+}
+
+
+// 定义内外边距，历遍1-80
+@for $i from 0 through 200 {
+	// 只要双数和能被5除尽的数
+	@if $i % 2 == 0 or $i % 5 == 0 {
+		// 得出：margin-30或者m-30
+		.margin-#{$i},
+		.m-#{$i} {
+			margin: $i + px !important;
+		}
+
+		// 得出：padding-30或者p-30
+		.padding-#{$i},
+		.p-#{$i} {
+			padding: $i + px !important;
+		}
+
+		@each $short, $long in l left, t top, r right, b bottom {
+			// 缩写版，结果如： m-l-30
+			// 定义外边距
+			.m-#{$short}-#{$i} {
+				margin-#{$long}: $i + px !important;
+			}
+
+			// 定义内边距
+			.p-#{$short}-#{$i} {
+				padding-#{$long}: $i + px !important;
+			}
+
+			// 完整版，结果如：margin-left-30
+			// 定义外边距
+			.margin-#{$long}-#{$i} {
+				margin-#{$long}: $i + px !important;
+			}
+
+			// 定义内边距
+			.padding-#{$long}-#{$i} {
+				padding-#{$long}: $i + px !important;
+			}
+		}
+	}
+}
+
+@for $i from 2 through 100 {
+	// 只要双数和能被5除尽的数
+	@if $i % 2 == 0 or $i % 5 == 0 {
+		.radius-#{$i} {
+			border-radius: $i + px;
+		}
+		.r-#{$i} {
+			border-radius: $i + px;
+		}
+
+		@each $before , $b in top t,bottom b {
+			@each $after , $a in left l,right r {
+				.radius-#{$before}-#{$after}-#{$i} {
+					border-#{$before}-#{$after}-radius: $i + px;
+				}
+				
+				.r-#{$b}-#{$a}-#{$i} {
+					border-#{$b}-#{$a}-radius: $i + px;
+				}
+			}
+
+		}
+	}
+}
+
+@for $i from 0 through 100 {
+	// 只要双数和能被5除尽的数
+	@if $i % 2 == 0 or $i % 5 == 0 {
+		.height-#{$i}_per,.height-#{$i}-per {
+			height: percentage($i/100);
+		}
+		.h-#{$i}_per,.h-#{$i}-per {
+			height: percentage($i/100);
+		}
+		.width-#{$i}_per,.width-#{$i}-per {
+			width: percentage($i/100);
+		}
+		.w-#{$i}_per,.w-#{$i}-per {
+			width: percentage($i/100);
+		}
+	}
+}
+
+@for $i from 0 through 1000 {
+	// 只要双数和能被5除尽的数
+	@if $i % 5 == 0 {
+		.height-#{$i} {
+			height: $i + px;
+		}
+		.h-#{$i} {
+			height: $i + px;
+		}
+		.width-#{$i} {
+			width: $i + px;
+		}
+		.w-#{$i} {
+			width: $i + px;
+		}
+	}
+}
+
+@for $i from 0 through 100 {
+	// 只要双数和能被5除尽的数
+	@if $i % 2 == 0 {
+		.line-height-#{$i} {
+			line-height: $i + px;
+		}
+		.l-h-#{$i} {
+			line-height: $i + px;
+		}
+	}
+}
+
+/* clearfix */
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: '';
+}
+.clearfix:after {
+	clear: both;
+}
+
+.text-main-color {
+	color: $--color-text-primary;
+}
+.text-content-color {
+	color: $--color-text-regular;
+}
+.text-sub-color {
+	color: $--color-text-secondary;
+}
+.text-light-color {
+	color: $--color-text-secondary;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+.col-center {
+	align-items: center;
+}
+.col-normal {
+	align-items: normal;
+}
+
+.col-top {
+	align-items: flex-start;
+}
+
+.col-bottom {
+	align-items: flex-end;
+}
+
+.row-center {
+	justify-content: center;
+}
+
+.row-left {
+	justify-content: flex-start;
+}
+
+.row-right {
+	justify-content: flex-end;
+}
+
+.row-reverse {
+	flex-direction: row-reverse;
+}
+
+.row-between {
+	justify-content: space-between;
+}
+
+.row-around {
+	justify-content: space-around;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.col-reverse {
+	flex-direction: column-reverse;
+}
+
+
+.relative,
+.rela {
+	position: relative;
+}
+
+.absolute,
+.abso {
+	position: absolute;
+}
+
+.border-raduis-circle {
+	border-radius: 50%;
+}
+.border-none {
+	border: none;
+}
