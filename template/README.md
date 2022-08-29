@@ -1,4 +1,4 @@
-# ty-school
+# <%= options.name %>
 
 ## Project setup
 ```
