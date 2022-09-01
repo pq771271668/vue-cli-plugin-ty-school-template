@@ -33,9 +33,6 @@ import flatArrayDeep from '@/assets/js/util/flatArrayDeep.js'
 /* xhr */
 import xhr from '@/assets/js/util/xhr.js'
 
-/* 阿拉伯数字转中文 */
-import numberfilter from '@/assets/js/util/numberfilter.js'
-
 /* 判断是否是移动端 */
 import isMobile from '@/assets/js/util/isMobile.js'
 
@@ -53,7 +50,6 @@ const util = {
 	flatArray,
 	flatArrayDeep,
 	xhr,
-	numberfilter,
 	isMobile
 }
 

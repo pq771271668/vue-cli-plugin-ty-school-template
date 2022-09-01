@@ -8,7 +8,7 @@ import getToken from '@/api/getToken.js'
 
 import Cookies from 'js-cookie'
 
-import Alert from '@/components/common/popups/Alert';
+import Alert from '@/components/common/Alert';
 
 import store from '@/store/index.js'
 

@@ -23,7 +23,7 @@ import {
 	Loading
 } from 'element-ui'
 
-import tyToast from '@/components/common/popups/Toast';
+import tyToast from '@/components/common/Toast';
 
 let HTTPLOADING = null
 let HTTPLOADINGCOUNT = 0
