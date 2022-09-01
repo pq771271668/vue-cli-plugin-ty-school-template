@@ -8,5 +8,5 @@ vue create -p pq771271668/ty-school-template project-name
 
 ## Project local install
 ```
-vue create ./ty-school-template project-name
+vue create -p ./ty-school-template project-name
 ```
