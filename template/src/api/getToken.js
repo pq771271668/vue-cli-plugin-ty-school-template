@@ -8,33 +8,31 @@ import Cookies from 'js-cookie'
 
 import CONFIG from './getBaseURL.js'
 
+import setting from '@/setting'
+
 function getTicket () {
 	return new Promise( (resolve,reject) => {
-		
-		const baseURL = CONFIG.baseURL
-		
-		let ticket = UrlParams.ticket
-		
-		const path = '/serv-platform/api'
-		
-		if (ticket || (Cookies.get('AccessToken') && !_.isEmpty(store.state.USERINFO))) {
-			resolve ({baseURL,ticket,path})
-		}
-		else {
+		/* 获取ticket；开发环境通过接口获取，生产环境通过浏览器URL获取 */
+		if (process.env.NODE_ENV == 'development' && (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) ) {
 			axios({
-				baseURL:baseURL,
-				url:`${path}/login/autoLogin?platformCode=${UrlParams.platformCode}&account=${UrlParams.account}`,
+				baseURL:setting.defaultBaseURL,
+				url:`/serv-platform/api/login/autoLogin`,
+				params:{
+					platformCode:UrlParams.platformCode,
+					account:UrlParams.account
+				},
 				token:false,
 				extra:{
 					loading:false
 				}
 			})
 			.then(res => {
-				ticket = res.ticket
-				resolve({baseURL,ticket,path})
+				resolve(res.ticket)
 			})
 		}
-		
+		else {
+			resolve(UrlParams.ticket)
+		}
 		
 	})
 }
@@ -42,52 +40,55 @@ function getTicket () {
 
 function getToken () {
 	return new Promise( (resolve,reject) => {
-		getTicket()
-		.then( (data) => {
-			console.log('getTicket-data:'+JSON.stringify(data));
-			if (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) {
-				axios({
-					baseURL:data.baseURL,
-					url:`${data.path}/usersession/getAccessToken?platformCode=${UrlParams.platformCode}&ticket=${data.ticket}&appId=${UrlParams.appId}`,
-					token:false,
-					extra:{
-						loading:false
-					}
-				})
-				.then(res => {
-					const accessToken = res.accessToken;
-					
-					Cookies.set("AccessToken", accessToken, {
-						expires: 0.08
-					})
-					
-					// 权限获取 isAppAdmin lastUserType
+		/* token获取地址 */
+		// '/serv-platform/api/usersession/getAccessToken'
+		let url = ''
+		if (url) {
+			getTicket()
+			.then( (ticket) => {
+				if (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) {
 					axios({
-						extra:{loading:false},
-						baseURL:data.baseURL,
-						url:`/app-calendar/rest/separate/week/opt/checkUserAudit`
+						baseURL:CONFIG.baseURL,
+						url,
+						params:{
+							platformCode:UrlParams.platformCode,
+							ticket:ticket,
+							appId:UrlParams.appId
+						},
+						token:false,
+						extra:{
+							loading:false
+						}
 					})
-					.then( permission => {
+					.then(res => {
+						const accessToken = res.accessToken;
 						
-						const USERINFO = Object.assign({},res.userSession,{
-							checkUserAudit:permission.result
+						Cookies.set("AccessToken", accessToken, {
+							expires: 0.08
 						})
+						
+						const USERINFO = Object.assign({},res.userSession)
 						
 						store.commit('$store', {
 							name:'USERINFO',
 							value:USERINFO
 						})
 						
+						process.env.NODE_ENV == 'development' && console.error('暂无设置权限接口')
+						
 						resolve(USERINFO)
 						
 					})
-					
-				})
-			}
-			else {
-				resolve('AccessToken已存在')
-			}
-		})
+				}
+				else {
+					resolve('AccessToken已存在')
+				}
+			})
+		}
+		else {
+			console.error('请设置token和用户信息获取地址')
+			resolve()
+		}
 	})
 }
 

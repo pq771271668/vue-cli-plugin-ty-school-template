@@ -2,6 +2,8 @@ import UrlParams from './urlParams.js'
 
 import xhr from '@/assets/js/util/xhr.js'
 
+import setting from '@/setting'
+
 // 设置默认baseURL地址
 let CONFIG = {
 	baseURL:'',
@@ -27,7 +29,7 @@ xhr({
 					CONFIG.baseURL = defaultUrl.url
 				}
 				else {
-					CONFIG.baseURL = process.env.NODE_ENV == 'production' ? 'https://zhxy-gateway-7.huijiaoyun.com':'http://zhxy-gateway-7.d.huijiaoyun.com'
+					CONFIG.baseURL = setting.defaultBaseURL
 				}
 			}
 		}
@@ -37,5 +39,5 @@ xhr({
 		}
 	}
 })
-
+console.log("baseURL:"+CONFIG.baseURL)
 export default CONFIG

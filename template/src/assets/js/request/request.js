@@ -17,6 +17,8 @@ import CONFIG from '@/api/getBaseURL.js'
 
 import getToken from '@/api/getToken.js'
 
+import {intersection} from 'lodash'
+
 import {
 	Loading
 } from 'element-ui'
@@ -27,20 +29,26 @@ let HTTPLOADING = null
 let HTTPLOADINGCOUNT = 0
 
 let HTTPERRORCOUNT = 0
-// STATUS 后台的返回码的字符串 MSG后台返回信息的字符串
-const STATUS = 'code'
-const MSG = 'msg'
+// STATUS 后台的返回码的字符串 MSG后台返回信息的字符串 DATA后台返回的数据 SUCCESSCODE请求成功返回码
+const STATUS = ['code','status']
+const MSG = ['msg','message'] 
+const DATA = ['data','result']
+const SUCCESSSTATUS = ['000000','200','0']
 
 //打印错误
 function showError(error,callback,confirmButtonText) {
 	if (HTTPERRORCOUNT == 0) {
 		HTTPERRORCOUNT ++
 		
-		let ERRORMSG = error && error[STATUS] ? error[MSG] : '系统开小差了，请稍后再试！'
+		const KEYS = Object.keys(error)
+		let ERRORSTATUS = intersection(KEYS,STATUS)
+		let ERRORMSG = intersection(KEYS,MSG)
+		
+		let message = error && error[ERRORSTATUS] ? error[ERRORMSG] : '系统开小差了，请稍后再试！'
 		
 		tyToast({
 			type:'error',
-			message:ERRORMSG,
+			message:message,
 			onLeave:() => {
 				HTTPERRORCOUNT --
 				callback && callback()
@@ -141,25 +149,24 @@ instance.interceptors.response.use(response => {
 	else {
 		const resp = response.data
 		
-		if (resp[STATUS] == 200 || resp[STATUS] == 0) {
-			return resp.data
-		} 
+		/* 获取接口的参数key值 */
+		const KEYS = Object.keys(resp)
+		let RESPSTATUS = intersection(KEYS,STATUS)
+		let RESPDATA = intersection(KEYS,DATA)
+		let RESPMSG = intersection(KEYS,MSG)
 		
-		else if (resp[MSG].includes('accessToken') || resp[MSG].includes('Ticket')) {
-			if ( store.state.USERINFO.userSpaceUrl ) {
-				showError(Object.assign({},resp,{
-					[MSG]:resp[MSG].includes('Ticket')?'用户登录信息已过期，请重新登录':resp[MSG]
-				}),()=> {
-					window.location.href = store.state.USERINFO.userSpaceUrl
-				})
-			}
-			else {
-				showError(resp)
-			}
-		}
-		
-		else if (!resp[STATUS]) {
+		if (!resp[RESPSTATUS]) {
 			return resp
+		}
+		else if ( SUCCESSSTATUS.includes(resp[RESPSTATUS].toString()) ) {
+			return resp[RESPDATA]
+		} 
+		else if (resp[RESPMSG].includes('accessToken') || resp[RESPMSG].includes('Ticket')) {
+			showError(Object.assign({},resp,{
+				[RESPMSG]:resp[RESPMSG].includes('Ticket')?'用户登录信息已过期，请重新登录':resp[RESPMSG]
+			}),()=> {
+				window.location.href = store.state.USERINFO.userSpaceUrl || 'https://www.wuhaneduyun.cn/index.php?r=center/person/index'
+			})
 		}
 		else {
 			showError(resp)

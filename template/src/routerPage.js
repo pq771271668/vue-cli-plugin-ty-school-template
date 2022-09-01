@@ -42,6 +42,7 @@ router.beforeEach( (to, from, next) => {
 				let routers = []
 				
 				if (routerPage.length == 0) {
+					console.error('请在router/data.js设置路由数据')
 					routers = [{
 						path: '/',
 						name: '/',
