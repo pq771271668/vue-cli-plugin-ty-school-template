@@ -175,7 +175,7 @@ instance.interceptors.response.use(response => {
 	}
 }, error => {
 	hideLoading()
-	showError()
+	showError(error)
 	return Promise.reject(error)
 })
 
