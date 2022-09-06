@@ -1,30 +1,35 @@
 import dict from './index.js'
 
 /* 	key:属性名 
-	value:值
-	property: [Boolean] == true只返回label，否则全部返回 ; [String] == 返回属性值，否则返回全部
+	value:值 [String,Array]
+	property: [String] == 返回属性值，否则返回全部
 */
 
-const getDict = function (key,value,property = true) {
+function getValue (options,value,property) {
+	const option = options.find(option => option.value == value)
+	if (option) {
+		return Object.keys(option).includes(property) ? option[property]: option
+	}
+	else {
+		return value
+	}
+} 
+
+const getDict = function (key,value,property = 'label') {
 	
-	const _dict = dict[key]
+	const options = dict[key]
 	
 	if (value) {
-		if (_dict && Array.isArray(_dict)) {
-			const index = _dict.findIndex(option => option.value == value)
-			if (index > -1) {
-				
-				const option = _dict[index]
-				
-				if (_.isBoolean(property)) {
-					return property ? option.label : option
-				}
-				else if (_.isString(property)) {
-					return Object.keys(option).includes(property) ? option[property]: option
-				}
+		if (options && Array.isArray(options)) {
+			if (_.isString(value) || _.isNumber(value)) {
+				return getValue(options,value,property)
 			}
-			else {
-				return '值为：'+value
+			else if (_.isArray(value)) {
+				let _val = []
+				for (let val of value) {
+					_val.push(getValue(options,val,property))
+				}
+				return _val
 			}
 		}
 		else {
