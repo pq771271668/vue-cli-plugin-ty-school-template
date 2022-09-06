@@ -1,6 +1,7 @@
 /* el-scrollbar隐藏组件横向滚动条 */
 .el-scrollbar {
 	height: 100%;
+	width: 100%;
 	& > .el-scrollbar__wrap {
 		overflow-x: hidden;
 		.el-scrollbar__view {
