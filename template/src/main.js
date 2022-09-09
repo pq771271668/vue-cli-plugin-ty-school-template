@@ -61,8 +61,6 @@ Vue.prototype.$axios = request
 // 字典项
 import dict from '@/dict/index.js'
 Vue.prototype.$dict = dict
-import getDict from '@/dict/getDict.js'
-Vue.prototype.$getDict = getDict
 
 // echart
 import * as echarts from 'echarts';
