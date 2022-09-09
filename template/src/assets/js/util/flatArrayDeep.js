@@ -1,8 +1,10 @@
-function flatArrayDeep(array,key='children',value = []) {
-	array.reduce((pre, cur) => {
-		value.push(cur);
+function flatArrayDeep(array,key='children',index,value = []) {
+	array.reduce((pre, cur,currentIndex) => {
+		value.push(Object.assign(cur,{
+			currentIndex,parentIndex:index
+		}));
 		if (cur[key] && cur[key].length != 0) {
-			flatArrayDeep(cur[key],key,value);
+			flatArrayDeep(cur[key],key,currentIndex,value);
 		}
 	}, []);
 	
