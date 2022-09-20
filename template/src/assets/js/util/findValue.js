@@ -32,7 +32,7 @@ const findValue = function (options,value,property = 'label') {
 		}
 	}
 	else {
-		return value
+		return '第一个参数【options】不是数组'
 	}
 }
 
