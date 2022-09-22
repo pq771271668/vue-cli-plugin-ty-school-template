@@ -1,4 +1,8 @@
 const setting= {
+	// 默认账号名，用于开发使用
+	account:process.env.NODE_ENV == 'production' ? '':'ly508524',
+	// 默认平台码，用于开发使用
+	platformCode:process.env.NODE_ENV == 'production' ? '':'420100',
 	//项目名
 	title:'<%= options.name %>',
 	// 默认baseUrl，仅用于开发环境获取ticket和项目走网关时候默认baseUrl

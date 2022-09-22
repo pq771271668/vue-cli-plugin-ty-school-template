@@ -1,7 +1,9 @@
 import getUrlParams from '@/assets/js/util/getUrlParams.js'
-let platformCode =  getUrlParams().loginPlatformCode || getUrlParams().platformcode || getUrlParams().platformCode ||  '420100'
+import setting from '@/setting'
 
-let account = getUrlParams().account || 'bieke' 
+let platformCode =  getUrlParams().loginPlatformCode || getUrlParams().platformcode || getUrlParams().platformCode ||  setting.platformCode
+
+let account = getUrlParams().account ||  setting.account
 
 let appId = getUrlParams().appId || ''
 
