@@ -24,6 +24,10 @@ Vue.use(direvtive)
 import _ from 'lodash';
 Vue.prototype._ = _
 
+// XEUtils
+import _XEUtils_ from 'xe-utils'
+Vue.prototype.XEUtils = _XEUtils_
+
 // 引入iconfont
 import '@/assets/fonts/iconfont.css'
 import '@/assets/fonts/iconfont.js'

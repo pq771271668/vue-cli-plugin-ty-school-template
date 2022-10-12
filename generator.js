@@ -19,7 +19,8 @@ module.exports = (api, options, rootOptions) => {
 			"vue-fragment": "^1.6.0",
 			"vue-router": "^3.2.0",
 			"vuex": "^3.4.0",
-			"vuex-persistedstate": "^4.1.0"
+			"vuex-persistedstate": "^4.1.0",
+			"xe-utils": "^3.5.7"
 		},
 		"devDependencies": {
 			"@vue/cli-plugin-babel": "~4.5.13",
