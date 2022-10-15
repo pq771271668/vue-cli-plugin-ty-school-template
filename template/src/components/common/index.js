@@ -12,7 +12,10 @@ Vue.prototype.$tyAlert = Alert;
 import ExcelImport from './excel-import';
 Vue.prototype.$excelImport = ExcelImport;
 
-// SelectUser文件导入
-import SelectUser from './select-user';
-Vue.prototype.$selectUser = SelectUser;
+// UserTree人员选择树形结构
+import UserTree from './user-tree';
+Vue.prototype.$userTree = UserTree;
+// UserTree人员选择分页结构
+import UserPages from './user-pages';
+Vue.prototype.$userPages = UserPages;
 
