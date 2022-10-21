@@ -16,19 +16,9 @@
 				</el-aside>
 				<el-main>
 					<template v-if="refresh">
-						<template v-if="$setting.keepAlive">
-							<keep-alive :exclude="/NOTKEEP/">
-								<router-view class="main-page"></router-view>
-							</keep-alive>
-						</template>
-						<template v-else-if="!$setting.keepAlive">
-							<keep-alive :include="/KEEP/">
-								<router-view class="main-page"></router-view>
-							</keep-alive>
-						</template>
-						<template v-else>
+						<keep-alive :include="KEEPALIVE">
 							<router-view class="main-page"></router-view>
-						</template>
+						</keep-alive>
 					</template>
 				</el-main>
 			</template>

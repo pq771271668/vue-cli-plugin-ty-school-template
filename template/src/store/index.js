@@ -28,6 +28,7 @@ export default new Vuex.Store({
 		})
 	],
 	state:{
+		KEEPALIVE:[],
 		USERINFO:{},
 	},
 	mutations:{
@@ -50,6 +51,19 @@ export default new Vuex.Store({
 				saveKey = payload.name;
 			}
 		},
+		/* 新增页面kaap-alive */
+		ADDKEEPALIVE (state,value) {
+			if (!state.KEEPALIVE.includes(value)) {
+				state.KEEPALIVE.push(value)
+			}
+		},
+		/* 删除页面kaap-alive */
+		REMOVEKEEPALIVE (state,value) {
+			const index = state.KEEPALIVE.indexOf(value)
+			if (index > -1) {
+				state.KEEPALIVE.splice(index,1)
+			}
+		}
 	},
 	actions:{
 	}

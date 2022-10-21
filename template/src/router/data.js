@@ -23,7 +23,8 @@
 			[styleActive]:{
 				// 选中的样式；默认都是使用style
 			}
-		} 
+		},
+		keep: true/false //是否缓存，如果设置了keep:true，必须需要路由的name和组件的name是一样的
 	},
 	children:[]
 }
