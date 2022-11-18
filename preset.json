@@ -8,5 +8,6 @@
 		"@vue/cli-plugin-vuex": {}
 	},
 	"vueVersion": "2",
-	"cssPreprocessor": "dart-sass"
+	"cssPreprocessor": "dart-sass",
+	"packageManager":"npm"
 }
