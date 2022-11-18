@@ -3,10 +3,10 @@ ty-school-template
 
 ## Project install
 ```
-vue create -p pq771271668/ty-school-template project-name
+vue create -p pq771271668/vue-cli-plugin-ty-school-template project-name
 ```
 
 ## Project local install
 ```
-vue create -p ./ty-school-template project-name
+vue create -p ./vue-cli-plugin-ty-school-template project-name
 ```
