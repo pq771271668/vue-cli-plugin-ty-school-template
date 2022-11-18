@@ -1,0 +1,8 @@
+{
+	"name": "vue-cli-plugin-ty-school-template",
+	"version": "0.0.1",
+	"description": "ty-school-template preset for vue-cli",
+	"main": "index.js",
+	"author": "PengQi",
+	"license": "MIT"
+}

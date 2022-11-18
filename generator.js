@@ -11,7 +11,7 @@ module.exports = (api, options, rootOptions) => {
 			"babel-polyfill": "^6.26.0",
 			"core-js": "^3.6.5",
 			"echarts": "^5.3.3",
-			"element-ui": "^2.15.8",
+			"element-ui": "^2.15.11",
 			"js-cookie": "^3.0.1",
 			"lodash": "^4.17.21",
 			"vue": "^2.6.11",
@@ -33,6 +33,17 @@ module.exports = (api, options, rootOptions) => {
 			"vue-template-compiler": "^2.6.11"
 		}
 	});
+	if (options.FitMobile) {
+		api.extendPackage({
+			"dependencies": {
+				"vant": "^2.12.52",
+			},
+			"devDependencies": {
+				"less": "^3.0.4",
+				"less-loader": "^5.0.0",
+			}
+		});
+	}
 	// 删除 vue-cli3 默认目录
 	api.render(files => {
 		Object.keys(files)
