@@ -4,7 +4,7 @@
 			<layout-header></layout-header>
 		</el-header>
 		<el-container>
-			<template v-if="this.$router.options.routes.length == 0">
+			<template v-if="$router.getRoutes().length == 1">
 				<div class="flex w-100_per row-center">
 					<el-result icon="warning" title="设置路由数据">
 					</el-result>
