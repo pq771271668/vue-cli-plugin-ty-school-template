@@ -25,7 +25,7 @@ const typeMap = {
   success: "success",
   info: "info",
   error: "error",
-  wran: "wran",
+  warning: "warning",
   wait: "wait",
   load: "load",
 };
@@ -91,4 +91,3 @@ export default {
 <style lang="scss" scoped>
 @import './toast.scss';
 </style>
-
