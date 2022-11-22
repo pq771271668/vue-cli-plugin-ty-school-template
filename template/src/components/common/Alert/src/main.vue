@@ -58,7 +58,7 @@ const typeMap = {
 	success: 'success',
 	info: 'info',
 	error: 'error',
-	wran: 'wran'
+	warning: 'warning'
 };
 export default {
 	name: 'TyAlert',

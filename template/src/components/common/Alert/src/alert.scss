@@ -189,11 +189,11 @@
 		}
 	}
 }
-.ty-alert-wran {
+.ty-alert-warning {
 	.ty-alert-content-inner {
 		&:before {
 			content: '';
-			background-image: url(./assets/icon-wran.png);
+			background-image: url(./assets/icon-warning.png);
 		}
 		.ty-alert-content-text {
 			color: #555;
