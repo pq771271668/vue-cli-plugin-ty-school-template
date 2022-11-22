@@ -1,77 +1,56 @@
-<template>
+<template functional>
 	<div class="page-container" 
-		:class="{'page-container_gap':gap,'page-container_height':isHeight}">
+		:class="{'page-container_gap':props.gap}">
 		<div 
-			v-if="header"
+			v-if="props.header"
 			class="page-header" 
-			:class="[headerBorderStyle ? 'page-header_border-'+headerBorderStyle : '']" 
-			:style="headerStyle">
+			:class="[props.headerBorderStyle ? 'page-header_border-'+props.headerBorderStyle : '']" 
+			:style="props.headerStyle">
 			<slot name="header">
-				<div class="page-search">
-					<el-form inline :model="form" label-width="0" @submit.native.prevent>
-						<el-form-item  class="input-search">
-							<el-input
-								size="small"
-								v-bind="$attrs"
-							    v-model="form.searchKey"
-								@keyup.enter.native="onSearch"
-								clearable
-								@clear="onSearch"
-								>
-								<el-button slot="append" icon="el-icon-search" @click="onSearch"></el-button>
-							</el-input>
-						</el-form-item>
-					</el-form>
-				</div>
-				<div class="page-toolbar">
-					<el-button 
-						v-for="action in actions"
-						:key="action.name"
-						class="is-plain--reverse" 
-						size="small" 
-						plain 
-						v-bind="action"
-						@click="onAction(action)">{{action.text}}</el-button>
-				</div>
+				
 			</slot>
 		</div>
-		<div class="page-body" :style="bodyStyle">
-			<el-scrollbar :native="native" class="page-component__scroll" ref="myScrollbar">
+		<div class="page-body" :style="props.bodyStyle">
+			<el-scrollbar :native="native" class="page-component__scroll" :class="{'page-body-scroll-height':props.scrollFull}" ref="myScrollbar">
 				<slot></slot>
 			</el-scrollbar>
 		</div>
 	</div>
 </template>
 
+<!-- 
+ 
+ 'gap':header和body是否分开，默认不分开
+ 
+ 'header':是否显示头部，默认显示
+ 
+ 'header-style':头部样式，默认高度为70
+ 
+ 'header-border-style':头部下边框的样式，默认没有
+ 
+ 'scroll-full':scroll的高度是否为100%，默认为true
+ 
+ 'native':是否使用原生滚动条，默认为false
+ 
+ 'body-style':body样式，默认没有
+ 
+ -->
 <script>
 	export default {
 		inheritAttrs:false,
 		name:'page-container',
 		props:{
+			full:{
+				type:Boolean,
+				default:true
+			},
 			gap:{
 				type:Boolean,
 				default:false
 			},
-			actions:{
-				type:Array,
-				default: function () {
-					return []
-				}
-			},
-			'header-border-style':{
-				type:String,
-				default:'',
-				validator: function (value) {
-					return ['full', 'none',''].includes(value)
-				}
-			},
-			'is-height':{
+			'header':{
 				type:Boolean,
-				default:false
-			},
-			'native':{
-				type:Boolean,
-				default:false
+				default:true
 			},
 			'header-style':{
 				type:Object,
@@ -81,38 +60,39 @@
 					}
 				}
 			},
+			'header-border-style':{
+				type:String,
+				default:'',
+				validator: function (value) {
+					return ['full', 'none',''].includes(value)
+				}
+			},
+			'scroll-full':{
+				type:Boolean,
+				default:true
+			},
+			'native':{
+				type:Boolean,
+				default:false
+			},
 			'body-style':{
 				type:Object,
 				default: function () {
 					return {}
 				}
 			},
-			'header':{
-				type:Boolean,
-				default:true
-			},
 		},
 		data () {
 			return {
-				form:{
-					searchKey:''
-				}
 			}
 		},
 		methods:{
-			onSearch () {
-				this.$emit('on-search',this.form.searchKey)
-			},
-			onAction (action) {
-				this.$emit('on-action',action)
-			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	.page-container {
-		height: 100%;
 		display: flex;
 		flex-direction: column;
 		@extend %box-style;
@@ -142,8 +122,7 @@
 		}
 		.page-body {
 			padding:10px 20px 20px;
-			// height: 100%;
-			flex: 1;
+			flex: 1 0 0;
 			overflow: hidden;
 		}
 		&.page-container_gap {
@@ -158,21 +137,6 @@
 				@extend %box-style;
 				padding-top: 20px;
 			}
-		}
-		&.page-container_height {
-			.el-scrollbar__view {
-				height: 100%;
-			}
-			/* .body-table {
-				height: 100%;
-				display: flex;
-				flex-direction: column;
-				.el-table {
-					&::before {
-						display: none;
-					}
-				}
-			} */
 		}
 		.page-header_border-full {
 			&.page-header {
@@ -191,6 +155,11 @@
 			}
 			& + .page-body {
 				padding-top: 0;
+			}
+		}
+		.page-body-scroll-height {
+			.el-scrollbar__view {
+				height: 100%;
 			}
 		}
 	}
