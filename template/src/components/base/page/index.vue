@@ -1,17 +1,17 @@
-<template functional>
+<template>
 	<div class="page-container" 
-		:class="{'page-container_gap':props.gap}">
+		:class="{'page-container_gap':gap}">
 		<div 
-			v-if="props.header"
+			v-if="header"
 			class="page-header" 
-			:class="[props.headerBorderStyle ? 'page-header_border-'+props.headerBorderStyle : '']" 
-			:style="props.headerStyle">
+			:class="[headerBorderStyle ? 'page-header_border-'+headerBorderStyle : '']" 
+			:style="headerStyle">
 			<slot name="header">
 				
 			</slot>
 		</div>
-		<div class="page-body" :style="props.bodyStyle">
-			<el-scrollbar :native="native" class="page-component__scroll" :class="{'page-body-scroll-height':props.scrollFull}" ref="myScrollbar">
+		<div class="page-body" :style="bodyStyle">
+			<el-scrollbar :native="native" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" ref="myScrollbar">
 				<slot></slot>
 			</el-scrollbar>
 		</div>
