@@ -86,6 +86,16 @@ export default {
 					}
 				}
 			}
+			&.el-pagination--small {
+				.btn-next ,.btn-prev{
+					width: auto;
+					padding: 0 5px;
+				}
+				.el-input .el-input__inner {
+					height: 22px;
+					line-height: 22px;
+				}
+			}
 		}
 	}
 </style>
