@@ -29,7 +29,13 @@ module.exports = {
 	    loaderOptions: {
 	        sass: {
 	            prependData: `@import "~@/assets/style/variable.scss"; @import "~@/assets/style/extend.scss";@import "~@/assets/style/mixin.scss";`
-	        }
+	        },
+			less: {
+				modifyVars: {
+					// 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+					hack: `true; @import  "~@/assets/style/vant.less";`
+				},
+			},
 	    },
 	}
 }

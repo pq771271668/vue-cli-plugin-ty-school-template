@@ -1,4 +1,4 @@
-# <%= options.name %>
+# <%= options.ProjectName %>
 
 ## Project setup
 ```

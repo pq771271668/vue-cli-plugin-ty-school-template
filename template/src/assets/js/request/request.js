@@ -17,11 +17,15 @@ import CONFIG from '@/api/getBaseURL.js'
 
 import getToken from '@/api/getToken.js'
 
+import isMobile from '@/assets/js/util/isMobile.js'
+
 import {intersection} from 'lodash'
 
 import {
 	Loading
 } from 'element-ui'
+
+import { Toast,Notify  } from 'vant';
 
 import tyToast from '@/components/common/Toast';
 
@@ -45,35 +49,53 @@ function showError(error,callback,confirmButtonText) {
 		let ERRORMSG = intersection(KEYS,MSG)
 		
 		let message = error && error[ERRORSTATUS] ? error[ERRORMSG] : '系统开小差了，请稍后再试！'
+		if (!isMobile()) {
+			tyToast({
+				type:'error',
+				message:message,
+				onLeave:() => {
+					HTTPERRORCOUNT --
+					callback && callback()
+				}
+			})
+		}
+		else {
+			Notify({ type: 'danger', message: message });
+		}
 		
-		tyToast({
-			type:'error',
-			message:message,
-			onLeave:() => {
-				HTTPERRORCOUNT --
-				callback && callback()
-			}
-		})
 	}
 }
 
 //显示/取消遮罩弹框
 function showLoading() {
-	if (HTTPLOADINGCOUNT == 0) {
-		HTTPLOADING = Loading.service({
-			fullscreen: true,
-			lock: true,
-			background: 'rgba(0, 0, 0, 0.5)'
-		})
+	if (!isMobile()) {
+		if (HTTPLOADINGCOUNT == 0) {
+			HTTPLOADING = Loading.service({
+				fullscreen: true,
+				lock: true,
+				background: 'rgba(0, 0, 0, 0.5)'
+			})
+		}
+		HTTPLOADINGCOUNT ++
 	}
-	HTTPLOADINGCOUNT ++
+	else {
+		HTTPLOADING = Toast.loading({
+			forbidClick:true,
+			duration: 0
+		});
+	}
 }
 
 function hideLoading () {
-	HTTPLOADINGCOUNT --
-	if (HTTPLOADINGCOUNT == 0) {
-		HTTPLOADING && HTTPLOADING.close()
-		return false
+	if (!isMobile()) {
+		HTTPLOADINGCOUNT --
+		if (HTTPLOADINGCOUNT == 0) {
+			HTTPLOADING && HTTPLOADING.close()
+			return false
+		}
+	}
+	else {
+		HTTPLOADING.clear();
 	}
 }
 

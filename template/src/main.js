@@ -41,7 +41,12 @@ import '@/assets/style/element-variables.scss'
 // ElementUI.Drawer.props.wrapperClosable.default = false;
 // ElementUI.Dialog.props.closeOnClickModal.default = false;
 Vue.use(ElementUI, { size: 'small', zIndex: 100 })
+ElementUI.Table.props.size = { type: String, default: 'medium' }
 
+//vant
+import Vant from 'vant';
+import 'vant/lib/index.less';
+Vue.use(Vant);
 
 //引入base.scss
 import '@/assets/style/base.scss'

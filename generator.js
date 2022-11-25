@@ -14,6 +14,7 @@ module.exports = (api, options, rootOptions) => {
 			"element-ui": "^2.15.11",
 			"js-cookie": "^3.0.1",
 			"lodash": "^4.17.21",
+			"vant": "^2.12.52",
 			"vue": "^2.6.11",
 			"vue-bus": "^1.2.1",
 			"vue-fragment": "^1.6.0",
@@ -28,22 +29,13 @@ module.exports = (api, options, rootOptions) => {
 			"@vue/cli-plugin-vuex": "~4.5.13",
 			"@vue/cli-service": "~4.5.13",
 			"babel-plugin-transform-remove-console": "^6.9.4",
+			"less": "^3.0.4",
+			"less-loader": "^5.0.0",
 			"sass": "^1.26.5",
 			"sass-loader": "^8.0.2",
 			"vue-template-compiler": "^2.6.11"
 		}
 	});
-	if (options.FitMobile) {
-		api.extendPackage({
-			"dependencies": {
-				"vant": "^2.12.52",
-			},
-			"devDependencies": {
-				"less": "^3.0.4",
-				"less-loader": "^5.0.0",
-			}
-		});
-	}
 	// 删除 vue-cli3 默认目录
 	api.render(files => {
 		Object.keys(files)

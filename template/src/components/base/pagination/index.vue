@@ -1,3 +1,11 @@
+<!-- 
+
+继承el-pagination属性，同时需要开启page-size和current-page的sync
+新增pages页数，可传[Boolean,Number,String]
+ 
+合并 @sizeChange和@currentChange 为@on-pagination
+
+ -->
 <template>
 	<div class="pagination-index">
 		<el-pagination
@@ -7,8 +15,10 @@
 			background 
 			v-bind="$attrs"
 			v-on="$listeners"
+			@size-change="sizeChange"
+			@current-change="currentChange" 
 			>
-			<span class="el-pagination__total m-l-10 m-r-0">
+			<span class="el-pagination__total m-l-10 m-r-0" v-if="pages !== false">
 				共{{pages}}页，
 			</span>
 		</el-pagination>
@@ -16,21 +26,29 @@
 </template>
 
 <script>
-	export default {
-		inheritAttrs:false,
-		name:'pagination-index',
-		props:{
-			'pages':{}
-		},
-		data () {
-			return {
-				
-			}
-		},
-		methods:{
-			
-		}
-	}
+export default {
+    inheritAttrs:false,
+    name:'pagination-index',
+    props:{
+        'pages':{
+			type:[Boolean,Number,String],
+            default:0,
+            required:true
+        }
+    },
+    data () {
+        return {
+        }
+    },
+    methods:{
+        sizeChange () {
+            this.$emit('on-pagination')
+        },
+        currentChange () {
+            this.$emit('on-pagination')
+        }, 	
+    }
+}
 </script>
 
 <style lang="scss">

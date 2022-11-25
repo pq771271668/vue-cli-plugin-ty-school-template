@@ -11,11 +11,5 @@ module.exports = [
 				return true
 			}
 		}
-	},
-	{
-	    name: 'FitMobile',
-	    type: 'confirm',
-	    message: '是否需要适配移动端（Vant2）?',
-	    default: false
 	}
 ]

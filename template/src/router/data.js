@@ -36,17 +36,23 @@
  
  */
 
-
 import store from '@/store/index.js'
 import permission from './permission.js'
+
+import isMobile from '@/assets/js/util/isMobile.js'
 
 function routerData () {
 	return new Promise( (resolve,reject) => {
 		
-		const data = [
+		const webData = [
+			
+		]
+		const mobileData = [
 			
 		]
 		
+	  	const data = isMobile() ? mobileData : webData
+	  	
 	  	resolve(data)
 	})
 }

@@ -2,6 +2,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import isMobile from '@/assets/js/util/isMobile.js'
+
 import request from '@/assets/js/request/index.js'
 
 // import SecureLS from "secure-ls";
@@ -30,6 +32,7 @@ export default new Vuex.Store({
 	state:{
 		KEEPALIVE:[],
 		USERINFO:{},
+		isMobile:isMobile(),
 	},
 	mutations:{
 		// this.$vuex('token',token)

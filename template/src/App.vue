@@ -6,13 +6,17 @@
 
 <script>
 export default {
-	data() {
-		return {
-		};
-	},
-	mounted() {
-		
-	}
+    data() {
+        return {
+        };
+    },
+    mounted() {
+        if (this.isMobile !== this.$util.isMobile()) {
+		    this.$router.replace('/')
+			
+		    this.$vuex('isMobile',this.$util.isMobile())
+        }
+    }
 };
 </script>
 

@@ -10,6 +10,8 @@ import Cookies from 'js-cookie'
 
 import store from '@/store/index.js'
 
+import isMobile from '@/assets/js/util/isMobile.js'
+
 // 获取动态路由
 let oneRun = true;
 
@@ -51,7 +53,7 @@ router.beforeEach( (to, from, next) => {
 					routers = [{
 						path: '/',
 						name: '/',
-						component: () =>  import('@/views/index'),
+						component: () =>  isMobile() ? import('@/views/Mobile/index') : import('@/views/index'),
 						redirect:{
 							name:routerPage[0].name
 						},
