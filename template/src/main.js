@@ -33,16 +33,10 @@ import '@/assets/fonts/iconfont.css'
 import '@/assets/fonts/iconfont.js'
 
 // 引入element-ui
-import ElementUI from 'element-ui'
-
+import ElementUI from '@/setting/ElementUI.js'
 import '@/assets/style/element-variables.scss'
 // import 'element-ui/lib/theme-chalk/index.css'
-
-// ElementUI.Drawer.props.wrapperClosable.default = false;
-// ElementUI.Dialog.props.closeOnClickModal.default = false;
 Vue.use(ElementUI, { size: 'small', zIndex: 100 })
-ElementUI.Table.props.size = { type: String, default: 'medium' }
-ElementUI.Empty.props.image = { type: String, default: require('@/assets/images/empty.png') }
 
 //vant
 import Vant from 'vant';
