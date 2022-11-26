@@ -42,6 +42,7 @@ import '@/assets/style/element-variables.scss'
 // ElementUI.Dialog.props.closeOnClickModal.default = false;
 Vue.use(ElementUI, { size: 'small', zIndex: 100 })
 ElementUI.Table.props.size = { type: String, default: 'medium' }
+ElementUI.Empty.props.image = { type: String, default: require('@/assets/images/empty.png') }
 
 //vant
 import Vant from 'vant';

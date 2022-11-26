@@ -42,6 +42,9 @@ import isMobile from '@/assets/js/util/isMobile.js'
 /* 在数组对象中，根据key值查找所需要的值 */
 import findValue from '@/assets/js/util/findValue.js'
 
+/* download */
+import download from '@/assets/js/util/download.js'
+
 const util = {
 	birthSex,
 	ext,
@@ -58,7 +61,8 @@ const util = {
 	xhr,
 	numberfilter,
 	isMobile,
-	findValue
+	findValue,
+	download
 }
 
 export default util
