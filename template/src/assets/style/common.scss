@@ -1,4 +1,3 @@
-
 /* color */
 @each $name, $color in (
 	primary:$--color-primary,
@@ -39,6 +38,13 @@
 	}
 }
 
+
+/* white-space */
+@each $var in normal, pre, nowrap,pre-wrap,pre-line,inherit {
+	.white-space-#{$var} {
+		white-space: #{$var};
+	}
+} 
 
 @each $var in normal, bold, bolder {
 	.font-#{$var} {

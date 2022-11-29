@@ -7,6 +7,14 @@ const ElementUI = merge(elementUI,{
 			size:{
 				type: String, 
 				default: 'medium'
+			},
+			border:{
+				type: Boolean,
+				default: true
+			},
+			stripe:{
+				type: Boolean,
+				default: true
 			}
 		}
 	},

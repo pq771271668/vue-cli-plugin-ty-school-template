@@ -23,6 +23,13 @@
 			line-height: 16px;
 			margin-top: 5px;
 		}
+		&.el-form-item_col {
+			display: flex;
+			flex-direction: column;
+			.el-form-item__content {
+				margin-left: 0 !important;
+			}
+		}
 	}
 	.el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
 		width: 100%;

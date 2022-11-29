@@ -187,7 +187,9 @@ instance.interceptors.response.use(response => {
 			showError(Object.assign({},resp,{
 				[RESPMSG]:resp[RESPMSG].includes('Ticket')?'用户登录信息已过期，请重新登录':resp[RESPMSG]
 			}),()=> {
-				window.location.href = store.state.USERINFO.userSpaceUrl || 'https://www.wuhaneduyun.cn/index.php?r=center/person/index'
+				if (process.env.NODE_ENV == 'production') {
+					window.location.href = store.state.USERINFO.userSpaceUrl || 'https://www.wuhaneduyun.cn/index.php?r=center/person/index'
+				}
 			})
 		}
 		else {
