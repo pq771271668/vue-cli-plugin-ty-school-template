@@ -4,7 +4,7 @@
 		<div 
 			v-if="header"
 			class="page-header" 
-			:class="[headerBorderStyle ? 'page-header_border-'+headerBorderStyle : '']" 
+			:class="[{'page-header_search':search},headerBorderStyle ? 'page-header_border-'+headerBorderStyle : '']"
 			:style="headerStyle">
 			<slot name="header">
 				
@@ -17,8 +17,6 @@
 		</div>
 	</div>
 </template>
-
-<!-- 
  
  'gap':header和body是否分开，默认不分开
  
@@ -28,6 +26,8 @@
  
  'header-border-style':头部下边框的样式，默认没有
  
+ 'search':头部是否为表单搜索，默认true
+ 
  'scroll-full':scroll的高度是否为100%，默认为true
  
  'native':是否使用原生滚动条，默认为false
@@ -36,59 +36,63 @@
  
  -->
 <script>
-	export default {
-		inheritAttrs:false,
-		name:'page-container',
-		props:{
-			full:{
-				type:Boolean,
-				default:true
-			},
-			gap:{
-				type:Boolean,
-				default:false
-			},
-			'header':{
-				type:Boolean,
-				default:true
-			},
-			'header-style':{
-				type:Object,
-				default: function () {
-					return {
-						'height':'70px'
-					}
-				}
-			},
-			'header-border-style':{
-				type:String,
-				default:'',
-				validator: function (value) {
-					return ['full', 'none',''].includes(value)
-				}
-			},
-			'scroll-full':{
-				type:Boolean,
-				default:true
-			},
-			'native':{
-				type:Boolean,
-				default:false
-			},
-			'body-style':{
-				type:Object,
-				default: function () {
-					return {}
-				}
-			},
-		},
-		data () {
-			return {
-			}
-		},
-		methods:{
-		}
-	}
+export default {
+    inheritAttrs:false,
+    name:'page-container',
+    props:{
+        full:{
+            type:Boolean,
+            default:true
+        },
+        gap:{
+            type:Boolean,
+            default:false
+        },
+        'header':{
+            type:Boolean,
+            default:true
+        },
+        'header-style':{
+            type:Object,
+            default: function () {
+                return {
+                    'min-height':'70px'
+                }
+            }
+        },
+        'header-border-style':{
+            type:String,
+            default:'',
+            validator: function (value) {
+                return ['full', 'none',''].includes(value)
+            }
+        },
+        'search':{
+            type:Boolean,
+            default:true
+        },
+        'scroll-full':{
+            type:Boolean,
+            default:true
+        },
+        'native':{
+            type:Boolean,
+            default:false
+        },
+        'body-style':{
+            type:Object,
+            default: function () {
+                return {}
+            }
+        },
+    },
+    data () {
+        return {
+        }
+    },
+    methods:{
+    }
+}
 </script>
 
 <style lang="scss">
@@ -98,8 +102,8 @@
 		@extend %box-style;
 		.page-header {
 			flex-shrink: 0;
-			padding: 10px 20px;
-			margin-bottom: 10px;
+			padding: 20px;
+			// margin-bottom: 10px;
 			position: relative;
 			&:after {
 				content: '';
@@ -111,14 +115,28 @@
 				background-color: $--border-color-base;
 				transform: scaleY(0.5);
 			}
-			.el-form {
-				.el-form-item {
-					margin-bottom: 0;
+			&.page-header_search {
+				.el-form--inline {
+					margin-top: -5px;
+					margin-bottom: -5px;
+					.el-form-item {
+						margin-bottom: 5px;
+						margin-top: 5px;
+						margin-right: 0;
+						padding-right: 5px;
+						display: inline-flex;
+						.el-form-item__label {
+							width: 100px;
+						}
+						.el-form-item__content {
+							flex: 1 0 0;
+						}
+					}
 				}
 			}
 		}
 		.page-body {
-			padding:10px 20px 20px;
+			padding:20px;
 			flex: 1 0 0;
 			overflow: hidden;
 		}
@@ -126,13 +144,13 @@
 			background-color: transparent;
 			.page-header {
 				@extend %box-style;
+				margin-bottom: 10px;
 				&:after {
 					display: none;
 				}
 			}
 			.page-body {
 				@extend %box-style;
-				padding-top: 20px;
 			}
 		}
 		.page-header_border-full {
@@ -159,5 +177,8 @@
 				height: 100%;
 			}
 		}
+	}
+	@media screen  and (min-width:1200px){
+		
 	}
 </style>

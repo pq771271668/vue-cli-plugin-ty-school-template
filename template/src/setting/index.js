@@ -4,6 +4,8 @@ const setting= {
 	account:process.env.NODE_ENV == 'production' ? '':'bieke',
 	// 默认平台码，用于开发使用
 	platformCode:process.env.NODE_ENV == 'production' ? '':'420100',
+	// 默认的appId
+	appId:'',
 	//项目名
 	title:'<%= options.ProjectName %>',
 	// 默认baseUrl，仅用于开发环境获取ticket和项目走网关时候默认baseUrl

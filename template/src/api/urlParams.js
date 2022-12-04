@@ -5,7 +5,7 @@ let platformCode =  getUrlParams().loginPlatformCode || getUrlParams().platformc
 
 let account = getUrlParams().account ||  setting.account
 
-let appId = getUrlParams().appId || ''
+let appId = getUrlParams().appId || setting.appId
 
 let ticket = getUrlParams().ticket
 

@@ -82,6 +82,13 @@
 	}
 } 
 
+@each $var in visible, hidden,scroll,auto,inherit {
+	.overflow-#{$var} {
+		overflow: #{$var};
+	}
+} 
+
+
 @each $var in top, middle,bottom {
 	.vertical-#{$var} {
 		vertical-align: #{$var};
