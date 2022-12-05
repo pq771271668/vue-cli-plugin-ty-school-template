@@ -15,6 +15,9 @@
 				<slot></slot>
 			</el-scrollbar>
 		</div>
+		<div class="page-footer" v-if="footer" :style="footerStyle">
+			<slot name="footer"></slot>
+		</div>
 	</div>
 </template>
  
@@ -33,6 +36,12 @@
  'native':是否使用原生滚动条，默认为false
  
  'body-style':body样式，默认没有
+ 
+ 'footer':是否需要footer，默认为true
+ 
+ 'footer-style':footer的样式
+ 
+ 'getScrollHieght()':获取滚动条的高度
  
  -->
 <script>
@@ -85,13 +94,28 @@ export default {
                 return {}
             }
         },
+		'footer':{
+			type:Boolean,
+			default:true
+		},
+		'footer-style':{
+			type:Object,
+			default: function () {
+			    return {}
+			}
+		}
     },
     data () {
         return {
         }
     },
     methods:{
-    }
+		getScrollHieght () {
+			return this.$refs.myScrollbar.$el.offsetHeight
+		}
+    },
+	mounted() {
+	}
 }
 </script>
 
@@ -149,8 +173,11 @@ export default {
 					display: none;
 				}
 			}
-			.page-body {
+			.page-body,.page-footer {
 				@extend %box-style;
+			}
+			.page-body + .page-footer {
+				margin-top: -4px;
 			}
 		}
 		.page-header_border-full {
@@ -176,6 +203,9 @@ export default {
 			.el-scrollbar__view {
 				height: 100%;
 			}
+		}
+		.page-footer {
+			padding-bottom: 20px;
 		}
 	}
 	@media screen  and (min-width:1200px){

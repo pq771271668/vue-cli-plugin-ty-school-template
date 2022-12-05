@@ -1,13 +1,17 @@
 <!-- 
 
 继承el-pagination属性，同时需要开启page-size和current-page的sync
-新增pages页数，可传[Boolean,Number,String]
+
+新增:
+pages页数，可传[Boolean,Number,String]
+top:顶部的margin-top值，默认为15px
  
 合并 @sizeChange和@currentChange 为@on-pagination
 
+
  -->
 <template>
-	<div class="pagination-index">
+	<div class="pagination-index" :style="{'margin-top':top}">
 		<el-pagination
 			layout="total, sizes, prev, pager, next,slot, jumper"
 			prev-text="上一页"
@@ -31,10 +35,14 @@ export default {
     name:'pagination-index',
     props:{
         'pages':{
-			type:[Boolean,Number,String],
+            type:[Boolean,Number,String],
             default:0,
             required:true
-        }
+        },
+		'top':{
+			type:String,
+			default:'15px'
+		}
     },
     data () {
         return {
@@ -53,7 +61,7 @@ export default {
 
 <style lang="scss">
 	.pagination-index {
-		margin-top: 15px;
+		// margin-top: 15px;
 		.el-pagination {
 			.btn-next ,.btn-prev{
 				width: 85px;
