@@ -17,7 +17,7 @@ const router = new Router({
 router.beforeResolve((to, from, next) => {
 	document.title = setting.title
 	if (setting.dynamicTitle) {
-		document.title = to.meta.label
+		document.title = to.meta.label || '<%= options.ProjectName %>'
 	}
 	
 	if (to.meta.keep) {
