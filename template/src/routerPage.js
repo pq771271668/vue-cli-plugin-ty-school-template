@@ -12,6 +12,8 @@ import store from '@/store/index.js'
 
 import isMobile from '@/assets/js/util/isMobile.js'
 
+import Vue from 'vue'
+
 // 获取动态路由
 let oneRun = true;
 
@@ -32,9 +34,10 @@ router.beforeEach( (to, from, next) => {
 				for (let key of routerPageFlat) {
 					if (key.component && !key.meta.noRoute) {
 						const path = key.path ? key.path : '/'+key.name 
+						const component =  key.component instanceof Vue ? key.component : () => import(`@/views${key.component}`)
 						routerPage.push(Object.assign({},key,{
-							path:path,
-							component:() => import(`@/views${key.component}`)
+							path,
+							component
 						}))
 					}
 				}

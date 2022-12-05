@@ -4,7 +4,7 @@
 	// 外层和vue-router属性保持一致
 	name:'',
 	path:'', //如果有path则使用path没有则使用['/'+name]
-	component:'', //需要将字符串转成组件模式
+	component:'', //需要将字符串转成组件模式，字符串需要在views目录下面，否则传递vue组件即： component: () =>import('@/path路径/X.vue'),
 	props:'',
 	meta:{
 		label:'',
