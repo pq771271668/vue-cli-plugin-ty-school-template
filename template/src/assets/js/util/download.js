@@ -1,9 +1,12 @@
 /* 
-三种下载模式：blob模式、xhr后端接口模式、href文件路径模式 
+三种下载模式：blob模式、href文件路径模式 、api通过项目的api设置过了的、xhr纯后端接口模式
  
  */
 
 import axios from 'axios'
+
+import request from '@/assets/js/request/index.js'
+
 function onDownload (data,fileName,type ) {
 	
 	const blob = new Blob([data], { type: type }) // 构造一个blob对象来处理数据，并设置文件类型
@@ -27,21 +30,31 @@ function createDOM (href,fileName) {
 
 function download (model,data,fileName = '下载',type = 'application/vnd.ms-excel') {
 	if (model == 'blob') {
+		/* data:文件 */
 		onDownload(data,fileName,type)
 	}
 	else if (model == 'xhr') {
+		/* data：请求参数 */
 		axios(
 			Object.assign({},{
 				responseType: "blob",
 			},data)
 		)
-		.then ( res => {
-			if(!res) return
-			onDownload(res.data,fileName,type)
+		.then ( resp => {
+			if(!resp) return
+			// onDownload(resp.data,fileName,type)
+			createDOM(resp.data,fileName)
 		})
 	}
 	else if (model == 'href') {
+		/* data：url */
 		createDOM(data,fileName)
+	}
+	else if (model == 'api') {
+		/* data: */
+		request[data.axiosName](data.payload).then( resp => {
+			createDOM(resp,fileName)
+		})
 	}
 }
 
