@@ -63,5 +63,18 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+	/* 抽离出滚动条样式，区分移动端，移动端不需要重置滚动条样式 */
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+	::-webkit-scrollbar-track{
+		// -webkit-box-shadow: inset 0 0 6px rgba(144,147,153,.3);
+		background-color: rgba(144,147,153,0);
+		border-radius: 2px;
+	}
+	::-webkit-scrollbar-thumb {
+		border-radius: 2px;
+		background-color: rgba(144,147,153,.3);
+	}
 </style>

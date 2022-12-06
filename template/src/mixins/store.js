@@ -11,6 +11,9 @@ try {
 
 }
 
+// 设置需要全局共享的vuex混入到data属性里面，默认是全部的vuex
+// $storeKey = ['KEEPALIVE', 'USERINFO', 'isMobile']
+
 // console.log("vuex:"+$storeKey);
 
 export default {
