@@ -1,4 +1,4 @@
-import axios from '@/assets/js/request/request.js'
+import API from '@/assets/js/request/index.js'
 
 import UrlParams from './urlParams.js'
 
@@ -6,17 +6,14 @@ import store from '@/store'
 
 import Cookies from 'js-cookie'
 
-import CONFIG from './getBaseURL.js'
-
 import setting from '@/setting'
 
 function getTicket () {
 	return new Promise( (resolve,reject) => {
 		/* 获取ticket；开发环境通过接口获取，生产环境通过浏览器URL获取 */
 		if (process.env.NODE_ENV == 'development' && (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) ) {
-			axios({
+			API.commonAutoLogin({
 				baseURL:setting.defaultBaseURL,
-				url:`/serv-platform/api/login/autoLogin`,
 				params:{
 					platformCode:UrlParams.platformCode,
 					account:UrlParams.account
@@ -42,14 +39,12 @@ function getToken () {
 	return new Promise( (resolve,reject) => {
 		/* token获取地址 */
 		// '/serv-platform/api/usersession/getAccessToken'
-		let url = ''
+		let url = '/serv-platform/api/usersession/getAccessToken'
 		if (url) {
 			getTicket()
 			.then( (ticket) => {
 				if (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) {
-					axios({
-						baseURL:CONFIG.baseURL,
-						url,
+					API.commonToken({
 						params:{
 							platformCode:UrlParams.platformCode,
 							ticket:ticket,

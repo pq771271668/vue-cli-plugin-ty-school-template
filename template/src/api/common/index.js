@@ -17,12 +17,18 @@
 export default {
 	label:'API接口',
 	name:'common',
-	/* children:[
+	children:[
 		{
-			label:'',
-			name:'',
-			url:'',
-			method:''
+			label:'用户开发环境自动登录autoLogin获取ticket',
+			name:'autoLogin',
+			url:'/serv-platform/api/login/autoLogin',
+			method:'get'
+		},
+		{
+			label:'获取token和用户信息',
+			name:'token',
+			url:'/serv-platform/api/usersession/getAccessToken',
+			method:'get'
 		}
-	] */
+	]
 }
