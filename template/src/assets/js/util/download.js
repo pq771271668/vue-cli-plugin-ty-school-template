@@ -51,8 +51,17 @@ function download (model,data,fileName = '下载',type = 'application/vnd.ms-exc
 		createDOM(data,fileName)
 	}
 	else if (model == 'api') {
-		/* data: */
-		request[data.axiosName](data.payload).then( resp => {
+		/* data: 接口名和【接口参数】*/
+		let axiosName = ''
+		let payload = {}
+		if (typeof data == 'string') {
+			axiosName = data
+		}
+		else {
+			axiosName = data.axiosName
+			payload = data.payload
+		}
+		request[axiosName](payload).then( resp => {
 			createDOM(resp,fileName)
 		})
 	}
