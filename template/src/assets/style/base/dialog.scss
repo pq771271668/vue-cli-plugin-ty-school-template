@@ -1,7 +1,8 @@
 .el-dialog {
 	&.is-border {
 		.el-dialog__header {
-			border-bottom: 1px solid $--border-color-base;
+			border-bottom: 1px solid $--bg-color-app;
+;
 		}
 	}
 }
