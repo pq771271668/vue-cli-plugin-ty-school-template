@@ -65,7 +65,8 @@ export default {
 
 <style lang="scss">
 	/* 抽离出滚动条样式，区分移动端，移动端不需要重置滚动条样式 */
-	::-webkit-scrollbar {
+	/* 删除滚动条样式，目的是：table设置fixed时X轴滚动条会对不齐 */
+	/* ::-webkit-scrollbar {
 		width: 6px;
 	}
 	::-webkit-scrollbar-track{
@@ -76,5 +77,5 @@ export default {
 	::-webkit-scrollbar-thumb {
 		border-radius: 2px;
 		background-color: rgba(144,147,153,.3);
-	}
+	} */
 </style>
