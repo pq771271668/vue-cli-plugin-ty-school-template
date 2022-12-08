@@ -18,7 +18,7 @@
 				</span>
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item v-for="item in items" :key="item.command" :command="item.command">
-						<el-link :underline="false" :href="$dict.handlerURL" target="_blank">{{item.label}}</el-link>
+						<el-link :underline="false" :href="$setting.handlerURL" target="_blank">{{item.label}}</el-link>
 					</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
