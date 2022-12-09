@@ -25,6 +25,18 @@ const ElementUI = merge(elementUI,{
 				default: require('@/assets/images/empty.png')
 			}
 		}
+	},
+	Pagination:{
+		props:{
+			'prev-text':{
+				type: String, 
+				default: '上一页'
+			},
+			'next-text':{
+				type: String, 
+				default: '下一页'
+			}
+		}
 	}
 })
 export default ElementUI
