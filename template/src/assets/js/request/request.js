@@ -60,7 +60,14 @@ function showError(error,callback,confirmButtonText) {
 			})
 		}
 		else {
-			Notify({ type: 'danger', message: message });
+			Notify({
+				type: 'danger', 
+				message: message ,
+				onClose:() => {
+					HTTPERRORCOUNT --
+					// callback && callback()
+				}
+			});
 		}
 		
 	}
