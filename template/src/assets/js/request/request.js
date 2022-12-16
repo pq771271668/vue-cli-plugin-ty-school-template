@@ -102,7 +102,7 @@ function hideLoading () {
 		}
 	}
 	else {
-		HTTPLOADING.clear();
+		HTTPLOADING && HTTPLOADING.clear();
 	}
 }
 
