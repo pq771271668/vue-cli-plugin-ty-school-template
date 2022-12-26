@@ -12,6 +12,31 @@ import store from '@/store/index.js'
 
 import isMobile from '@/assets/js/util/isMobile.js'
 
+function getRouter (data,array) {
+	for (let key of data) {
+		if (key.meta && !key.meta.noRoute) {
+			if (key.component) {
+				// const path = key.path ? key.path : '/'+key.name 
+				
+				let obj = Object.assign({},key,{
+					// path:path,
+					component:() => import(`@/views${key.component}`)	
+				})
+				if (key.children && key.children.length  > 0) {
+					obj.children = []
+					getRouter(key.children,obj.children)
+				}
+				
+				array.push(obj)
+			}
+			else if (!key.component && key.children && key.children.length  > 0) {
+				getRouter(key.children,array)
+			}
+		}
+		
+	}
+}
+
 // 获取动态路由
 let oneRun = true;
 
@@ -25,19 +50,12 @@ router.beforeEach( (to, from, next) => {
 			.then( data => {
 				oneRun = false;
 				
-				let routerPageFlat = flatArrayDeep(data)
-				
 				let routerPage = []
 				
-				for (let key of routerPageFlat) {
-					if (key.component && (key.meta && !key.meta.noRoute || !key.meta)) {
-						const path = key.path ? key.path : '/'+key.name 
-						routerPage.push(Object.assign({},key,{
-							path:path,
-							component:() => import(`@/views${key.component}`)
-						}))
-					}
-				}
+				getRouter(data,routerPage)
+				
+				/* console.log(data)
+				console.log(routerPage) */
 				
 				let routers = []
 				
@@ -54,10 +72,20 @@ router.beforeEach( (to, from, next) => {
 						path: '/',
 						name: '/',
 						component: () =>  isMobile() ? import('@/views/Mobile/index') : import('@/views/index'),
-						redirect:{
+						/* redirect:{
 							name:routerPage[0].name
+						}, */
+						redirect: () => {
+							let redirectName = [0,2].includes(store.state.USERINFO.USERROLE.userType) ? 'ecode' :routerPage[0].name
+							return {
+								name:redirectName
+							}
 						},
 						children: routerPage
+					},{
+						path: '/e-code',
+						name: 'ecode',
+						component: () => import('@/views/common/ecode')
 					},{
 						path: '*',
 						name: 'error',
