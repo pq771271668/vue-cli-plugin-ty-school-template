@@ -1,5 +1,7 @@
 <template>
-	<router-view class="app-page"></router-view>
+	<keep-alive :include="KEEPALIVE">
+		<router-view class="app-page"></router-view>
+	</keep-alive>
 </template>
 
 <script>
