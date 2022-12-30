@@ -10,12 +10,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
 	.app-page {
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		background-color: $--bg-color-app;
+		background-color: @bg-color-app;
 	}
 	.van-button-group {
 		display: flex;
