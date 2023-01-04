@@ -65,20 +65,14 @@ export default {
 
 <style lang="scss">
 	/* 抽离出滚动条样式，区分移动端，移动端不需要重置滚动条样式 */
-	/* 删除滚动条样式，目的是：table设置fixed时X轴滚动条会对不齐 */
 	::-webkit-scrollbar {
-		width: 6px;
+		width: 10px;
+		height: 10px;
 	}
 	::-webkit-scrollbar-track{
-		// -webkit-box-shadow: inset 0 0 6px rgba(144,147,153,.3);
-		background-color: rgba(144,147,153,0.1);
-		border-radius: 2px;
+		background-color: rgba(0,0,0,0.05);
 	}
 	::-webkit-scrollbar-thumb {
-		border-radius: 2px;
-		background-color: rgba(144,147,153,.3);
-	}
-	.el-table__fixed {
-		bottom: 17px !important; //web端由于修改了滚动条样式】，导致el-table有固定列时，Y轴滚动到底后，固定列出现错乱问题
+		background-color: rgba(0,0,0,.1);
 	}
 </style>
