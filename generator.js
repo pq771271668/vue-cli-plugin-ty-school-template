@@ -29,6 +29,7 @@ module.exports = (api, options, rootOptions) => {
 			"@vue/cli-plugin-vuex": "~4.5.13",
 			"@vue/cli-service": "~4.5.13",
 			"babel-plugin-transform-remove-console": "^6.9.4",
+			"css-unicode-loader": "^1.0.3",
 			"less": "^3.0.4",
 			"less-loader": "^5.0.0",
 			"sass": "^1.26.5",
