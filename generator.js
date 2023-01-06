@@ -15,6 +15,7 @@ module.exports = (api, options, rootOptions) => {
 			"js-cookie": "^3.0.1",
 			"lodash": "^4.17.21",
 			"vant": "^2.12.52",
+			"vconsole": "^3.15.0",
 			"vue": "^2.6.11",
 			"vue-bus": "^1.2.1",
 			"vue-fragment": "^1.6.0",

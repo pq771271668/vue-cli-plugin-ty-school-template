@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import VConsole from 'vconsole';
 export default {
-	
+	created() {
+		if (this.$setting.VConsole) {
+			new VConsole();
+		}
+	}
 }
 </script>
 
