@@ -8,7 +8,7 @@
 import VConsole from 'vconsole';
 export default {
 	created() {
-		if (this.$setting.VConsole) {
+		if (this.$setting.VConsole && process.env.NODE_ENV == 'production') {
 			new VConsole();
 		}
 	}
