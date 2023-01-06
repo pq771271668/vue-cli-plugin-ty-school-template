@@ -66,8 +66,8 @@ export default {
 <style lang="scss">
 	/* 抽离出滚动条样式，区分移动端，移动端不需要重置滚动条样式 */
 	::-webkit-scrollbar {
-		width: 10px;
-		height: 10px;
+		width: 15px;
+		height: 15px;
 	}
 	::-webkit-scrollbar-track{
 		background-color: rgba(0,0,0,0.05);
