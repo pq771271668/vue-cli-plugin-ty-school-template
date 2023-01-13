@@ -1,6 +1,6 @@
 <template>
 	<div class="project-error">
-		<el-empty :image="image" description="页面找不到!" :image-size="300">
+		<el-empty :image="image" description="页面找不到" :image-size="300">
 			<el-button type="primary" @click="backIndex">返回首页</el-button>
 			<el-button type="primary" @click="backPrev">返回上一页</el-button>
 		</el-empty>

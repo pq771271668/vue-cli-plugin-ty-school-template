@@ -9,8 +9,10 @@
 	meta:{
 		label:'',
 		iconfont/iconpark:'', // 阿里字体库/字节字体库
-		hidden:'',  //当设置 true 的时候该路由不会再侧边栏出现，比如：详细页面
+		hidden:'',  //当设置 true 的时候该路由不会再侧边栏出现，比如：详细页面 
+					//例如：设置：hidden:!['admin','teacher'].includes(permission())
 		noRoute:'', //当设置 true 的时候该路由不会加载，比如：判断菜单权限时
+					//例如：设置：noRoute:!['admin','teacher'].includes(permission())
 		parent:'' //上级菜单名，image有值时，children里面必需填写parent，建议children里面都写的
 		clickRefresh:'' //当设置为true时，点击侧边栏页面刷新
 		//当不使用icon时，使用图片替代--未选中；

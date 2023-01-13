@@ -76,16 +76,16 @@ router.beforeEach( (to, from, next) => {
 							name:routerPage[0].name
 						}, */
 						redirect: () => {
-							let redirectName = [0,2].includes(store.state.USERINFO.USERROLE.userType) ? 'ecode' :routerPage[0].name
+							let redirectName = routerPage.length == 0 ? 'noPermission': routerPage[0].name
 							return {
 								name:redirectName
 							}
 						},
 						children: routerPage
 					},{
-						path: '/e-code',
-						name: 'ecode',
-						component: () => import('@/views/common/ecode')
+					path: '/no-permission',
+					name: 'noPermission',
+					component: () => import('@/views/common/no-permission')
 					},{
 						path: '*',
 						name: 'error',
