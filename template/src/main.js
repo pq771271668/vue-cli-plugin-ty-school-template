@@ -40,6 +40,7 @@ Vue.use(ElementUI, { size: 'small', zIndex: 100 })
 
 //vant
 import Vant from 'vant';
+import '@vant/touch-emulator';
 import 'vant/lib/index.less';
 Vue.use(Vant);
 

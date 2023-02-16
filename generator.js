@@ -7,6 +7,7 @@ module.exports = (api, options, rootOptions) => {
 			"build": "vue-cli-service build"
 		},
 		"dependencies": {
+			"@vant/touch-emulator": "^1.4.0",
 			"axios": "^0.27.2",
 			"babel-polyfill": "^6.26.0",
 			"core-js": "^3.6.5",
