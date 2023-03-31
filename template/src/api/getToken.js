@@ -8,6 +8,8 @@ import Cookies from 'js-cookie'
 
 import setting from '@/setting'
 
+import { Notify } from 'vant';
+
 function getTicket () {
 	return new Promise( (resolve,reject) => {
 		/* 获取ticket；开发环境通过接口获取，生产环境通过浏览器URL获取 */
@@ -25,6 +27,9 @@ function getTicket () {
 			})
 			.then(res => {
 				resolve(res.ticket)
+			})
+			.catch( () => {
+				Notify({ type: 'danger', message: '接口获取ticket失败' });
 			})
 		}
 		else {
@@ -62,17 +67,35 @@ function getToken () {
 							expires: 0.08
 						})
 						
-						const USERINFO = Object.assign({},res.userSession)
+						const USERINFO = Object.assign({},res.userSession,{
+							USERROLE:{}
+						})
 						
 						store.commit('$store', {
 							name:'USERINFO',
 							value:USERINFO
 						})
 						
-						process.env.NODE_ENV == 'development' && console.error('暂无设置权限接口')
-						
 						resolve(USERINFO)
 						
+						// process.env.NODE_ENV == 'development' && console.error('暂无设置权限接口')
+						/* API.commonUserRole().then( resp => {
+							// console.log(resp)
+							const USERINFO = Object.assign({},res.userSession,{
+								USERROLE:resp
+							})
+							
+							store.commit('$store', {
+								name:'USERINFO',
+								value:USERINFO
+							})
+							
+							resolve(USERINFO)
+						}) */
+						
+					})
+					.catch( () => {
+						Notify({ type: 'danger', message: '接口获取Token和用户信息失败' });
 					})
 				}
 				else {
