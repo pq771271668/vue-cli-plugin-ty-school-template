@@ -15,6 +15,7 @@ module.exports = (api, options, rootOptions) => {
 			"element-ui": "^2.15.11",
 			"js-cookie": "^3.0.1",
 			"lodash": "^4.17.21",
+			"moment": "^2.29.4",
 			"vant": "^2.12.52",
 			"vconsole": "^3.15.0",
 			"vue": "^2.6.11",
