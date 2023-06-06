@@ -1,3 +1,4 @@
+/* 废弃 建议使用moment.js this.$moment() */
 // padStart 的 polyfill，因为某些机型或情况，还无法支持es7的padStart，比如电脑版的微信小程序
 // 所以这里做一个兼容polyfill的兼容处理
 if (!String.prototype.padStart) {

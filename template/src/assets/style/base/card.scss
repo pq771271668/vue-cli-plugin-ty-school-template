@@ -1,3 +1,5 @@
+/* border-none 去掉border */
+/* border-line */
 .el-card {
 	&.border-none {
 		border:none;
@@ -7,11 +9,7 @@
 	}
 	&.border-line {
 		.el-card__header {
-			padding-top:0;
-			padding-bottom:0;
 			border-left: 6px solid $--color-primary;
-			margin-top:18px;
-			margin-bottom:18px;
 		}
 		
 		@each $name, $color in (
@@ -27,6 +25,5 @@
 				}
 			}
 		}
-		
 	}
 }

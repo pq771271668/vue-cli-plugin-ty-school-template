@@ -1,3 +1,4 @@
+/* 随机数 */
 function random(min, max) {
 	if (min >= 0 && max > 0 && max >= min) {
 		let gab = max - min + 1;

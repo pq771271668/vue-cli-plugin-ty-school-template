@@ -1,3 +1,4 @@
+<!-- 根据用户ID，在平台获取用户头像 -->
 <template>
 	<el-avatar v-bind="$attrs" :src="src"><slot></slot></el-avatar>
 </template>

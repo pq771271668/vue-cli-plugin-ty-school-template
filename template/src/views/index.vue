@@ -75,4 +75,29 @@ export default {
 	::-webkit-scrollbar-thumb {
 		background-color: rgba(0,0,0,.1);
 	}
+	
+	.el-container {
+		height: 100%;
+		& > .el-header {
+			background: linear-gradient(90deg, #00A5FD 17.7%, #0068FF 83.2%);
+			padding: 0 50px;
+			
+			& + .el-container {
+				height: calc(100% - 60px);
+				.el-aside {
+				}
+				& > .el-main {
+					padding: 20px;
+					height: 100%;
+					position: relative;
+					background-color: $--bg-color;
+					.main-page {
+						height:100%;
+					}
+				}
+			}
+			
+		}
+	}
+	
 </style>

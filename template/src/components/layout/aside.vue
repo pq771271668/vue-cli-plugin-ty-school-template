@@ -10,7 +10,7 @@
 export default {
 	name: 'project-aside',
 	components: {
-		'layout-menu-index': () => import('@/components/layout/menu/index.vue'),
+		'layout-menu-index': () => import('./menu/index.vue'),
 	},
 	inheritAttrs: false,
 	data() {

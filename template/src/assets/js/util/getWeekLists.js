@@ -1,3 +1,4 @@
+/* 获取周lists */
 /* https://blog.csdn.net/JasonAlonk/article/details/114926885 */
 class getDateWeekList {
 	constructor(start, end) {

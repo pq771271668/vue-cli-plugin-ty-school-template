@@ -32,7 +32,7 @@ import routerData from '@/router/data.js'
 export default {
 	name: 'menu-index',
 	components:{
-		'layout-menu-tree': () => import('@/components/layout/menu/tree.vue')
+		'layout-menu-tree': () => import('./tree.vue')
 	},
 	inheritAttrs: false,
 	data() {

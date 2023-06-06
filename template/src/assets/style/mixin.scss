@@ -1,4 +1,10 @@
 /* 混入 */
+/* 
+//使用
+.elli-line{
+	@include elli-line(2);
+}
+ */
 
 /* 省略号 */
 @mixin elli-line ($num:2) {
@@ -7,12 +13,12 @@
 	-webkit-line-clamp: $num;
 	overflow: hidden;
 }
-/* 
- //使用
- .elli-line{
-	@include elli-line(2);
- }
- */
+
+@mixin ellipsis () {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 
 @mixin table-color ($color:$--border-color-base) {
 	th.el-table__cell.is-leaf,
@@ -34,8 +40,44 @@
 	}
 }
 
-@mixin ellipsis () {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+/* 媒体查询 从小到大*/
+/* 
+.style {
+	width: 100%;
+	@include sm {
+		width: 100%;
+	}
+	@include md {
+		width: 50%;
+	}
+	@include lg {
+		width: 25%;
+	}
+	@include xl {
+		width: 20%;
+	}
+}
+ */
+@mixin sm {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media screen and (min-width: 992px) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media screen and (min-width: 1200px){
+		@content;
+	}
+}
+
+@mixin xl {
+	@media screen and (min-width: 1920px) {
+		@content;
+	}
 }

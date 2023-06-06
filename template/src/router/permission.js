@@ -1,7 +1,7 @@
 import store from '@/store'
 
 /* 
-isAppAdmin:教师是否是管理员，true:可以有所有菜单权限，false:userType == 1 || 3普通教师 只有我的课表
+isAppAdmin:教师是否是管理员，true:可以有所有菜单权限，false:userType == 1 || 3普通教师
 
 用户类型 0:学生，1:老师，2:家长，3:工作人员，4:机构人员，5:企业人员，12:市民
  */

@@ -1,24 +1,22 @@
-$--project-tabs-height:58px;
-.project-tabs {
-	.el-tabs__header {
-		@extend %box-style;
-		// padding: 0 45px;
-		.el-tabs__nav-wrap {
-			&:after {
-				display: none;
+/* project-tabs(el-tabs--simple) header的两外一种样式 */
+.el-tabs {
+	&.project-tabs,&.el-tabs--simple {
+		.el-tabs__header {
+			@extend %box-style;
+			.el-tabs__nav-wrap {
+				&:after {
+					display: none;
+				}
+			}
+			.el-tabs__item {
+				$--project-tabs-height:58px;
+				font-size: 16px;
+				height: $--project-tabs-height;
+				line-height: $--project-tabs-height;
+			}
+			.el-tabs__active-bar {
+				height: 4px;
 			}
 		}
-		.el-tabs__item {
-			font-size: 16px;
-			height: $--project-tabs-height;
-			line-height: $--project-tabs-height;
-		}
-		.el-tabs__active-bar {
-			height: 4px;
-		}
-	}
-	.el-tabs__content {
-		// @extend %box-style;
-		// padding: 20px;
 	}
 }

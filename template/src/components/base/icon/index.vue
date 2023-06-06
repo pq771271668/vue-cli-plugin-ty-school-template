@@ -1,3 +1,4 @@
+<!-- 自定义图片ICON -->
 <template>
 	<img 
 		:src="src || require(`@/assets/images/icon/${name}.png`)" 

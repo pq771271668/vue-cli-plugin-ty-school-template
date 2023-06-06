@@ -1,21 +1,12 @@
 import getUrlParams from '@/assets/js/util/getUrlParams.js'
 import setting from '@/setting'
 
-let platformCode =  getUrlParams().loginPlatformCode || getUrlParams().platformcode || getUrlParams().platformCode ||  setting.platformCode
+let platformCode =  getUrlParams().loginPlatformCode || getUrlParams().platformcode || getUrlParams().platformCode ||  setting.urlParams.platformCode
 
-let account = getUrlParams().account ||  setting.account
+const defaultParams = Object.assign({},setting.urlParams,{platformCode})
 
-let appId = getUrlParams().appId || setting.appId
+const UrlParams = Object.assign({},defaultParams,getUrlParams())
 
-let ticket = getUrlParams().ticket
+console.log("UrlParams:"+UrlParams);
 
-
-console.log("platformCode:"+platformCode);
-
-const UrlParams = {
-	platformCode,
-	account,
-	appId,
-	ticket
-}
 export default UrlParams

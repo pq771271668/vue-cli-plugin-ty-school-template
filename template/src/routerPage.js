@@ -60,7 +60,7 @@ router.beforeEach( (to, from, next) => {
 				let routers = []
 				
 				if (routerPage.length == 0) {
-					console.error('请在router/data.js设置路由数据')
+					console.log('%c请在router/data.js设置路由数据','color:#fff;background-color: #e6a23c;padding: 12px 20px;border-radius: 4px;font-size: 14px;font-weight: 500;');
 					routers = [{
 						path: '/',
 						name: '/',

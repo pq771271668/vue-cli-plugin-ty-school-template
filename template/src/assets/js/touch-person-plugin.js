@@ -1,3 +1,4 @@
+/* 移动端 通讯录式的选人组件 */
 import CONFIG from '@/api/getBaseURL.js'
 
 //组件域地址

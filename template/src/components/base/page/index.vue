@@ -1,3 +1,4 @@
+<!-- 页面级别组件 search、table、pagination -->
 <template>
 	<div class="page-container" 
 		:class="{'page-container_gap':gap}">
@@ -6,9 +7,7 @@
 			class="page-header" 
 			:class="[{'page-header_search':search},headerBorderStyle ? 'page-header_border-'+headerBorderStyle : '']"
 			:style="headerStyle">
-			<slot name="header">
-				
-			</slot>
+			<slot name="header"></slot>
 		</div>
 		<div class="page-body" :style="bodyStyle">
 			<el-scrollbar :native="native" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" ref="myScrollbar">
@@ -16,7 +15,9 @@
 			</el-scrollbar>
 		</div>
 		<div class="page-footer" v-if="footer" :style="footerStyle">
-			<slot name="footer"></slot>
+			<slot name="footer">
+				<pagination-index v-bind="$attrs" v-on="$listeners"></pagination-index>
+			</slot>
 		</div>
 	</div>
 </template>
@@ -101,7 +102,9 @@ export default {
 		'footer-style':{
 			type:Object,
 			default: function () {
-			    return {}
+			    return {
+					'text-align':'center'
+				}
 			}
 		}
     },
@@ -207,8 +210,5 @@ export default {
 		.page-footer {
 			padding-bottom: 20px;
 		}
-	}
-	@media screen  and (min-width:1200px){
-		
 	}
 </style>

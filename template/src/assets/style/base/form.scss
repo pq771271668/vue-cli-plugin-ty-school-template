@@ -1,12 +1,10 @@
+/* input-search input后面添加search图标 */
+/* content-block content区域独立一行 */
+/* content-tips */
+/* el-form-item_col 将label和content垂直布局*/
+/* .el-input,.el-input__inner,.el-select 宽度为100% */
 .el-form {
 	.el-form-item {
-		/* &.is-required {
-			.el-form-item__label {
-				&:before {
-					margin-left: -15px;
-				}
-			}
-		} */
 		&.content-block {
 			.el-form-item__content {
 				margin-left: 0 !important;
@@ -17,12 +15,6 @@
 				animation:headShake 1s ease-in-out;
 			}
 		}
-		.content-tips {
-			font-size: 12px;
-			color: $--color-text-placeholder;
-			line-height: 16px;
-			margin-top: 5px;
-		}
 		&.el-form-item_col {
 			display: flex;
 			flex-direction: column;
@@ -30,8 +22,17 @@
 				margin-left: 0 !important;
 			}
 		}
+		.content-tips {
+			font-size: 12px;
+			color: $--color-text-placeholder;
+			line-height: 16px;
+			margin-top: 5px;
+		}
 	}
-	.el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
+	/* .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
+		width: 100%;
+	} */
+	.el-cascader,.el-select ,.el-date-editor.el-input, .el-date-editor.el-input__inner{
 		width: 100%;
 	}
 	.el-date-editor .el-range-separator {
@@ -85,8 +86,4 @@
   50% {
     transform: translateX(0);
   }
-}
-
-.el-cascader,.el-select ,.el-date-editor.el-input, .el-date-editor.el-input__inner{
-	width: 100%;
 }

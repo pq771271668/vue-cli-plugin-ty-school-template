@@ -178,6 +178,9 @@ instance.interceptors.response.use(response => {
 	else {
 		const resp = response.data
 		/* 获取接口的参数key值 */
+		
+		/* config.resp 当返回值中没有data:{}时，也就是返回值不是使用data包裹 [String:根据设置的值返回，Boolean:返回所有] */
+		
 		const KEYS = Object.keys(resp)
 		let RESPSTATUS = response.config.status || intersection(KEYS,STATUS)
 		let RESPDATA = (typeof response.config.resp == 'string' && response.config.resp) || intersection(KEYS,DATA)

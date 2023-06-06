@@ -1,3 +1,4 @@
+<!-- PageHeader 另外一直形式 space-between -->
 <template>
 	<div class="nav-bar">
 		<div class="nav-bar__left" @click="$emit('back')"
@@ -60,6 +61,7 @@ export default {
 		width: 100%;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		.nav-bar__left {
 			display: flex;
 			align-items: center;
@@ -77,7 +79,7 @@ export default {
 			}
 		}
 		.nav-bar__content {
-			flex: 1;
+			flex: 1 0 0;
 			font-size: 18px;
 			color: $--color-text-primary;
 		}

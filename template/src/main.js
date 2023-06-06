@@ -35,8 +35,7 @@ import '@/assets/fonts/iconfont.js'
 // 引入element-ui
 import ElementUI from '@/setting/ElementUI.js'
 import '@/assets/style/element-variables.scss'
-// import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI, { size: 'small', zIndex: 100 })
+Vue.use(ElementUI, ElementUI.Global)
 
 //vant
 import Vant from 'vant';
@@ -54,6 +53,13 @@ Vue.use(Fragment.Plugin)
 //验证
 import validator from '@/assets/js/validator.js'
 Vue.prototype.$validator = validator
+
+//引入
+import moment from 'moment';
+//挂载到原型
+Vue.prototype.$moment = moment ;
+//汉化，否则显示日期格式是国外的日期格式
+moment.locale("zh-CN");
 
 // util
 import util from '@/assets/js/util.js'

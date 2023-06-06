@@ -26,19 +26,17 @@
 				// 选中的样式；默认都是使用style
 			}
 		},
-		keep: true/false //是否缓存，如果设置了keep:true，必须需要路由的name和组件的name是一样的
+		keep: true/false //是否缓存，如果设置了keep:true，*****注意：必须需要路由的name和组件的name是一样的****
 	},
 	children:[]
 }
 */
 
 /* 
-菜单权限说明：
- 
- 
- */
+菜单权限说明:【根据项目来确定】
+*/
 
-import store from '@/store/index.js'
+// import store from '@/store/index.js'
 import permission from './permission.js'
 
 import isMobile from '@/assets/js/util/isMobile.js'

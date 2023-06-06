@@ -76,9 +76,7 @@ function getToken () {
 							value:USERINFO
 						})
 						
-						resolve(USERINFO)
-						
-						// process.env.NODE_ENV == 'development' && console.error('暂无设置权限接口')
+						console.log('%c此处可以添加登陆账号的其他信息，例如：用户权限、角色等信息','color:#fff;background-color: #e6a23c;padding: 12px 20px;border-radius: 4px;font-size: 14px;font-weight: 500;');
 						/* API.commonUserRole().then( resp => {
 							// console.log(resp)
 							const USERINFO = Object.assign({},res.userSession,{
@@ -93,6 +91,8 @@ function getToken () {
 							resolve(USERINFO)
 						}) */
 						
+						
+						resolve(USERINFO)
 					})
 					.catch( () => {
 						Notify({ type: 'danger', message: '接口获取Token和用户信息失败' });

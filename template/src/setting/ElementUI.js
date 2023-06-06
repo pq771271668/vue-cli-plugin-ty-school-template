@@ -2,6 +2,10 @@
 import elementUI from 'element-ui'
 import merge from 'lodash/merge';
 const ElementUI = merge(elementUI,{
+	Global:{
+		size: 'small', 
+		zIndex: 100
+	},
 	Table:{
 		props:{
 			size:{

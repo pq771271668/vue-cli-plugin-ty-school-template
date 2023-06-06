@@ -21,4 +21,9 @@ export default {
 </script>
 
 <style lang="scss">
+	/* 布局容器 */
+	#app {
+		height: 100%;
+		background-color: #FFFFFF;
+	}
 </style>

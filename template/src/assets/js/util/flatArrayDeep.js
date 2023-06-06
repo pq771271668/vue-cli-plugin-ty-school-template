@@ -1,3 +1,4 @@
+/* 拉伸 建议使用loadsh */
 function flatArrayDeep(array,key='children',index,value = []) {
 	array.reduce((pre, cur,currentIndex) => {
 		value.push(Object.assign(cur,{
