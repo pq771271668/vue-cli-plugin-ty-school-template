@@ -7,13 +7,20 @@ const draggable = {
 		el.style.cursor = 'move'
 	},
 	inserted: function(el) {
-		el.onmousedown = function(e) {
+		el.ontouchstart = function(e) {
+			var dragStartTime = '';
+			var dragEndTime = '';
+			var target = e.target;        
+			target.setAttribute('drag-flag', false);
+			dragStartTime = new Date().getTime()
+			
 			// el.offsetTop/Left 元素到父元素上边/左边的距离
-			let disx = e.pageX - el.offsetLeft
-			let disy = e.pageY - el.offsetTop
-			document.onmousemove = function(e) {
-				let x = e.pageX - disx
-				let y = e.pageY - disy
+			let disx = e.targetTouches[0].clientX - el.offsetLeft
+			let disy = e.targetTouches[0].clientY - el.offsetTop
+			document.ontouchmove = function(e) {
+				let x = e.targetTouches[0].clientX - disx
+				let y = e.targetTouches[0].clientY - disy
+				
 				let maxX = document.body.clientWidth - parseInt(window.getComputedStyle(el).width)
 				let maxY = document.body.clientHeight - parseInt(window.getComputedStyle(el).height)
 				if (x < 0) {
@@ -30,9 +37,15 @@ const draggable = {
 
 				el.style.left = x + 'px'
 				el.style.top = y + 'px'
+				
+				dragEndTime = new Date().getTime();
+				if (dragEndTime - dragStartTime > 300) {
+					target.setAttribute('drag-flag', true)
+				};
+				
 			}
-			document.onmouseup = function() {
-				document.onmousemove = document.onmouseup = null
+			document.ontouchend = function() {
+				document.ontouchmove = document.ontouchmove = null
 			}
 		}
 	},

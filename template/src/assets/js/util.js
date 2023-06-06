@@ -23,9 +23,6 @@ import trim from '@/assets/js/util/trim.js'
 /* 两个对象数组 根据相同的[key=id]进行合并 */
 import combined from '@/assets/js/util/combined.js'
 
-/* 数组对象根据key[默认：'index']值排序 */
-import arraySortKey from '@/assets/js/util/arraySortKey.js'
-
 /* 实现对象数组的扁平化处理 */
 import flatArray from '@/assets/js/util/flatArray.js'
 import flatArrayDeep from '@/assets/js/util/flatArrayDeep.js'
@@ -55,7 +52,6 @@ const util = {
 	timeFormat,
 	trim,
 	combined,
-	arraySortKey,
 	flatArray,
 	flatArrayDeep,
 	xhr,

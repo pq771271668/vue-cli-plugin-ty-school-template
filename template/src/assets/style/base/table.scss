@@ -1,4 +1,16 @@
 .el-table {
+	.el-table__row {
+		&.el-table__row-border-none_right {
+			.el-table__cell{
+				border-right: none;
+			}
+		}
+		&.el-table__row-border-only-first_right {
+			.el-table__cell:not(:first-child) {
+				border-right: none;
+			}
+		}
+	}
 	.el-table__cell {
 		&.header-danger-light {
 			background-color: $--color-danger-light;
@@ -6,8 +18,8 @@
 		&.header-primary-light {
 			background-color: $--color-primary-light;
 		}
-		&.header-border-none {
-			border: none !important;
+		&.el-table__cell-border-none {
+			border: none;
 		}
 		&.el-table__cell-border {
 			border: 1px solid $--table-border-color;

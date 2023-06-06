@@ -1,0 +1,20 @@
+.el-radio-group {
+	&.el-radio-group_round {
+		border: 1px solid $--border-color-base;
+		padding: 2px;
+		border-radius: 90px;
+		.el-radio-button {
+			.el-radio-button__inner {
+				border-radius: 90px;
+				border: none;
+			}
+		}
+	}
+	&.el-radio-group_border-none {
+		.el-radio-button {
+			.el-radio-button__inner {
+				border: none;
+			}
+		}
+	}
+}

@@ -8,8 +8,8 @@
   background-color: transparent;
 }
 .ty-toast {
-  min-width: 194px;
-  max-width: 500px;
+  // min-width: 300px;
+  max-width: 600px;
   min-height: 112px;
   border-radius: 8px;
   background: #fff;
@@ -21,47 +21,56 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  &:before {
-    content: "";
-    min-width: 32px;
-    min-height: 32px;
-    display: block;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    float: left;
-  }
-  .ty-toast-text {
-    float: left;
-    font-weight: normal;
-    // font-size: 18px;
-    // white-space: nowrap;
-    padding-left: 10px;
-    color: #555555;
-	line-height: 24px;
-	font-size: 16px;
-  }
+  
 }
-.ty-toast-info {
+.ty-toast-center {
+	.ty-toast-message {
+		width: 100%;
+		text-align: center;
+	}
+}
+[class*='ty-toast-type-'] {
+	&:before {
+	  content: "";
+	  min-width: 32px;
+	  min-height: 32px;
+	  display: block;
+	  background-repeat: no-repeat;
+	  background-size: 100% 100%;
+	  float: left;
+	}
+	.ty-toast-message {
+	  float: left;
+	  font-weight: normal;
+	  // font-size: 18px;
+	  white-space: nowrap;
+	  padding-left: 10px;
+	  color: #555555;
+		line-height: 24px;
+		// font-size: 16px;
+	}
+}
+.ty-toast-type-info {
   &:before {
     background-image: url(./assets/icon-info.png);
   }
 }
-.ty-toast-success {
+.ty-toast-type-success {
   &:before {
     background-image: url(./assets/icon-success.png);
   }
 }
-.ty-toast-error {
+.ty-toast-type-error {
   &:before {
     background-image: url(./assets/icon-error.png);
   }
 }
-.ty-toast-warning {
+.ty-toast-type-warning {
   &:before {
     background-image: url(./assets/icon-warning.png);
   }
 }
-.ty-toast-wait {
+.ty-toast-type-wait {
   &:before {
     background: #fff;
     border-radius: 32px;
@@ -70,7 +79,7 @@
     animation: ty-toast-spinner 1000ms linear infinite both;
   }
 }
-.ty-toast-load {
+.ty-toast-type-load {
   min-width: 100px;
   width: 100px;
   min-height: 100px;
@@ -90,11 +99,11 @@
     display: block;
     animation: ty-toast-spinner 1000ms linear infinite both;
   }
-  .ty-toast-text{
+  .ty-toast-message{
     float: none;
     color: #fff;
     display: block;
-    font-size: 14px;
+    // font-size: 14px;
     text-align: center;
   }
 }

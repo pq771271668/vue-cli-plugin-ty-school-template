@@ -19,7 +19,9 @@
 	success:$--background-color-success,
 	info:$--background-color-info,
 	danger:$--background-color-danger,
-	warning:$--background-color-warning
+	warning:$--background-color-warning,
+	white:#ffffff,
+	black:#000000
 	) {
 	.bg-#{$name},.background-#{$name}{
 		background-color: #{$color};
@@ -125,12 +127,22 @@
 		// 得出：margin-30或者m-30
 		.margin-#{$i},
 		.m-#{$i} {
+			margin: $i + px;
+		}
+		
+		.margin-#{$i}_important,
+		.m-#{$i}_important {
 			margin: $i + px !important;
 		}
-
+		
 		// 得出：padding-30或者p-30
 		.padding-#{$i},
 		.p-#{$i} {
+			padding: $i + px;
+		}
+		
+		.padding-#{$i}_important,
+		.p-#{$i}_important {
 			padding: $i + px !important;
 		}
 
@@ -138,22 +150,38 @@
 			// 缩写版，结果如： m-l-30
 			// 定义外边距
 			.m-#{$short}-#{$i} {
+				margin-#{$long}: $i + px;
+			}
+			
+			.m-#{$short}-#{$i}_important {
 				margin-#{$long}: $i + px !important;
 			}
-
+			
 			// 定义内边距
 			.p-#{$short}-#{$i} {
+				padding-#{$long}: $i + px;
+			}
+			
+			.p-#{$short}-#{$i}_important {
 				padding-#{$long}: $i + px !important;
 			}
 
 			// 完整版，结果如：margin-left-30
 			// 定义外边距
 			.margin-#{$long}-#{$i} {
+				margin-#{$long}: $i + px;
+			}
+			
+			.margin-#{$long}-#{$i}_important {
 				margin-#{$long}: $i + px !important;
 			}
 
 			// 定义内边距
 			.padding-#{$long}-#{$i} {
+				padding-#{$long}: $i + px;
+			}
+			
+			.padding-#{$long}-#{$i}_important {
 				padding-#{$long}: $i + px !important;
 			}
 		}
@@ -177,7 +205,7 @@
 				}
 				
 				.r-#{$b}-#{$a}-#{$i} {
-					border-#{$b}-#{$a}-radius: $i + px;
+					border-#{$before}-#{$after}-radius: $i + px;
 				}
 			}
 

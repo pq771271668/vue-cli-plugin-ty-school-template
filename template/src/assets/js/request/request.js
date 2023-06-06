@@ -177,18 +177,22 @@ instance.interceptors.response.use(response => {
 	}
 	else {
 		const resp = response.data
-		
 		/* 获取接口的参数key值 */
 		const KEYS = Object.keys(resp)
-		let RESPSTATUS = intersection(KEYS,STATUS)
-		let RESPDATA = intersection(KEYS,DATA)
-		let RESPMSG = intersection(KEYS,MSG)
+		let RESPSTATUS = response.config.status || intersection(KEYS,STATUS)
+		let RESPDATA = (typeof response.config.resp == 'string' && response.config.resp) || intersection(KEYS,DATA)
+		let RESPMSG = response.config.msg || intersection(KEYS,MSG)
 		
 		if (!resp[RESPSTATUS]) {
 			return resp
 		}
 		else if ( SUCCESSSTATUS.includes(resp[RESPSTATUS].toString()) ) {
-			return resp[RESPDATA]
+			if (response.config.resp && typeof response.config.resp == 'boolean') {
+				return resp
+			}
+			else {
+				return resp[RESPDATA]
+			}
 		} 
 		else if (resp[RESPMSG].includes('accessToken') || resp[RESPMSG].includes('Ticket')) {
 			showError(Object.assign({},resp,{
