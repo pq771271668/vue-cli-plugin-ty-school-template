@@ -16,7 +16,7 @@ height: 高度默认为38px
  -->
  
 <template>
-	<div class="pagination-index" :style="{'margin-top':top,'--height':height}" :class="[paginationClass]">
+	<div class="pagination-index" :style="style" :class="[paginationClass]">
 		<el-pagination
 			
 			v-bind="attrs"
@@ -71,18 +71,16 @@ export default {
 		},
 		'paginationClass' () {
 			return this.model ? 'pagination-index_'+this.model : ''
+		},
+		'style'() {
+			return Object.assign({},{
+				'margin-top':'15px',
+				'--height':'38px',
+				'text-align':'center'
+			},this.paginationStyle)
 		}
 	},
     props:{
-        'pages':{
-            type:[Boolean,Number,String],
-            default:0,
-            required:true
-        },
-        'top':{
-            type:String,
-            default:'15px'
-        },
 		model:{
 			type:[Boolean,String],
 			default:'normal',
@@ -90,9 +88,16 @@ export default {
 				return !value || ( typeof value == 'string' && ['normal','single'].includes(value))
 			}
 		},
-		'height':{
-			type:String,
-			default:'38px'
+		'pages':{
+		    type:[Boolean,Number,String],
+		    default:0,
+		    required:true
+		},
+		'pagination-style':{
+			type:Object,
+			default:function () {
+				return {}
+			}
 		}
     },
     data () {

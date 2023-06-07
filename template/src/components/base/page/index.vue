@@ -102,9 +102,7 @@ export default {
 		'footer-style':{
 			type:Object,
 			default: function () {
-			    return {
-					'text-align':'center'
-				}
+			    return {}
 			}
 		}
     },
@@ -124,6 +122,7 @@ export default {
 
 <style lang="scss">
 	.page-container {
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		@extend %box-style;
