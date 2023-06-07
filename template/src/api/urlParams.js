@@ -7,6 +7,6 @@ const defaultParams = Object.assign({},setting.urlParams,{platformCode})
 
 const UrlParams = Object.assign({},defaultParams,getUrlParams())
 
-console.log("UrlParams:"+UrlParams);
+console.log("UrlParams:"+JSON.stringify(UrlParams));
 
 export default UrlParams
