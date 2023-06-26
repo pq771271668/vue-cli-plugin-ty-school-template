@@ -10,9 +10,14 @@
 			<slot name="header"></slot>
 		</div>
 		<div class="page-body" :style="bodyStyle">
-			<el-scrollbar :native="native" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" ref="myScrollbar">
+			<template v-if="scroll">
+				<el-scrollbar v-bind="$attrs" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" ref="myScrollbar">
+					<slot></slot>
+				</el-scrollbar>
+			</template>
+			<template v-else>
 				<slot></slot>
-			</el-scrollbar>
+			</template>
 		</div>
 		<div class="page-footer" v-if="footer" :style="footerStyle">
 			<slot name="footer">
@@ -30,11 +35,11 @@
  
  'header-border-style':头部下边框的样式，默认没有
  
- 'search':头部是否为表单搜索，默认true
+ 'search':头部是否存在表单搜索，默认true
+ 
+ 'scroll':是否需要el-scroll，默认为true
  
  'scroll-full':scroll的高度是否为100%，默认为true
- 
- 'native':是否使用原生滚动条，默认为false
  
  'body-style':body样式，默认没有
  
@@ -72,22 +77,22 @@ export default {
         },
         'header-border-style':{
             type:String,
-            default:'',
+            default:'default',
             validator: function (value) {
-                return ['full', 'none',''].includes(value)
+                return ['full', 'none','default'].includes(value)
             }
         },
         'search':{
             type:Boolean,
             default:true
         },
+		'scroll':{
+			type:Boolean,
+			default:true
+		},
         'scroll-full':{
             type:Boolean,
             default:true
-        },
-        'native':{
-            type:Boolean,
-            default:false
         },
         'body-style':{
             type:Object,
@@ -95,28 +100,28 @@ export default {
                 return {}
             }
         },
-		'footer':{
-			type:Boolean,
-			default:true
-		},
-		'footer-style':{
-			type:Object,
-			default: function () {
+        'footer':{
+            type:Boolean,
+            default:true
+        },
+        'footer-style':{
+            type:Object,
+            default: function () {
 			    return {}
-			}
-		}
+            }
+        }
     },
     data () {
         return {
         }
     },
     methods:{
-		getScrollHieght () {
-			return this.$refs.myScrollbar.$el.offsetHeight
-		}
+        getScrollHieght () {
+            return this.$refs.myScrollbar.$el.offsetHeight
+        }
     },
-	mounted() {
-	}
+    mounted() {
+    }
 }
 </script>
 
@@ -131,16 +136,6 @@ export default {
 			padding: 20px;
 			// margin-bottom: 10px;
 			position: relative;
-			&:after {
-				content: '';
-				position: absolute;
-				left: 20px;
-				right: 20px;
-				bottom: 0;
-				height: 1px;
-				background-color: $--border-color-base;
-				transform: scaleY(0.5);
-			}
 			&.page-header_search {
 				.el-form--inline {
 					margin-top: -5px;
@@ -161,14 +156,9 @@ export default {
 				}
 			}
 		}
-		.page-body {
-			padding:20px;
-			flex: 1 0 0;
-			overflow: hidden;
-		}
 		&.page-container_gap {
 			background-color: transparent;
-			.page-header {
+			& > .page-header {
 				@extend %box-style;
 				margin-bottom: 10px;
 				&:after {
@@ -182,7 +172,22 @@ export default {
 				margin-top: -4px;
 			}
 		}
+		.page-header_border-default {
+			&.page-header {
+				&:after {
+					content: '';
+					position: absolute;
+					left: 20px;
+					right: 20px;
+					bottom: 0;
+					height: 1px;
+					background-color: $--border-color-base;
+					transform: scaleY(0.5);
+				}
+			}
+		}
 		.page-header_border-full {
+			@extend .page-header_border-default;
 			&.page-header {
 				&:after {
 					left: 0;
@@ -206,7 +211,13 @@ export default {
 				height: 100%;
 			}
 		}
+		.page-body {
+			padding:20px;
+			flex: 1 0 0;
+			overflow: hidden;
+		}
 		.page-footer {
+			flex-shrink: 0;
 			padding-bottom: 20px;
 		}
 	}

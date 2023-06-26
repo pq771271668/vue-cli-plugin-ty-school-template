@@ -124,13 +124,21 @@ instance.interceptors.request.use(config => {
 	//处理RESTful风格 uri [String,Array,Object]
 	if (config.uri) {
 		if ( typeof config.uri == 'string' || typeof config.uri == 'number') {
+			/* uri:'123' */
 			config.url += '/'+config.uri
 		}
 		else if (Array.isArray(config.uri)) {
+			/* uri:[123,'abc'] */
 			let uri = config.uri.join('/')
 			config.url += '/'+uri
 		}
 		else {
+			/* uri:[
+				{
+					[key]:key,
+					[value]:value
+				}
+			] */
 			for (let key in config.uri) {
 				config.url = config.url.replace(key,key+'/'+config.uri[key])
 			}

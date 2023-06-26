@@ -1,0 +1,8 @@
+/* 清除 时间组件el-date-range的此刻和清空按钮 */
+.el-picker-panel {
+	&.no-atTheMoment {
+		.el-button--text.el-picker-panel__link-btn {
+			display: none;
+		}
+	}
+}

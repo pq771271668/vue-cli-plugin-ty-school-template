@@ -8,10 +8,6 @@ const ElementUI = merge(elementUI,{
 	},
 	Table:{
 		props:{
-			size:{
-				type: String, 
-				default: 'medium'
-			},
 			border:{
 				type: Boolean,
 				default: true

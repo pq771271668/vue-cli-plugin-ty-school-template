@@ -21,7 +21,9 @@ function UserTree(data) {
 			'default-expand-all':true
 		},
 		onConfirm:null,
+		onClose:null, //懒加载时候可以返回获取的数据data
 		limit:null,
+		selectUnit:'人',
 		column:[
 			{
 				prop:'name',

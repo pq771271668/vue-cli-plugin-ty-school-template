@@ -76,7 +76,9 @@ function getToken () {
 							value:USERINFO
 						})
 						
-						console.log('%c此处可以添加登陆账号的其他信息，例如：用户权限、角色等信息','color:#fff;background-color: #e6a23c;padding: 12px 20px;border-radius: 4px;font-size: 14px;font-weight: 500;');
+						if (process.env.NODE_ENV == 'development') {
+							console.log('%c此处可以添加登陆账号的其他信息，例如：用户权限、角色等信息','color:#fff;background-color: #e6a23c;padding: 12px 20px;border-radius: 4px;font-size: 14px;font-weight: 500;');
+						}
 						/* API.commonUserRole().then( resp => {
 							// console.log(resp)
 							const USERINFO = Object.assign({},res.userSession,{

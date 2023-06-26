@@ -3,7 +3,15 @@
 	&.is-border {
 		.el-dialog__header {
 			border-bottom: 1px solid $--background-color-info;
-;
+		}
+	}
+	&.dialog-center {
+		margin: 0 auto !important;
+		top: 50%;
+		transform: translateY(-50%);
+		.el-dialog__body {
+			height: 80vh;
+			overflow: auto;
 		}
 	}
 }

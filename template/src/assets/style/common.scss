@@ -105,6 +105,13 @@
 	}
 }
 
+// flex-shrink
+@for $i from 0 through 12 {
+	.flex-shrink-#{$i} {
+		flex-shrink: $i;
+	}
+}
+
 /* 省略号*/
 @for $i from 1 through 5 {
 	.line-#{$i} {
@@ -188,6 +195,61 @@
 	}
 }
 
+.m-auto {
+	margin: auto;
+}
+.m-auto_important {
+	margin: auto !important;
+}
+
+.p-auto {
+	padding: auto;
+}
+.p-auto_important {
+	padding: auto !important;
+}
+
+@each $short, $long in l left, t top, r right, b bottom {
+			// 缩写版，结果如： m-l-30
+			// 定义外边距
+			.m-#{$short}-auto {
+				margin-#{$long}: auto;
+			}
+			
+			.m-#{$short}-auto_important {
+				margin-#{$long}: auto !important;
+			}
+			
+			// 定义内边距
+			.p-#{$short}-auto {
+				padding-#{$long}: auto;
+			}
+			
+			.p-#{$short}-auto_important {
+				padding-#{$long}: auto !important;
+			}
+
+			// 完整版，结果如：margin-left-30
+			// 定义外边距
+			.margin-#{$long}-auto {
+				margin-#{$long}: auto;
+			}
+			
+			.margin-#{$long}-auto_important {
+				margin-#{$long}: auto !important;
+			}
+
+			// 定义内边距
+			.padding-#{$long}-auto {
+				padding-#{$long}: auto;
+			}
+			
+			.padding-#{$long}-auto_important {
+				padding-#{$long}: auto !important;
+			}
+		}
+
+
 @for $i from 2 through 100 {
 	// 只要双数和能被5除尽的数
 	@if $i % 2 == 0 or $i % 5 == 0 {
@@ -251,7 +313,7 @@
 
 @for $i from 0 through 100 {
 	// 只要双数和能被5除尽的数
-	@if $i % 2 == 0 {
+	@if $i % 2 == 0 or $i % 5 == 0{
 		.line-height-#{$i} {
 			line-height: $i + px;
 		}

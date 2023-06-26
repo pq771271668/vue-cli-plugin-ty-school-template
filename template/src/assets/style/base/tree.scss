@@ -1,0 +1,45 @@
+.el-tree-simple {
+	&.el-tree {
+		height: 100%;
+		.el-tree-node {
+			.el-tree-node__content {
+				height: 48px;
+				.el-tree-node__expand-icon {
+					font-weight: bolder;
+					font-size: 16px;
+				}
+				.el-tree-node__label {
+					white-space: break-spaces;
+					line-height: 20px;
+					@include elli-line(1);
+				}
+			}
+		}
+	}
+	&.el-tree--highlight-current {
+		.el-tree-node {
+			&.is-current {
+				> .el-tree-node__content {
+					border-radius: 4px;
+					background-color: $--color-primary-light;
+					.el-tree-node__expand-icon:not(.is-leaf) {
+						color: $--color-primary;
+					}
+				}
+			}
+			&.is-expanded {
+				.el-tree-node__expand-icon:not(.is-leaf) {
+					color: $--color-primary;
+				}
+			}
+		}
+	}
+	&.el-tree-simple--small {
+		.el-tree-node {
+			.el-tree-node__content {
+				height: 32px;
+			}
+		}
+	}
+}
+

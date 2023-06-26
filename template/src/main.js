@@ -20,6 +20,10 @@ Vue.mixin(vuexStore);
 import direvtive from '@/directive/index.js'
 Vue.use(direvtive)
 
+// 自定义过滤器
+import filter from '@/filter/index.js'
+Vue.use(filter)
+
 // lodash
 import _ from 'lodash';
 Vue.prototype._ = _

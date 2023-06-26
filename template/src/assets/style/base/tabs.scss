@@ -18,5 +18,10 @@
 				height: 4px;
 			}
 		}
+		&.header-none-margin-bottom {
+			.el-tabs__header {
+				margin-bottom: 0;
+			}
+		}
 	}
 }

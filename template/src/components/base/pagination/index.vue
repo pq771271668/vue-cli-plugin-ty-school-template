@@ -5,11 +5,9 @@
 新增:
 pages页数，可传[Boolean,Number,String]
 
-top:顶部的margin-top值，默认为15px
-
 model:[Boolean,String] [false,'normal' | 'single']
 
-height: 高度默认为38px
+pagination-style：分页样式
  
 合并 @sizeChange和@currentChange 为@on-pagination
 
@@ -18,7 +16,6 @@ height: 高度默认为38px
 <template>
 	<div class="pagination-index" :style="style" :class="[paginationClass]">
 		<el-pagination
-			
 			v-bind="attrs"
 			v-on="$listeners"
 			@size-change="sizeChange"
@@ -46,66 +43,77 @@ height: 高度默认为38px
 export default {
     inheritAttrs:false,
     name:'pagination-index',
-	computed:{
-		'attrs' () {
+    computed:{
+        'attrs' () {
 			
-			let prop = {}
+            let prop = {}
 			
-			if (typeof this.model == 'string') {
-				if (this.model == 'normal') {
-					prop = {
-						layout: 'total, sizes, prev, pager, next,slot, jumper',
-						background: true
-					}
+            if (typeof this.model == 'string') {
+                if (this.model == 'normal') {
+                    prop = {
+                        layout: 'total, sizes, prev, pager, next,slot, jumper',
+                        background: true
+                    }
 					
-				}
-				else if (this.model == 'single') {
-					prop = {
-						layout: 'total, prev, slot, next,sizes, jumper',
-						background: false
-					}
-				}
-			}
+                }
+                else if (this.model == 'single') {
+                    prop = {
+                        layout: 'total, prev, slot, next,sizes, jumper',
+                        background: false
+                    }
+                }
+            }
 			
-			return Object.assign({},prop,this.$attrs)
-		},
-		'paginationClass' () {
-			return this.model ? 'pagination-index_'+this.model : ''
-		},
-		'style'() {
-			return Object.assign({},{
-				'margin-top':'15px',
-				'--height':'38px',
-				'text-align':'center'
-			},this.paginationStyle)
-		}
-	},
+            return Object.assign({},prop,this.$attrs,{
+                currentPage:this.currentPage,
+                pageSize:this.pageSize
+            })
+        },
+        'paginationClass' () {
+            return this.model ? 'pagination-index_'+this.model : ''
+        },
+        'style'() {
+            return Object.assign({},{
+                // 'margin-top':'15px',
+                '--height':'38px',
+                'text-align':'center'
+            },this.paginationStyle)
+        }
+    },
     props:{
-		model:{
-			type:[Boolean,String],
-			default:'normal',
-			validator:function (value) {
-				return !value || ( typeof value == 'string' && ['normal','single'].includes(value))
-			}
-		},
-		'pages':{
+        model:{
+            type:[Boolean,String],
+            default:'normal',
+            validator:function (value) {
+                return !value || ( typeof value == 'string' && ['normal','single'].includes(value))
+            }
+        },
+        'pages':{
 		    type:[Boolean,Number,String],
 		    default:0,
 		    required:true
-		},
-		'pagination-style':{
-			type:Object,
-			default:function () {
-				return {}
-			}
-		}
+        },
+        'pagination-style':{
+            type:Object,
+            default:function () {
+                return {}
+            }
+        },
+        'currentPage':{
+		    default:1
+        },
+        'pageSize':{
+		    default:10
+        }
     },
     data () {
         return {
         }
     },
     methods:{
-        sizeChange () {
+        sizeChange (value) {
+            this.$emit('update:currentPage',1)
+            this.$emit('update:pageSize',value)
             this.$emit('on-pagination')
         },
         currentChange () {

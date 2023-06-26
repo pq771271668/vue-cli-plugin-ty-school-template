@@ -3,6 +3,7 @@
  
  */
 .el-table {
+	user-select:text;
 	.el-table__row {
 		&.el-table__row-border-none_right {
 			.el-table__cell{
