@@ -1,7 +1,9 @@
 <template>
-	<el-container>
+	<el-container :class="{'layout-simple':$setting.layout == 'simple'}">
 		<el-header>
-			<layout-header></layout-header>
+			<layout-header>
+				<layout-aside v-if="$setting.layout == 'simple'"></layout-aside>
+			</layout-header>
 		</el-header>
 		<el-container>
 			<template v-if="$router.getRoutes().length == 1">
@@ -11,7 +13,7 @@
 				</div>
 			</template>
 			<template v-else>
-				<el-aside width="220px">
+				<el-aside width="220px" v-if="$setting.layout !== 'simple'">
 					<layout-aside></layout-aside>
 				</el-aside>
 				<el-main>
@@ -81,7 +83,6 @@ export default {
 		& > .el-header {
 			background: linear-gradient(90deg, #00A5FD 17.7%, #0068FF 83.2%);
 			padding: 0 50px;
-			
 			& + .el-container {
 				height: calc(100% - 60px);
 				.el-aside {
@@ -96,7 +97,6 @@ export default {
 					}
 				}
 			}
-			
 		}
 	}
 	

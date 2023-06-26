@@ -4,6 +4,7 @@
 			<el-image fit="contain" :src="logo"></el-image>
 			<p>{{$setting.title}}</p>
 		</div>
+		<slot></slot>
 		<div class="user-prof">
 			<el-avatar :src="USERINFO.avatarUrl"></el-avatar>
 			<div class="name">
@@ -59,6 +60,7 @@
 
 <style lang="scss">
 	.project-header {
+		color: #FFFFFF;
 		height: 100%;
 		display: flex;
 		align-items: center;
@@ -73,14 +75,14 @@
 			p {
 				font-size: 18px;
 				margin-left: 14px;
-				color: #FFFFFF;
+				// color: #FFFFFF;
 				font-weight: bold;
 			}
 		}
 		.user-prof {
 			display: flex;
 			align-items: center;
-			color: #FFFFFF;
+			// color: #FFFFFF;
 			.el-avatar {
 				margin-right: 20px;
 			}

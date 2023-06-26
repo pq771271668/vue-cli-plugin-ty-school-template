@@ -1,8 +1,13 @@
 <template>
-	<div class="project-aside">
-		<el-scrollbar :native="false" class="page-component__scroll">
+	<div class="project-aside" :class="{'project-aside_simple':$setting.layout == 'simple'}">
+		<template v-if="$setting.layout !== 'simple'">
+			<el-scrollbar :native="false" class="page-component__scroll">
+				<layout-menu-index v-on="$listeners" v-bind="$attrs"></layout-menu-index>
+			</el-scrollbar>
+		</template>
+		<template v-else>
 			<layout-menu-index v-on="$listeners" v-bind="$attrs"></layout-menu-index>
-		</el-scrollbar>
+		</template>
 	</div>
 </template>
 
@@ -23,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss">
-.project-aside {
+.project-aside:not(.project-aside_simple) {
 	height: 100%;
 	/* .aside-menus {
 		height: 100%;
@@ -43,7 +48,7 @@ export default {
 			// justify-content: space-between;
 			transition: all 0.8s;
 			span {
-				padding-left: 25px;
+				padding-left: 15px;
 				font-size: 16px;
 			}
 			&:hover {
