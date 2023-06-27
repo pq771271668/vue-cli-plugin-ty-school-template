@@ -48,7 +48,7 @@
 					    >
 					</el-table-column> -->
 					<el-table-column
-						v-for="col in column"
+						v-for="col in tableAttributes.column"
 						:key="col.prop"
 					    v-bind="col"
 					    >
@@ -187,9 +187,14 @@ export default {
     },
     mounted () {
         /* 设置默认选中值 */
+        this.muitlLists = this.tableAttributes.data
+		
         this.$nextTick( () => {
-            this.muitlLists = this.$refs.tree.getCheckedNodes(true)
-        })
+            const setCheckedKeys = this.tableAttributes.data.map( user => {
+            	return user[this.treeAttributes.props.id]
+            })
+            this.$refs.tree.setCheckedKeys(setCheckedKeys)
+        }) 
     }
 }
 </script>

@@ -24,12 +24,15 @@ function UserTree(data) {
 		onClose:null, //懒加载时候可以返回获取的数据data
 		limit:null,
 		selectUnit:'人',
-		column:[
-			{
-				prop:'name',
-				label:'Name'
-			}
-		]
+		tableAttributes:{
+			data:[],
+			column:[
+			    {
+			    	prop:'name',
+			    	label:'Name'
+			    }
+			],
+		},
 	}, data)
 	// console.log(data);
 	//通过Vue构造器，创建子类，然后实例化并进行挂载

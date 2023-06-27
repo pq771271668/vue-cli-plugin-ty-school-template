@@ -9,9 +9,9 @@
 			:style="headerStyle">
 			<slot name="header"></slot>
 		</div>
-		<div class="page-body" :style="bodyStyle">
+		<div class="page-body" :style="bodyStyle" ref="pageBody">
 			<template v-if="scroll">
-				<el-scrollbar v-bind="$attrs" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" ref="myScrollbar">
+				<el-scrollbar v-bind="$attrs" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" >
 					<slot></slot>
 				</el-scrollbar>
 			</template>
@@ -47,7 +47,7 @@
  
  'footer-style':footer的样式
  
- 'getScrollHieght()':获取滚动条的高度
+ 'getBodyHeight()':获取滚动条的高度
  
  -->
 <script>
@@ -116,8 +116,12 @@ export default {
         }
     },
     methods:{
-        getScrollHieght () {
-            return this.$refs.myScrollbar.$el.offsetHeight
+        getBodyHeight () {
+			const pageBody = this.$refs.pageBody
+			const height = this.$refs.pageBody.clientHeight
+			const paddingTop = getComputedStyle(pageBody).paddingTop.replace(/\s+|px/gi,"")
+			const paddingBottom = getComputedStyle(pageBody).paddingBottom.replace(/\s+|px/gi,"")
+            return height - Number(paddingTop) - Number(paddingBottom)
         }
     },
     mounted() {
@@ -144,7 +148,7 @@ export default {
 						margin-bottom: 5px;
 						margin-top: 5px;
 						margin-right: 0;
-						padding-right: 5px;
+						padding-right: 20px;
 						display: inline-flex;
 						.el-form-item__label {
 							width: 100px;
