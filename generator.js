@@ -12,7 +12,7 @@ module.exports = (api, options, rootOptions) => {
 			"babel-polyfill": "^6.26.0",
 			"core-js": "^3.6.5",
 			"echarts": "^5.3.3",
-			"element-ui": "^2.15.11",
+			"element-ui": "^2.15.13",
 			"js-cookie": "^3.0.1",
 			"lodash": "^4.17.21",
 			"moment": "^2.29.4",

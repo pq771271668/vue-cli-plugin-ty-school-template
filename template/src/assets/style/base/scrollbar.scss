@@ -1,7 +1,7 @@
 /* el-scrollbar.page-component__scroll隐藏组件横向滚动条 */
 .el-scrollbar {
 	height: 100%;
-	width: 100%;
+	// width: 100%; //会导致el-date-picker 不要秒时，无法选择分
 	&.page-component__scroll {
 		& > .el-scrollbar__wrap {
 			overflow-x: hidden;
