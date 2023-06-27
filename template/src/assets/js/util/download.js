@@ -31,6 +31,7 @@ function createDOM (href,fileName) {
 function download (model,data,fileName = '下载',type = 'application/vnd.ms-excel') {
 	if (model == 'blob') {
 		/* data:文件 */
+		/* 如果是流文件下载，请注意在请求中一定一定要设置responseType: 'blob'，否则文件excel无法打开 */
 		onDownload(data,fileName,type)
 	}
 	else if (model == 'xhr') {
