@@ -1,4 +1,3 @@
-/* el-card的一种补充 */
 .lists-card {
 	display: flex;
 	flex-wrap: wrap;
@@ -22,8 +21,13 @@
 		.el-card__header {
 			line-height: 28px;
 		}
+		$-list-body-height:150px;
+		$-list-footer-height:40px;
+		.el-card__body {
+			height: $-list-body-height + $-list-footer-height;
+		}
 		.list-body {
-			height: 150px;
+			height: $-list-body-height;
 			line-height: 24px;
 			color: $--color-text-regular;
 			padding: 0 20px;
@@ -31,13 +35,13 @@
 		}
 		.list-footer {
 			width: 100%;
-			height: 34px;
+			height: $-list-footer-height;
 			display: flex;
 			align-items: center;
 			border-top: 1px solid $--card-border-color;
 			p {
-				height: 34px;
-				line-height: 34px;
+				height: $-list-footer-height;
+				line-height: $-list-footer-height;
 				width: 50%;
 				text-align: center;
 				cursor: pointer;
