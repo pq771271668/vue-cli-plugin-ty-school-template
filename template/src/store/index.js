@@ -27,11 +27,11 @@ export default new Vuex.Store({
 				setItem: (key, value) => ls.set(key, value),
 				removeItem: (key) => ls.remove(key),
 			} */
-			/* 本地化需要本地化的state，目前内置为下面三个 */
+			/* 本地化需要本地化的state，目前内置为下面四个 */
 			reducer(val) {
-				let {KEEPALIVE,USERINFO,isMobile} = val
+				let {KEEPALIVE,USERINFO,isMobile,COLLAPSE} = val
 				return {
-					KEEPALIVE,USERINFO,isMobile
+					KEEPALIVE,USERINFO,isMobile,COLLAPSE
 				}
 			}
 		})
@@ -40,6 +40,7 @@ export default new Vuex.Store({
 		KEEPALIVE:[],
 		USERINFO:{},
 		isMobile:isMobile(),
+		COLLAPSE:false
 	},
 	mutations:{
 		// this.$vuex('token',token)

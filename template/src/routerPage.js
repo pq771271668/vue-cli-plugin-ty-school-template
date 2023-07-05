@@ -11,6 +11,7 @@ import Cookies from 'js-cookie'
 import store from '@/store/index.js'
 
 import isMobile from '@/assets/js/util/isMobile.js'
+import setting from '@/setting/index.js'
 
 function getRouter (data,array) {
 	for (let key of data) {
@@ -71,7 +72,7 @@ router.beforeEach( (to, from, next) => {
 					routers = [{
 						path: '/',
 						name: '/',
-						component: () =>  isMobile() ? import('@/views/h5/index') : import('@/views/index'),
+						component: () =>  (isMobile() && setting.hasApp) ? import('@/views/h5/index') : import('@/views/index'),
 						/* redirect:{
 							name:routerPage[0].name
 						}, */

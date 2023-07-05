@@ -1,5 +1,6 @@
 <template>
 	<el-menu
+		:collapse="COLLAPSE"
 		:default-active="activeIndex" @select="handleSelect" unique-opened>
 		<layout-menu-tree :menus="menus" v-if="menus" :keyPath="keyPath"></layout-menu-tree>
 	</el-menu>
@@ -83,6 +84,7 @@ export default {
 		.then( data => {
 			this.menus = data
 			// this.keyPath = [data[0].name]
+			this.$vuex('COLLAPSE',this.$util.isMobile() && !this.$setting.hasAPP)
 		})
 	},
 	mounted() {

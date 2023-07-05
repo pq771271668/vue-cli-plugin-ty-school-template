@@ -1,0 +1,28 @@
+.layout-PC_at_APP {
+	&.el-container {
+		& > .el-header {
+			padding: 0 20px;
+			& + .el-container > .el-main {
+				.main-page {
+					min-width: 820px;
+				}
+			}
+		}
+	}
+	.project-aside:not(.project-aside_simple) {
+		%menu-item {
+			padding-left: 20px !important;
+			padding-right: 0;
+		}
+		.el-menu {
+			.el-submenu {
+				.el-submenu__title {
+					@extend %menu-item;
+				}
+			}
+		}
+		.el-menu-item {
+			@extend %menu-item;
+		}
+	}
+}

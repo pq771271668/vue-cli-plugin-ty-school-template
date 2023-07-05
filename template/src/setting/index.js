@@ -20,6 +20,8 @@ const setting= {
 	// 设置动态title
 	dynamicTitle:isMobile() ? true : false,
 	// 设置移动端VConsole
-	VConsole:true
+	VConsole:true,
+	// 是否有APP页面；否则PC端可以在移动端使用（是否适配需要看PC端页面做没有适配移动端）
+	hasAPP:false,
 }
 export default setting

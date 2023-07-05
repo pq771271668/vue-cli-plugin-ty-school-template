@@ -1,5 +1,5 @@
 <template>
-	<el-container :class="{'layout-simple':$setting.layout == 'simple'}">
+	<el-container :class="{'layout-simple':$setting.layout == 'simple','layout-PC_at_APP':$util.isMobile() && !$setting.hasApp}">
 		<el-header>
 			<layout-header>
 				<layout-aside v-if="$setting.layout == 'simple'"></layout-aside>
@@ -13,7 +13,7 @@
 				</div>
 			</template>
 			<template v-else>
-				<el-aside width="220px" v-if="$setting.layout !== 'simple'">
+				<el-aside :width="width" v-if="$setting.layout !== 'simple'">
 					<layout-aside></layout-aside>
 				</el-aside>
 				<el-main>
@@ -27,11 +27,6 @@
 		</el-container>
 	</el-container>
 </template>
-<!-- <el-scrollbar :native="false" class="page-component__scroll" ref="myScrollbar">
-	<keep-alive>
-		<router-view class="main-page"></router-view>
-	</keep-alive>
-</el-scrollbar> -->
 <script>
 import layoutHeader from '@/components/layout/header.vue'
 import layoutAside from '@/components/layout/aside.vue'
@@ -43,7 +38,8 @@ export default {
     },
     data () {
         return {
-            refresh:true
+            refresh:true,
+			width:this.$util.isMobile() && !this.$setting.hasApp ? 'auto':'220px'
         }
     },
     methods:{
