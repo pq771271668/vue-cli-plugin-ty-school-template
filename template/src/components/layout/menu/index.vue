@@ -1,6 +1,7 @@
 <template>
 	<el-menu
 		:collapse="COLLAPSE"
+		:collapse-transition="false"
 		:default-active="activeIndex" @select="handleSelect" unique-opened>
 		<layout-menu-tree :menus="menus" v-if="menus" :keyPath="keyPath"></layout-menu-tree>
 	</el-menu>

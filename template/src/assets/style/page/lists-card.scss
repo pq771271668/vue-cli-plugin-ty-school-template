@@ -19,6 +19,9 @@
 		@include xl {
 			width: calc(25% - 20px);
 		}
+		.el-card__header {
+			line-height: 28px;
+		}
 		.list-body {
 			height: 150px;
 			line-height: 24px;

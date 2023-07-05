@@ -1,5 +1,10 @@
 <template>
-	<el-container :class="{'layout-simple':$setting.layout == 'simple','layout-PC_at_APP':$util.isMobile() && !$setting.hasApp}">
+	<el-container
+		:class="{
+			'layout-simple':$setting.layout == 'simple',
+			'layout-PC_at_APP':$util.isMobile() && !$setting.hasApp,
+			'layout-collapse_mini':COLLAPSE,
+		}">
 		<el-header>
 			<layout-header>
 				<layout-aside v-if="$setting.layout == 'simple'"></layout-aside>
@@ -36,10 +41,14 @@ export default {
     components:{
         layoutHeader,layoutAside
     },
+	computed:{
+		width () {
+			return this.COLLAPSE ? 'auto':'220px'
+		}
+	},
     data () {
         return {
-            refresh:true,
-			width:this.$util.isMobile() && !this.$setting.hasApp ? 'auto':'220px'
+            refresh:true
         }
     },
     methods:{
