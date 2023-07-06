@@ -30,9 +30,6 @@ export default {
 <style lang="scss">
 .project-aside:not(.project-aside_simple) {
 	height: 100%;
-	/* .aside-menus {
-		height: 100%;
-	} */
 	.el-menu {
 		border-right: none;
 		%menu-item_active {
@@ -45,7 +42,6 @@ export default {
 			padding-left: 45px !important;
 			display: flex;
 			align-items: center;
-			// justify-content: space-between;
 			transition: all 0.8s;
 			span {
 				padding-left: 15px;
@@ -55,11 +51,16 @@ export default {
 				@extend %menu-item_active;
 			}
 		}
+		&.el-menu--collapse {
+			%menu-item {
+				padding-left: 20px !important;
+				padding-right: 0;
+			}
+		}
 		.el-submenu {
 			.el-submenu__title {
 				@extend %menu-item;
 				span {
-					// font-weight: bold;
 				}
 				.el-icon-arrow-down{
 					color: $--color-text-regular;
@@ -68,9 +69,6 @@ export default {
 					}
 				}
 			}
-			/* .el-submenu__icon-arrow {
-				display: none;
-			} */
 			&.is-active {
 				.el-submenu__title {
 					color: $--color-primary;

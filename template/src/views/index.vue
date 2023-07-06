@@ -2,8 +2,7 @@
 	<el-container
 		:class="{
 			'layout-simple':$setting.layout == 'simple',
-			'layout-PC_at_APP':$util.isMobile() && !$setting.hasApp,
-			'layout-collapse_mini':COLLAPSE,
+			'layout-PC_at_APP':$util.isMobile() && !$setting.hasApp
 		}">
 		<el-header>
 			<layout-header>
