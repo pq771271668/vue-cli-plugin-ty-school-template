@@ -1,11 +1,13 @@
 <template>
 	<el-container
-		:class="{
-			'layout-simple':$setting.layout == 'simple',
-			'layout-PC_at_APP':$util.isMobile() && !$setting.hasAPP()
-		}">
+		:class="[
+			'layout-'+$setting.layout,
+			{
+				'layout-PC_at_APP':$util.isMobile() && !$setting.hasAPP()
+			}
+		]">
 		<el-header>
-			<layout-header>
+			<layout-header :logo="logo">
 				<layout-aside v-if="$setting.layout == 'simple'"></layout-aside>
 			</layout-header>
 		</el-header>
@@ -18,12 +20,17 @@
 			</template>
 			<template v-else>
 				<el-aside :width="width" v-if="$setting.layout !== 'simple'">
+					<div class="aside-narrow" v-if="$setting.layout == 'narrow' && !COLLAPSE">
+						<el-image fit="contain" :src="logo"></el-image>
+						<p>{{$setting.title}}</p>
+					</div>
+					
 					<layout-aside></layout-aside>
 				</el-aside>
 				<el-main>
 					<template v-if="refresh">
 						<keep-alive :include="KEEPALIVE">
-							<router-view class="main-page"></router-view>
+							<router-view class="main-page" :style="{'--sideWidth':width}"></router-view>
 						</keep-alive>
 					</template>
 				</el-main>
@@ -42,12 +49,13 @@ export default {
     },
 	computed:{
 		width () {
-			return this.COLLAPSE ? 'auto':'220px'
+			return this.COLLAPSE ? '64px':'220px'
 		}
 	},
     data () {
         return {
-            refresh:true
+            refresh:true,
+			logo:require('@/assets/images/logo.png'),
         }
     },
     methods:{

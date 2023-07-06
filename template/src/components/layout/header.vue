@@ -1,7 +1,7 @@
 <template>
 	<div class="project-header">
 		<div class="project-logo">
-			<el-image fit="contain" :src="logo"></el-image>
+			<el-image fit="contain" :src="logo" v-if="$setting.layout != 'narrow'"></el-image>
 			<p>{{$setting.title}}</p>
 		</div>
 		<slot></slot>
@@ -32,9 +32,9 @@
 <script>
 	export default {
 		name:'project-header',
+		props:['logo'],
 		data () {
 			return {
-				logo:require('@/assets/images/logo.png'),
 				items:[
 					/* {
 						label:'更新说明',
