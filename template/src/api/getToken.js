@@ -19,7 +19,6 @@ function getTicket () {
 		/* 获取ticket；开发环境通过接口获取，生产环境通过浏览器URL获取 */
 		if (process.env.NODE_ENV == 'development' && (!Cookies.get('AccessToken') || _.isEmpty(store.state.USERINFO)) ) {
 			API.commonAutoLogin({
-				baseURL:setting.defaultBaseURL,
 				params:{
 					platformCode:UrlParams.platformCode,
 					account:UrlParams.account
