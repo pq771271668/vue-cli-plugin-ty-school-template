@@ -72,7 +72,7 @@ router.beforeEach( (to, from, next) => {
 					routers = [{
 						path: '/',
 						name: '/',
-						component: () =>  (isMobile() && setting.hasApp) ? import('@/views/h5/index') : import('@/views/index'),
+						component: () =>  (isMobile() && setting.hasAPP()) ? import('@/views/h5/index') : import('@/views/index'),
 						/* redirect:{
 							name:routerPage[0].name
 						}, */

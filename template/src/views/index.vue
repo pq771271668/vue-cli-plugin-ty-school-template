@@ -2,7 +2,7 @@
 	<el-container
 		:class="{
 			'layout-simple':$setting.layout == 'simple',
-			'layout-PC_at_APP':$util.isMobile() && !$setting.hasApp
+			'layout-PC_at_APP':$util.isMobile() && !$setting.hasAPP()
 		}">
 		<el-header>
 			<layout-header>

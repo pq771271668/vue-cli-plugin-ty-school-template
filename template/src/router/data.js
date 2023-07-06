@@ -37,22 +37,18 @@
 */
 
 // import store from '@/store/index.js'
-import permission from './permission.js'
 
 import isMobile from '@/assets/js/util/isMobile.js'
 import setting from '@/setting/index.js'
 
+import web from './data/web.js'
+import mobile from './data/mobile.js'
+
 function routerData () {
+	
 	return new Promise( (resolve,reject) => {
 		
-		const webData = [
-			
-		]
-		const mobileData = [
-			
-		]
-		
-	  	const data = (isMobile() && setting.hasApp) ? mobileData : webData
+	  	const data = (isMobile() && setting.hasAPP()) ? mobile() : web()
 	  	
 	  	resolve(data)
 	})

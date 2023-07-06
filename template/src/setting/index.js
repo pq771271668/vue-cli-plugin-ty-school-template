@@ -21,7 +21,10 @@ const setting= {
 	dynamicTitle:isMobile() ? true : false,
 	// 设置移动端VConsole
 	VConsole:true,
-	// 是否有APP页面；否则PC端可以在移动端使用（是否适配需要看PC端页面做没有适配移动端）
-	hasAPP:false,
+	// 是否有APP页面；否则PC端可以在移动端使用（是否适配需要看PC端页面做没有适配移动端）hasAPP:false
+	hasAPP:() => {
+		const {default:data} = require('@/router/data/mobile.js')
+		return Boolean(data().length)
+	},
 }
 export default setting
