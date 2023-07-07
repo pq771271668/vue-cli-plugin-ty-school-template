@@ -11,5 +11,25 @@ module.exports = [
 				return true
 			}
 		}
+	},
+	{
+		name: 'Layout',
+		type: 'list',
+		message: '请选择项目布局：',
+		default:'normal',
+		choices:[
+			{
+				name:"normal（默认）",
+				value:"normal"
+			},
+			{
+				name:"simple",
+				value:"simple"
+			},
+			{
+				name:"narrow",
+				value:"narrow"
+			}
+		]
 	}
 ]
