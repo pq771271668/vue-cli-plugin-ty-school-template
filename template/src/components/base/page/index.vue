@@ -9,9 +9,9 @@
 			:style="headerStyle">
 			<slot name="header"></slot>
 		</div>
-		<div class="page-body" :style="bodyStyle" ref="pageBody">
+		<div class="page-body" :style="bodyStyle" ref="pageBody" @mouseenter="mouseEnter">
 			<template v-if="scroll">
-				<el-scrollbar v-bind="$attrs" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" >
+				<el-scrollbar v-bind="$attrs" ref="scroll" class="page-component__scroll" :class="{'page-body-scroll-height':scrollFull}" >
 					<slot></slot>
 				</el-scrollbar>
 			</template>
@@ -48,6 +48,8 @@
  'footer-style':footer的样式
  
  'getBodyHeight()':获取滚动条的高度
+ 
+ 'updateScroll()':scroll为true，更新滚动条
  
  -->
 <script>
@@ -86,10 +88,10 @@ export default {
             type:Boolean,
             default:true
         },
-		'scroll':{
-			type:Boolean,
-			default:true
-		},
+        'scroll':{
+            type:Boolean,
+            default:true
+        },
         'scroll-full':{
             type:Boolean,
             default:true
@@ -117,11 +119,24 @@ export default {
     },
     methods:{
         getBodyHeight () {
-			const pageBody = this.$refs.pageBody
-			const height = this.$refs.pageBody.clientHeight
-			const paddingTop = getComputedStyle(pageBody).paddingTop.replace(/\s+|px/gi,"")
-			const paddingBottom = getComputedStyle(pageBody).paddingBottom.replace(/\s+|px/gi,"")
+            const pageBody = this.$refs.pageBody
+            const height = this.$refs.pageBody.clientHeight
+            const paddingTop = getComputedStyle(pageBody).paddingTop.replace(/\s+|px/gi,"")
+            const paddingBottom = getComputedStyle(pageBody).paddingBottom.replace(/\s+|px/gi,"")
             return height - Number(paddingTop) - Number(paddingBottom)
+        },
+        updateScroll () {
+            setTimeout(()=> {
+                //解决滚动条初始化消失的问题
+                if (this.scroll && this.$refs.scroll) {
+                    this.$refs.scroll.update()
+                }
+            },0)
+        },
+        mouseEnter () {
+            if (this.scroll) {
+                this.updateScroll()
+            }
         }
     },
     mounted() {
