@@ -90,8 +90,7 @@ export default {
         },
         'pages':{
 		    type:[Boolean,Number,String],
-		    default:0,
-		    required:true
+		    default:0
         },
         'pagination-style':{
             type:Object,
