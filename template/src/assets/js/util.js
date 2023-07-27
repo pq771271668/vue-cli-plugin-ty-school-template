@@ -1,6 +1,8 @@
 /* 身份证获取生日和性别 */
 import birthSex from '@/assets/js/util/birthSex.js'
 
+/* 获取路径中的文件名 */
+import fileName from '@/assets/js/util/fileName.js'
 /* 获取文件后缀名 */
 import ext from '@/assets/js/util/ext.js'
 
@@ -15,7 +17,6 @@ import test from '@/assets/js/util/test.js'
 
 /* 时间格式化 */
 import timeFormat from '@/assets/js/util/timeFormat.js'
-
 
 /* 去除空格 */
 import trim from '@/assets/js/util/trim.js'
@@ -44,6 +45,7 @@ import download from '@/assets/js/util/download.js'
 
 const util = {
 	birthSex,
+	fileName,
 	ext,
 	queryParams,
 	getUrlParams,

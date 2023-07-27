@@ -27,31 +27,32 @@
 	</div>
 </template>
  
- 'gap':header和body是否分开，默认不分开
+/**
+ *  'gap':header和body是否分开，默认false不分开
  
- 'header':是否显示头部，默认显示
+ *  'header':是否显示头部，默认true显示
  
- 'header-style':头部样式，默认高度为70
+ *  'header-style':头部样式，默认高度为70
  
- 'header-border-style':头部下边框的样式，默认没有
+ *  'header-border-style':头部下边框的样式，'full', 'none','default'，默认default
  
- 'search':头部是否存在表单搜索，默认true
+ *  'search':头部是否存在表单搜索，默认true
  
- 'scroll':是否需要el-scroll，默认为true
+ *  'scroll':是否需要el-scroll，默认为true
  
- 'scroll-full':scroll的高度是否为100%，默认为true
+ *  'scroll-full':scroll的高度是否为100%，默认为true
  
- 'body-style':body样式，默认没有
+ *  'body-style':body样式，默认{}没有
  
- 'footer':是否需要footer，默认为true
+ *  'footer':是否需要footer，默认为true
  
- 'footer-style':footer的样式
+ *  'footer-style':footer的样式，默认{}没有
  
- 'getBodyHeight()':获取滚动条的高度
+ *  'getBodyHeight()':获取滚动条的高度
  
- 'updateScroll()':scroll为true，更新滚动条
- 
- -->
+ *  'updateScroll()':scroll为true，更新滚动条
+ */
+
 <script>
 export default {
     inheritAttrs:false,
