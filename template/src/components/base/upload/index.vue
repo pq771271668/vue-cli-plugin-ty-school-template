@@ -83,22 +83,25 @@ export default {
         },
 			
         beforeUpload(file) {
-            if (this.$attrs.accept) {
-                if (Array.isArray(this.$attrs.accept) && !this.$attrs.accept.includes(file.type)) {
-                    this.$tyToast(`上传的文件格式不正确!`);
-                    return false
-                }
-                else if (typeof this.$attrs.accept == 'string' && !this.$attrs.accept.split('/')[0] == file.type.split('/')[0]) {
-                    this.$tyToast(`上传的文件格式不正确!`);
-                    return false
-                }
-                else {
-                    return true
-                }
-            }
-            else {
-                return true
-            }
+        	let type = file.type.split('/')
+        	 let accept = this.$attrs.accept.split(',')
+        	
+        	const index = accept.findIndex( _accept => _accept.includes(type[0]) )
+        	
+        	/* type 第一个格式包含在 accept，在判断当前_accept是否为*，否则在判断当前的_accept是否包含type的第二个格式 */
+        	if (index > -1) {
+        		if (accept[index].includes('*') || accept[index].includes(type[1])) {
+        			return true
+        		}
+        		else {
+        			this.$tyToast(`上传的文件格式不正确!`);
+        			return false
+        		}
+        	}
+        	else {
+        		this.$tyToast(`上传的文件格式不正确!`);
+        		return false
+        	}
         },
         httpRequest (param) {
             const formData = new FormData()
