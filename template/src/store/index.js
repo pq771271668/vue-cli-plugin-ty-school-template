@@ -4,11 +4,6 @@ import Vuex from 'vuex'
 
 import isMobile from '@/assets/js/util/isMobile.js'
 
-import request from '@/assets/js/request/index.js'
-
-// import SecureLS from "secure-ls";
-// const ls = new SecureLS({ isCompression: false });
-
 // vuex持久化插件
 import createPersistedState from 'vuex-persistedstate'
 
@@ -22,16 +17,11 @@ export default new Vuex.Store({
 		createPersistedState({
 			key:PACKAGE.name,
 			storage:window.sessionStorage, //设置存储到sessionStorage
-			/* storage: {
-				getItem: (key) => ls.get(key),
-				setItem: (key, value) => ls.set(key, value),
-				removeItem: (key) => ls.remove(key),
-			} */
 			/* 本地化需要本地化的state，目前内置为下面四个 */
 			reducer(val) {
-				let {KEEPALIVE,USERINFO,isMobile,COLLAPSE} = val
+				let {KEEPALIVE,USERINFO,ISMOBILE,COLLAPSE} = val
 				return {
-					KEEPALIVE,USERINFO,isMobile,COLLAPSE
+					KEEPALIVE,USERINFO,ISMOBILE,COLLAPSE
 				}
 			}
 		})
@@ -39,7 +29,7 @@ export default new Vuex.Store({
 	state:{
 		KEEPALIVE:[],
 		USERINFO:{},
-		isMobile:isMobile(),
+		ISMOBILE:isMobile(),
 		COLLAPSE:false
 	},
 	mutations:{

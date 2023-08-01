@@ -11,10 +11,10 @@ export default {
         };
     },
     mounted() {
-        if (this.isMobile !== this.$util.isMobile()) {
-		    this.$router.replace('/')
-			
-		    this.$vuex('isMobile',this.$util.isMobile())
+        if (this.ISMOBILE !== this.$util.isMobile()) {
+            this.$router.replace('/')
+        	
+            this.$vuex('ISMOBILE',this.$util.isMobile())
         }
     }
 };
