@@ -82,9 +82,9 @@ export default {
             const _customClass = this.$data.customClass
             return _customClass ? 'dialog-center user-tree-dialog '+_customClass : 'dialog-center user-tree-dialog'
         },
-		placeholderStr () {
-			return this.placeholder || '输入'+this.title+'进行过滤'
-		}
+        placeholderStr () {
+            return this.placeholder || '输入'+this.title+'进行过滤'
+        }
     },
     data () {
         return {
@@ -95,7 +95,7 @@ export default {
     },
     methods:{
         filterNode(value, data,node) {
-			node.expanded = Boolean(value)
+            node.expanded = Boolean(value)
             if (!value) {
                 return true;
             }
@@ -107,39 +107,39 @@ export default {
         },
         onCheck (data,{checkedNodes,checkedKeys,halfCheckedNodes,halfCheckedKeys}) {
 			
-			// 获取当前选择的node
-			const node = this.$refs.tree.getNode(data)
-			// console.log(node)
-			// 根据当前选择的node，判断的是否有最后一级
-			const nodesData = this.nodeToData(node)
-			const childNodesFlat = this.$util.flatArrayDeep(nodesData)
-			const isLastChild = childNodesFlat.some( node => node[this.treeAttributes.props.isLeaf])
-			// 当不是选择最后一级，并且里面没有最后一级【leaf为true】时，提示
-			if ( (!data[this.treeAttributes.props.isLeaf] && !isLastChild)) {
+            // 获取当前选择的node
+            const node = this.$refs.tree.getNode(data)
+            // console.log(node)
+            // 根据当前选择的node，判断的是否有最后一级
+            const nodesData = this.nodeToData(node)
+            const childNodesFlat = this.$util.flatArrayDeep(nodesData)
+            const isLastChild = childNodesFlat.some( node => node[this.treeAttributes.props.isLeaf])
+            // 当不是选择最后一级，并且里面没有最后一级【leaf为true】时，提示
+            if ( (!data[this.treeAttributes.props.isLeaf] && !isLastChild)) {
 			    this.$tyToast({
 				    message:`<p class="">${data[this.treeAttributes.props.label]}没有${this.title}</p>`
 			    })
-			}
-			else {
-				const muitlLists = checkedNodes.filter( node => node[this.treeAttributes.props.isLeaf])
-				if (this.limit && muitlLists.length > this.limit) {
-					this.$tyToast({
+            }
+            else {
+                const muitlLists = checkedNodes.filter( node => node[this.treeAttributes.props.isLeaf])
+                if (this.limit && muitlLists.length > this.limit) {
+                    this.$tyToast({
 					    message:`最多只能选择${this.limit}${this.selectUnit}`,
 					    onLeave:function () {
 					    }
-					})
-				}
-				else {
-					this.muitlLists = muitlLists
-				}
-			}
+                    })
+                }
+                else {
+                    this.muitlLists = muitlLists
+                }
+            }
 			
 			
         },
         remove ({row,$index}) {
             this.muitlLists.splice($index,1)
 			
-			this.$refs.tree.setChecked(row[this.treeAttributes.props.id],false)
+            this.$refs.tree.setChecked(row[this.treeAttributes.props.id],false)
             
         },
         setCurrentCheckedKeys () {
@@ -166,8 +166,9 @@ export default {
             this.clear()
         },
         confirm () {
-            this.onConfirm && this.onConfirm(this.muitlLists)
-            this.close()
+		    const data = _.uniqBy(this.muitlLists,this.treeAttributes.props.id)
+		    this.onConfirm && this.onConfirm(data)
+		    this.close()
         },
         nodeToData (nodes) {
             const _data = this.XEUtils.mapTree(nodes.childNodes,node => {
