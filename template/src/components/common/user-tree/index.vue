@@ -188,14 +188,23 @@ export default {
     },
     mounted () {
         /* 设置默认选中值 */
+        /* */
         this.muitlLists = this.tableAttributes.data
-		
-        this.$nextTick( () => {
-            const setCheckedKeys = this.tableAttributes.data.map( user => {
-            	return user[this.treeAttributes.props.id]
-            })
-            this.$refs.tree.setCheckedKeys(setCheckedKeys)
-        }) 
+    	
+    	if (this.treeAttributes.lazy) {
+    		this.$nextTick( () => {
+    			const defaultCheckedKeys = this.treeAttributes['default-checked-keys']
+    			if (defaultCheckedKeys) {
+    				this.$refs.tree.setCheckedKeys(defaultCheckedKeys)
+    			}
+    			else {
+    				const setCheckedKeys = this.tableAttributes.data.map( user => {
+    					return user[this.treeAttributes.props.id]
+    				})
+    				this.$refs.tree.setCheckedKeys(setCheckedKeys)
+    			}
+    		})
+    	}
     }
 }
 </script>

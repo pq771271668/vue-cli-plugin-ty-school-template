@@ -10,7 +10,7 @@
 			<div class="name">
 				你好，{{USERINFO.name}}
 			</div>
-			<template v-if="!$util.isMobile() && !$setting.hasAPP()">
+			<template v-if="!$util.isMobile() && $setting.hasAPP()">
 				<el-divider direction="vertical"></el-divider>
 				<el-dropdown>
 					<span class="el-dropdown-link">

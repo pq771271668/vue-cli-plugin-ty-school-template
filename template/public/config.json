@@ -23,6 +23,10 @@
         "code": "370100",
         "url": "https://zhxy-gateway-7.jndjg.cn"
     },
+	{
+	    "code": "999999",
+	    "url": "https://zhxy-gateway-7.huijiaoyun.com"
+	},
     {
         "code": "",
         "url": "https://zhxy-app-factoryrecord.huijiaoyun.com"

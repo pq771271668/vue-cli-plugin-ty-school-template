@@ -15,9 +15,11 @@ const router = new Router({
 })
 
 router.beforeResolve((to, from, next) => {
-	document.title = setting.title
 	if (setting.dynamicTitle) {
 		document.title = to.meta.label || setting.title
+	}
+	else {
+		document.title = setting.title
 	}
 	
 	if (to.meta.keep) {

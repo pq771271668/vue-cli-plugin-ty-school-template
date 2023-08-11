@@ -85,9 +85,7 @@ export default {
 		.then( data => {
 			this.menus = data
 			// this.keyPath = [data[0].name]
-			if (!this.COLLAPSE) {
-				this.$vuex('COLLAPSE',this.$util.isMobile() && !this.$setting.hasAPP())
-			}
+			this.$vuex('COLLAPSE',this.$util.isMobile() && !this.$setting.hasAPP())
 		})
 	},
 	mounted() {
