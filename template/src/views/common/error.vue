@@ -1,6 +1,6 @@
 <template>
 	<div class="project-error">
-		<template v-if="IsMobile">
+		<template v-if="ISMOBILE">
 			<van-empty description="页面找不到">
 				<van-button round type="info" @click="backIndex">返回首页</van-button>
 				<van-button round type="info" @click="backPrev" style="margin-left: 20px;">返回上一页</van-button>
@@ -20,7 +20,6 @@ export default {
     name:'project-error',
     data () {
         return {
-			IsMobile:this.$util.isMobile(),
             image:require('@/assets/images/empty.png')
         }
     },
