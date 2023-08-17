@@ -1,10 +1,7 @@
 <template>
 	<el-container
 		:class="[
-			'layout-'+$setting.layout,
-			{
-				'layout-PC_at_APP':$util.isMobile() && !$setting.hasAPP()
-			}
+			'layout-'+$setting.layout
 		]">
 		<el-header>
 			<layout-header :logo="logo">
@@ -12,29 +9,21 @@
 			</layout-header>
 		</el-header>
 		<el-container>
-			<template v-if="$router.getRoutes().length == 1">
-				<div class="flex w-100_per row-center">
-					<el-result icon="warning" title="设置路由数据">
-					</el-result>
+			<el-aside :width="width" v-if="$setting.layout !== 'simple'">
+				<div class="aside-narrow" v-if="$setting.layout == 'narrow' && !COLLAPSE">
+					<el-image fit="contain" :src="logo"></el-image>
+					<p>{{$setting.title}}</p>
 				</div>
-			</template>
-			<template v-else>
-				<el-aside :width="width" v-if="$setting.layout !== 'simple'">
-					<div class="aside-narrow" v-if="$setting.layout == 'narrow' && !COLLAPSE">
-						<el-image fit="contain" :src="logo"></el-image>
-						<p>{{$setting.title}}</p>
-					</div>
-					
-					<layout-aside></layout-aside>
-				</el-aside>
-				<el-main>
-					<template v-if="refresh">
-						<keep-alive :include="KEEPALIVE">
-							<router-view class="main-page" :style="{'--sideWidth':width}"></router-view>
-						</keep-alive>
-					</template>
-				</el-main>
-			</template>
+				
+				<layout-aside></layout-aside>
+			</el-aside>
+			<el-main>
+				<template v-if="refresh">
+					<keep-alive :include="KEEPALIVE">
+						<router-view class="main-page" :style="{'--sideWidth':width}"></router-view>
+					</keep-alive>
+				</template>
+			</el-main>
 		</el-container>
 	</el-container>
 </template>

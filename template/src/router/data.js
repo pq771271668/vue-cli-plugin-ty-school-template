@@ -48,9 +48,13 @@ function routerData () {
 	
 	return new Promise( (resolve,reject) => {
 		
-	  	const data = (isMobile() && setting.hasAPP()) ? mobile() : web()
-	  	
-	  	resolve(data)
+	  	const data = mobile().length == 0 ? web() : isMobile() ? mobile() : web()
+		
+		if (isMobile() && mobile().length == 0) {
+			document.querySelector('body').style.overflow = 'auto'
+			document.querySelector('body').style.minWidth = '1200px'
+		}
+	  	resolve({data,mobile:isMobile() && mobile().length != 0})
 	})
 }
 

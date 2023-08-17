@@ -48,7 +48,7 @@ router.beforeEach( (to, from, next) => {
 		getToken()
 		.then( (resp) => {
 			routerData()
-			.then( data => {
+			.then( ({data,mobile}) => {
 				oneRun = false;
 				
 				let routerPage = []
@@ -60,39 +60,26 @@ router.beforeEach( (to, from, next) => {
 				
 				let routers = []
 				
-				if (routerPage.length == 0) {
-					console.log('%c请在router/data.js设置路由数据','color:#fff;background-color: #e6a23c;padding: 12px 20px;border-radius: 4px;font-size: 14px;font-weight: 500;');
-					routers = [{
-						path: '/',
-						name: '/',
-						component: () =>  import('@/views/index')
-					}]
-				}
-				else {
-					routers = [{
-						path: '/',
-						name: '/',
-						component: () =>  (isMobile() && setting.hasAPP()) ? import('@/views/h5/index') : import('@/views/index'),
-						/* redirect:{
-							name:routerPage[0].name
-						}, */
-						redirect: () => {
-							let redirectName = routerPage.length == 0 ? 'noPermission': routerPage[0].name
-							return {
-								name:redirectName
-							}
-						},
-						children: routerPage
-					},{
-					path: '/no-permission',
-					name: 'noPermission',
-					component: () => import('@/views/common/no-permission')
-					},{
-						path: '*',
-						name: 'error',
-						component: () => import('@/views/common/error')
-					}]
-				}
+				routers = [{
+					path: '/',
+					name: '/',
+					component: () =>  mobile ? import('@/views/h5/index') : import('@/views/index'),
+					redirect: () => {
+						let redirectName = routerPage.length == 0 ? 'noPermission': routerPage[0].name
+						return {
+							name:redirectName
+						}
+					},
+					children: routerPage
+				},{
+				path: '/no-permission',
+				name: 'noPermission',
+				component: () => import('@/views/common/no-permission')
+				},{
+					path: '*',
+					name: 'error',
+					component: () => import('@/views/common/error')
+				}]
 				
 				router.addRoutes(routers)
 				next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
