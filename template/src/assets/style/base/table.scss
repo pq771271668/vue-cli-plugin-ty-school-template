@@ -49,6 +49,12 @@
 				margin-left: 10px;
 			}
 		}
+		&.cell-padding-none {
+			padding: 0;
+			.cell {
+				padding: 0;
+			}
+		}
 	}
 	&.el-table--small {
 		.el-table__cell {
