@@ -5,6 +5,8 @@ import birthSex from '@/assets/js/util/birthSex.js'
 import fileName from '@/assets/js/util/fileName.js'
 /* 获取文件后缀名 */
 import ext from '@/assets/js/util/ext.js'
+/* invalidChar：正则替换特殊字符以及空格 */
+import invalidChar from '@/assets/js/util/invalidChar.js'
 
 import queryParams from '@/assets/js/util/queryParams.js'
 import getUrlParams from '@/assets/js/util/getUrlParams.js'
@@ -45,8 +47,9 @@ import download from '@/assets/js/util/download.js'
 
 const util = {
 	birthSex,
-	fileName,
 	ext,
+	fileName,
+	invalidChar,
 	queryParams,
 	getUrlParams,
 	random,
