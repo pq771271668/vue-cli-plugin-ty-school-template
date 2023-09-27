@@ -82,7 +82,7 @@ export default {
 	},
 	created() {
 		routerData()
-		.then( data => {
+		.then( ({data}) => {
 			this.menus = data
 		})
 	},

@@ -19,6 +19,6 @@ const setting= {
 	// 设置动态title
 	dynamicTitle:isMobile() ? true : false,
 	// 设置移动端VConsole
-	VConsole:true
+	VConsole:false
 }
 export default setting
