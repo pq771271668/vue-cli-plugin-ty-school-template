@@ -1,7 +1,7 @@
 [
     {
         "code": "420100",
-        "url": "https://zhxy-gateway-7.d.huijiaoyun.com"
+        "url": "http://zhxy-gateway-7.d.huijiaoyun.com"
     },
     {
         "code": "371500",
@@ -25,7 +25,7 @@
     },
 	{
 	    "code": "999999",
-	    "url": "https://zhxy-gateway-7.huijiaoyun.com"
+	    "url": "http://zhxy-gateway-7.huijiaoyun.com"
 	},
     {
         "code": "",
