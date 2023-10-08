@@ -23,13 +23,13 @@ module.exports = {
 		hot: true,
 		port: 9999, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
 		open: true,
-		overlay: true, //当出现编译器错误或警告时，在浏览器中显示全屏覆盖层。默认禁用
+		// overlay: true, //vue-cli4当出现编译器错误或警告时，在浏览器中显示全屏覆盖层。默认禁用
 	},
 	css: {
 	    loaderOptions: {
-	        sass: {
+	        /* sass: {
 	            prependData: `@import "~@/assets/style/variable.scss"; @import "~@/assets/style/extend.scss";@import "~@/assets/style/mixin.scss";`
-	        },
+	        }, */
 			less: {
 				modifyVars: {
 					// 或者可以通过 less 文件覆盖（文件路径为绝对路径）
@@ -37,6 +37,16 @@ module.exports = {
 				},
 			},
 	    },
+	},
+	pluginOptions: {
+		'style-resources-loader': {
+			preProcessor: 'scss',
+			patterns: [
+				path.resolve(__dirname, './src/assets/style/variable.scss'),
+				path.resolve(__dirname, './src/assets/style/extend.scss'),
+				path.resolve(__dirname, './src/assets/style/mixin.scss')
+			]
+		}
 	},
 	configureWebpack: config => {
 		/* 解决element-ui打包之后icon乱码的问题 */
