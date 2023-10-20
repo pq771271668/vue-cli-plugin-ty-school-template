@@ -123,7 +123,7 @@ export default {
         }
     },
     methods:{
-		// 获取滚动区域的高度
+        // 获取滚动区域的高度
         getBodyHeight () {
             const pageBody = this.$refs.pageBody
             const height = this.$refs.pageBody.clientHeight
@@ -131,14 +131,14 @@ export default {
             const paddingBottom = getComputedStyle(pageBody).paddingBottom.replace(/\s+|px/gi,"")
             return height - Number(paddingTop) - Number(paddingBottom)
         },
-		// 获取滚动条的高度
-		getScrollTop () {
-			return this.$refs.scroll.moveY * this.getBodyHeight() / 100
-		},
-		// 设置滚动条的高度
-		setScrollTop (top) {
-			this.$refs.scroll.wrap.scrollTop = top || 0
-		},
+        // 获取滚动条的高度
+        getScrollTop () {
+            return this.$refs.scroll.moveY * this.getBodyHeight() / 100
+        },
+        // 设置滚动条的高度
+        setScrollTop (top) {
+            this.$refs.scroll.wrap.scrollTop = top || 0
+        },
         updateScroll () {
             setTimeout(()=> {
                 //解决滚动条初始化消失的问题
@@ -187,6 +187,10 @@ export default {
 							flex: 1 0 0;
 						}
 					}
+				}
+				.search-button-group {
+					text-align: right;
+					white-space: nowrap;
 				}
 			}
 		}

@@ -34,7 +34,7 @@ submit()
 		
 		v-bind="$attrs"
 		
-		:auto-upload="false"
+		:auto-upload="$attrs['auto-upload'] || false"
 		
 		:file-list="value"
 		
