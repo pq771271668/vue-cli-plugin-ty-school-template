@@ -5,23 +5,18 @@ function ExcelImport(data) {
 	//判断data类型并初始化部分属性 相当于vue里面data属性
 	data = Object.assign({}, {
 		visible: false,
-		// 文件名
-		name:'',
+		message:`<p>1.下载导入模板，批量填写信息 。</p>
+		<p>2.上传填好的信息表。</p>
+		<p>3.导入时间，与你导入的内容量有关，请耐心等待。</p>
+		<p>4.若导入失败，请根据错误原因修改后重新上传。</p>`,
 		// 文件下载地址
 		download:{
-			url:'',
 		},
-		// 文件上传地址，后台返回一个上传完整地址
+		// upload参数
 		upload:{
-			axiosName:''
-		},
-		// 文件导入接口信息
-		import:{
-			axiosName:'',
-			data:{}
 		},
 		// 成功回调
-		// onSuccess:null,
+		onSuccess:null,
 	}, data)
 	// console.log(data);
 	//通过Vue构造器，创建子类，然后实例化并进行挂载

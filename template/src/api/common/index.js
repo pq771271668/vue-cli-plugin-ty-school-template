@@ -29,6 +29,12 @@ export default {
 			name:'token',
 			url:'/serv-platform/api/usersession/getAccessToken',
 			method:'get'
+		},
+		{
+			label:'获取学校教育属性的子列表 部门类型(3校区，5学段，6年级，7班级)',
+			name:'listEduChild',
+			url:'/serv-platform/rest/org/listEduChild',
+			method:'post'
 		}
 	]
 }

@@ -13,20 +13,15 @@
 						<el-link type="primary" @click="onDownload">点击下载导入模板</el-link>
 					</el-form-item>
 					<el-form-item label="导入说明：" >
-						<slot name="message">
-							<p>1.下载导入模板，批量填写信息 。</p>
-							<p>2.上传填好的信息表。</p>
-							<p>3.导入时间，与你导入的内容量有关，请耐心等待。</p>
-							<p>4.若导入失败，请根据错误原因修改后重新上传。</p>
-						</slot>
+						<div v-html="message"></div>
 					</el-form-item>
 					<el-form-item label="上传文件：" prop="fileList">
-						<upload v-bind="$attrs" v-on="$listeners"></upload>
+						<upload-index v-model="form.fileList" v-bind="uploadAttrs" v-on="$listeners" @on-success="uploadSuccess" ref="upload"></upload-index>
 					</el-form-item>
 				</el-form>
 			</div>
 			
-		<div class="drawer-footer text-center">
+		<div class="drawer-footer text-right">
 		    <el-button size="medium" @click="closed">取消</el-button>
 		    <el-button size="medium" type="primary" @click="onImport">导入</el-button>
 		</div>
@@ -34,14 +29,20 @@
 </template>
 
 <script>
-import Error from  './error.js'
-import upload from '@/components/base/upload/index.vue'
-// import axios from 'axios'
+// import Error from  './error.js'
 export default {
-    name:'import',
-    components: {
-        upload
-    },
+    name:'excel-import',
+	computed:{
+		uploadAttrs () {
+			return Object.assign({},{
+				limit:1,
+				accept:'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				axiosParams:{
+					resource:true
+				}
+			},this.upload)
+		}
+	},
     data () {
         return {
             show:false,
@@ -53,36 +54,71 @@ export default {
                     { required: true, message: '请选择上传文件', trigger: 'blur' },
                 ]
             },
-            limit:1,
-            accept:'.xls,.xlsx'
+            
         }
     },
     methods:{
         onDownload () {
-            const filename = this.name+'模板_'+this.$util.timeFormat(new Date(),'yyyy_MM_dd_hh_mm_ss') 
-            this.$util.download('xhr',this.download,filename)
+            this.$util.download(this.download.model,this.download.data,this.download.fileName)
         },
         cancel () {
             this.show = false
             this.visible = false
         },
-        resetForm(formName) {
+        resetForm() {
             this.$refs['form'].resetFields();
         },
         closed () {
             this.cancel()
             this.resetForm()
         },
-        onImport (success) {
+        onImport () {
             this.$refs['form'].validate((valid) => {
                 if (valid) {
-                    // this.$refs.upload.submit();
+                    this.$refs.upload.submit();
                 } else {
                     console.log('error submit!!');
                     return false;
                 }
             });
-        }
+        },
+		uploadSuccess (res) {
+			const resp = res.data
+			// console.log(resp)
+			
+			let arr = _.compact(resp.data.split('<br>'))
+			// console.log(arr)
+			let description = arr[arr.length - 1]
+			
+			arr.pop()
+			let errorData = []
+			if (arr.length > 0) {
+				errorData = arr.map( item => {
+					const _item = item.split('，')
+					return {
+						rowIndex:_item[0],
+						msg:_item[1]
+					}
+				})
+			}
+			// console.log(errorData,description)
+			this.$error({
+				alertParams:{
+					type:resp.code == 0?'success':'error',
+					title:resp.code == 0?'导入成功':'导入失败',
+					description
+				},
+				tableData:errorData,
+				refresh:()=> {
+					this.form.fileList = []
+				},
+				confirm:() => {
+					this.visible = false
+					this.onSuccess && this.onSuccess()
+				}
+			})
+			
+		}
     },
     created() {
         this.show = true

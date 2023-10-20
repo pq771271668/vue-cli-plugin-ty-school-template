@@ -8,18 +8,16 @@
 			<div class="drawer-body p-l-30">
 				<el-alert
 					:closable="false"
-				    title="导入失败"
-				    type="error"
+				    v-bind="alertParams"
 				    >
-					<p class="error-content">
+					<!-- <p class="alert-content">
 						<span>{{tableData.length}} 条数据错误</span>，请在下方表格中查看错误原因更改后再重新导入
-					</p>
+					</p> -->
 				</el-alert>
 				
-				<div class="m-t-20">
+				<div class="m-t-20" v-if="tableData.length > 0">
 					<el-table
 						class="radius-4 table-color_base"
-						header-cell-class-name="header-danger-light"
 						size="small"
 						:data="tableData"
 						border
@@ -39,9 +37,10 @@
 				
 			</div>
 			
-		<!-- <div class="drawer-footer">
-		    <el-button size="small" type="primary" @click="refreshExport">重新上传</el-button>
-		</div> -->
+		<div class="drawer-footer text-right">
+		    <el-button size="small" type="danger" @click="onRefresh">重新上传</el-button>
+		    <el-button size="small" type="primary" @click="onConfirm">确定</el-button>
+		</div>
 	</el-drawer>
 </template>
 
@@ -50,24 +49,21 @@
 		name:'export',
 		data () {
 			return {
-				refresh:null,
-				tableData:[]
-				/* tableData:[
-					{
-						position:'第二行',
-						result:'楼栋未填写',
-					},{
-						position:'第二行',
-						result:'床位数超过99',
-					},
-				] */
+				
 			}
 		},
 		methods:{
-			refreshExport () {
-				// if (typeof this.refresh == 'function') {
-				// 	this.refresh();
-				// }
+			onRefresh () {
+				if (typeof this.refresh == 'function') {
+					this.visible = false
+					this.refresh();
+				}
+			},
+			onConfirm () {
+				if (typeof this.refresh == 'function') {
+					this.visible = false
+					this.confirm();
+				}
 			}
 		}
 	}
@@ -77,7 +73,12 @@
 	::v-deep .el-alert {
 		color: $--color-text-primary;
 		padding: 20px 15px;
-		border: 1px solid $--color-danger;
+		&.el-alert--success {
+			border: 1px solid $--color-success;
+		}
+		&.el-alert--error {
+			border: 1px solid $--color-danger;
+		}
 		.el-alert__content {
 			.el-alert__title {
 				font-size: 16px;
@@ -86,11 +87,6 @@
 				color: $--color-text-primary;
 				margin-top: 10px;
 				font-size: 14px;
-			}
-		}
-		.error-content {
-			span {
-				color: $--color-danger;
 			}
 		}
 	}

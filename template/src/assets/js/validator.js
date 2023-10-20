@@ -3,7 +3,7 @@
  * @example  rules: {
  *  ip: [
  *    {required: true, message: '请输入矩阵IP', trigger: 'blur'},
- *    {validator: this.$rules.ipAddress, trigger: 'blur'}
+ *    {validator: this.$validator.ipAddress, trigger: 'blur'}
  *  ]
  * }
  *

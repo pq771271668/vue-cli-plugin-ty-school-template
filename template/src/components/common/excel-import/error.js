@@ -4,7 +4,12 @@ import error from './error.vue'
 function Error(data) {
 	//判断data类型并初始化部分属性 相当于vue里面data属性
 	data = Object.assign({}, {
-		visible: true
+		visible: true,
+		alertParams:{
+		},
+		refresh:null,
+		tableData:[],
+		confirm:null
 	}, data)
 	// console.log(data);
 	//通过Vue构造器，创建子类，然后实例化并进行挂载

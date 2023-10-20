@@ -1,7 +1,7 @@
 <!-- PageHeader 另外一直形式 space-between -->
 <template>
 	<div class="nav-bar">
-		<div class="nav-bar__left" @click="$emit('back')"
+		<div class="nav-bar__left" @click="onBack"
 			:style="Object.assign({'width':sliderWidth},leftStyle)"
 			>
 			<i :class="icon"></i>
@@ -51,6 +51,20 @@ export default {
 			type:Object,
 			default () {
 				return {}
+			}
+		},
+		'auto-back':{
+			type:Boolean,
+			default:true
+		}
+	},
+	methods:{
+		onBack () {
+			if (this.autoBack) {
+				this.$router.back()
+			}
+			else {
+				this.$emit('back')
 			}
 		}
 	}

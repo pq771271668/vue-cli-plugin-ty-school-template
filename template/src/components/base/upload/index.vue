@@ -4,12 +4,16 @@
 
 v-model:[{
 	name:'',
-	uel:''
+	url:''
 }]
+
+buttonText
 
 tipText
 
 axiosName
+
+axiosParams:axios参数
 
 max-size : 文件大小【M】
 
@@ -45,10 +49,10 @@ submit()
 		<slot>
 			<template v-if="$attrs.drag">
 				<i class="el-icon-upload"></i>
-				<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+				<div class="el-upload__text">将{{buttonText}}拖到此处，或<em>点击上传</em></div>
 			</template>
 			<template v-else>
-				<el-button size="small" type="primary">上传文件</el-button>
+				<el-button size="small" type="primary">{{buttonText}}</el-button>
 			</template>
 		</slot>
 		
@@ -66,16 +70,26 @@ export default {
     name:'upload',
     props:{
         value:{},
+		buttonText:{
+			type:String,
+			default:'上传文件'
+		},
         tipText:{
             type:String,
             default:''
         },
-		maxSize:{},
+        maxSize:{},
         axiosName:{
             type:String,
             required:true,
             default:''
         },
+		axiosParams:{
+			type:Object,
+			default:() => {
+				return {}
+			}
+		}
     },
     data () {
         return {}
@@ -86,21 +100,19 @@ export default {
         },
 			
         beforeUpload(file) {
-			const size = file.size/1024/1024
+            const size = file.size/1024/1024
 			
-			const text = file.type.includes('image') ? '图片':'文件'
-			
-			if (this.$attrs.accept && !this.$attrs.accept.includes(file.type)) {
-				this.$tyToast(`${text}格式不正确`);
-				return false
-			}
-			else if (this.maxSize && this.maxSize < size) {
-				this.$tyToast(`${text}超出大小`);
-				return false
-			}
-			else {
-				return true
-			}
+            if (this.$attrs.accept && !this.$attrs.accept.includes(file.type)) {
+                this.$tyToast(`${this.buttonText}格式不正确`);
+                return false
+            }
+            else if (this.maxSize && this.maxSize < size) {
+                this.$tyToast(`${this.buttonText}超出大小`);
+                return false
+            }
+            else {
+                return true
+            }
 			
 			
         },
@@ -110,16 +122,13 @@ export default {
 				
             formData.append('data', this.$attrs.data)
 				
-            this.$axios[this.axiosName]({
+            this.$axios[this.axiosName](Object.assign({},this.axiosParams,{
                 data:formData
-            })
-                .then( res => {
-                    // console.log(res);
-					
-                    this.$emit('on-success',res)
-					
-                })
-				
+            }))
+			.then( res => {
+				// console.log(res);
+				this.$emit('on-success',res)
+			})
         },
         onChange (file, fileList) {
             this.onRefresh(fileList)
