@@ -7,6 +7,7 @@
 		>
 			<div class="drawer-body p-l-30">
 				<el-alert
+					class="el-alert-text-black is-border el-alert-medium"
 					:closable="false"
 				    v-bind="alertParams"
 				    >
@@ -69,25 +70,5 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	::v-deep .el-alert {
-		color: $--color-text-primary;
-		padding: 20px 15px;
-		&.el-alert--success {
-			border: 1px solid $--color-success;
-		}
-		&.el-alert--error {
-			border: 1px solid $--color-danger;
-		}
-		.el-alert__content {
-			.el-alert__title {
-				font-size: 16px;
-			}
-			.el-alert__description {
-				color: $--color-text-primary;
-				margin-top: 10px;
-				font-size: 14px;
-			}
-		}
-	}
+<style lang="scss">
 </style>

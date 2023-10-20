@@ -1,0 +1,31 @@
+.el-alert {
+	&.el-alert-text-black {
+		color: $--color-text-primary;
+		.el-alert__content { 
+			.el-alert__description {
+				color: $--color-text-primary;
+			}
+		}
+	}
+	&.is-border {
+		@each $name, $color in (
+			success:$--color-success,
+			info:$--color-info,
+			error:$--color-danger,
+			warning:$--color-warning
+			) {
+			&.el-alert--#{$name} {
+				border: 1px solid #{$color};
+			}
+		}
+	}
+	&.el-alert-medium {
+		padding: 20px 15px;
+		.el-alert__content {
+			.el-alert__description {
+				margin-top: 10px;
+				font-size: 14px;
+			}
+		}
+	}
+}
