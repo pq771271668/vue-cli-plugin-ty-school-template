@@ -70,10 +70,10 @@ export default {
     name:'upload',
     props:{
         value:{},
-		buttonText:{
-			type:String,
-			default:'上传文件'
-		},
+        buttonText:{
+            type:String,
+            default:'上传文件'
+        },
         tipText:{
             type:String,
             default:''
@@ -84,12 +84,15 @@ export default {
             required:true,
             default:''
         },
-		axiosParams:{
-			type:Object,
-			default:() => {
-				return {}
-			}
-		}
+        axiosParams:{
+            type:Object,
+            default:() => {
+                return {}
+            }
+        },
+        conversion:{
+            type:Function
+        }
     },
     data () {
         return {}
@@ -113,22 +116,26 @@ export default {
             else {
                 return true
             }
-			
-			
         },
-        httpRequest (param) {
+        async httpRequest (param) {
+            // console.log('httpRequest',param)
+            let file = param.file
+            if (typeof this.conversion == 'function') {
+                file = await this.conversion(file)
+            }
+			
             const formData = new FormData()
-            formData.append('file', param.file)
+            formData.append('file', file)
 				
             formData.append('data', this.$attrs.data)
 				
             this.$axios[this.axiosName](Object.assign({},this.axiosParams,{
                 data:formData
             }))
-			.then( res => {
-				// console.log(res);
-				this.$emit('on-success',res)
-			})
+                .then( res => {
+                    // console.log(res);
+                    this.$emit('on-success',res,file)
+                })
         },
         onChange (file, fileList) {
             this.onRefresh(fileList)

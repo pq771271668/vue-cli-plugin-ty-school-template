@@ -35,6 +35,24 @@ export default {
 			name:'listEduChild',
 			url:'/serv-platform/rest/org/listEduChild',
 			method:'post'
-		}
+		},
+		{
+			label:'查询校区下的年级班级下拉{campusId}',
+			name:'grade',
+			url:'/serv-platform/rest/gradeClass',
+			method:'get'
+		},
+		{
+			label:'文件上传',
+			name:'cosUploadFile',
+			url:'/serv-platform/rest/cosUploadFile',
+			method:'post'
+		},
+		{
+			label:'登录人的孩子',
+			name:'childrens',
+			url:'/serv-platform/rest/childrens',
+			method:'get'
+		},
 	]
 }
