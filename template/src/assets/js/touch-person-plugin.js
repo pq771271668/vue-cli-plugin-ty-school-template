@@ -1,5 +1,6 @@
-/* 移动端 通讯录式的选人组件 */
 import CONFIG from '@/api/getBaseURL.js'
+
+import {debounce,throttle} from 'lodash'
 
 //组件域地址
 let selectorComponentContpath = CONFIG.baseURL.replace('zhxy-gateway-7','zhxy-app-component')
@@ -95,7 +96,7 @@ function touchSelectorPlugin(dom, params, callback){
     dom.dataset["classId"] = params.classId || '';
     //模拟登录，校验登录信息
     selectorPluginSimulationLogin(id, platfromcode, ticket, usessionid, function(){
-        dom.addEventListener('click', touchPersonSelectorPop, false);
+        dom.addEventListener('click', debounce(touchPersonSelectorPop,300), false);
     });
 }
 /**
