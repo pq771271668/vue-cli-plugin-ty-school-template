@@ -1,6 +1,7 @@
 import UrlParams from './urlParams.js'
 
 import xhr from '@/assets/js/util/xhr.js'
+import Alert from '@/components/common/Alert'
 
 // 设置默认baseURL地址
 let CONFIG = {
@@ -28,7 +29,17 @@ xhr({
 					CONFIG.baseURL = defaultUrl.url
 				}
 				else {
-					console.error('当前项目不走网关，请在config.json文件设置一个平台码为空的baseURL')
+					Alert({
+						type:'error',
+						showClose:false,
+						message:`当前平台码没有在config.json文件中匹配到<br />
+						同时config.json文件也没有设置code为空的默认值<br >
+							{
+							    "code": "",
+							    "url": " https://zhxy-gateway-7.huijiaoyun.com"
+							}
+						`
+					})
 				}
 			}
 		}
