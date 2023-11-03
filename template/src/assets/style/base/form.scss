@@ -39,10 +39,11 @@
 		width: 20px;
 	}
 	.input-search {
+		
 		&.el-form-item--small {
 			.el-input {
+				width: 215px;
 				.el-input__inner {
-					width: 215px - 36px;
 					padding-right: 0px;
 				}
 				.el-input-group__append {
