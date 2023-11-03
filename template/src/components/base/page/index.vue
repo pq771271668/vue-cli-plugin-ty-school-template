@@ -21,7 +21,9 @@
 		</div>
 		<div class="page-footer" v-if="footer" :style="footerStyle">
 			<slot name="footer">
-				<pagination-index v-bind="$attrs" v-on="$listeners"></pagination-index>
+				<pagination-index v-bind="$attrs" v-on="$listeners">
+					<slot name="pagination"></slot>
+				</pagination-index>
 			</slot>
 		</div>
 	</div>
@@ -55,6 +57,8 @@
  *  'setScrollTop(top)':设置滚动条的top
  
  *  'updateScroll()':scroll为true，更新滚动条
+ 
+ * slot:default 、 header 、 pagination
  */
 
 <script>
@@ -160,7 +164,6 @@ export default {
 
 <style lang="scss">
 	.page-container {
-		width:100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -187,10 +190,6 @@ export default {
 							flex: 1 0 0;
 						}
 					}
-				}
-				.search-button-group {
-					text-align: right;
-					white-space: nowrap;
 				}
 			}
 		}

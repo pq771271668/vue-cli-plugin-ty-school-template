@@ -28,7 +28,7 @@ pagination-style：分页样式
 					</span>
 				</template>
 				
-				<template v-else-if="model =='single'">
+				<template v-else>
 					<span class="pagination-index_single-current-page">
 						{{attrs.currentPage}}
 					</span>
@@ -90,7 +90,7 @@ export default {
         },
         'pages':{
 		    type:[Boolean,Number,String],
-		    default:0
+		    default:0,
         },
         'pagination-style':{
             type:Object,
