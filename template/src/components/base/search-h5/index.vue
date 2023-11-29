@@ -6,6 +6,7 @@ props:
 	items.sync[Array]
 	--注意：items必须sync，否则修改选项会初始化其他选项
 	--label（默认值）、value（默认值）、name必填，columns可以异步
+	--nameStr:如果需要返回item[label]，请设置nameStr
 	--datetime为true时为时间组件，format自定义时间格式
 	其他参数和vant一致
 	
@@ -126,13 +127,25 @@ export default {
                         const name = list.name[index]
                         const value = list.value[index]
                         params[name] = value
+						if (list.nameStr) {
+							const nameStr = list.nameStr[index]
+							const columns = this.$util.flatArrayDeep(list.columns)
+							const column = columns.find(column => column.value == value)
+							params[nameStr] = column.label
+						}
                     }
                 }
                 else if (list.datetime) {
                     params[list.name] = list.label
+					if (list.nameStr) {
+						params[list.nameStr] = list.label
+					}
                 }
                 else {
                     params[list.name] = list.value
+					if (list.nameStr) {
+						params[list.nameStr] = list.label
+					}
                 }
             })
             return params
