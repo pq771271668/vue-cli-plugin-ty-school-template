@@ -3,7 +3,8 @@
 移动端的查询组件
 
 props:
-	items[Array]
+	items.sync[Array]
+	--注意：items必须sync，否则修改选项会初始化其他选项
 	--label（默认值）、value（默认值）、name必填，columns可以异步
 	--datetime为true时为时间组件，format自定义时间格式
 	其他参数和vant一致
@@ -115,6 +116,7 @@ export default {
                 show
             })
             this.lists = lists
+            this.$emit('update:items',lists)
         },
         getValue () {
             let params = {}
