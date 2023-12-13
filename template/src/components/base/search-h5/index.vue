@@ -5,9 +5,13 @@
 props:
 	items.sync[Array]
 	--注意：items必须sync，否则修改选项会初始化其他选项
-	--label（默认值）、value（默认值）、name必填，columns可以异步
+	--label（默认值）、value（默认值）、name必填
+	--disabled
 	--nameStr:如果需要返回item[label]，请设置nameStr
 	--datetime为true时为时间组件，format自定义时间格式
+	
+	props[Array]
+	--columns可以异步
 	其他参数和vant一致
 	
 	fixed:默认true，是否固定为顶部
@@ -31,13 +35,13 @@ props:
 			<van-popup v-model="item.show" position="bottom" get-container="body" round>
 				<van-datetime-picker
 					v-if="item.datetime"
-					v-bind="item"
+					v-bind="props[index]"
 					@confirm="onConfirm"
 				/>
 				
 				<van-picker
 					v-else
-					v-bind="item"
+					v-bind="props[index]"
 					@confirm="onConfirm"
 				/>
 				
@@ -53,6 +57,9 @@ export default {
     name:'search-h5',
     props:{
         'items':{
+		    type:Array
+        },
+        'props':{
             type:Array
         },
         'fixed':{
@@ -70,40 +77,46 @@ export default {
     },
     data () {
         return {
-            item:'',
-            index:'',
+            currentItem:'',
+            currentIndex:'',
             lists:[]
         }
     },
     methods:{
         onShow (item,index) {
             if (!item.disabled) {
-                this.index = index
-                this.item = item
+                this.currentIndex = index
+                this.currentItem = item
                 this.toggle(true)
             }
         },
-        onConfirm (value,index) {
-            // console.log(value,index)
-            if (this.item.datetime) {
-                this.item.value = value
-                this.item.label = this.$moment(value).format(this.item.format)
+        onConfirm (value) {
+            if (this.currentItem.datetime) {
+                this.currentItem = Object.assign({},this.currentItem,{
+				    label:this.$moment(value).format(this.currentItem.format),
+				    value:value
+                })
             }
             else {
                 if (!Array.isArray(value)) {
-                    this.item = Object.assign({},this.item,value)
+                    this.currentItem = Object.assign({},this.currentItem,value)
                 }
                 else {
-                    this.item.label = _.last(value)
+                    this.currentItem = Object.assign({},this.currentItem,{
+                        label:_.last(value)
+                    })
                     let _value = []
-                    const columns = this.$util.flatArrayDeep(this.item.columns)
+                    const columns = this.$util.flatArrayDeep(this.props[this.currentIndex].columns)
                     for (let label of value) {
                         const column = columns.find( column => column.label == label)
                         if (column) {
                             _value.push(column.value)
                         }
                     }
-                    this.item.value = _value
+                    // this.currentItem.value = _value
+                    this.currentItem = Object.assign({},this.currentItem,{
+					    value:_value
+                    })
                 }
             }
             this.toggle(false)
@@ -112,8 +125,8 @@ export default {
         },
         toggle (show) {
             let lists = _.cloneDeep(this.items)
-            lists.splice(this.index,1,{
-                ...this.item,
+            lists.splice(this.currentIndex,1,{
+                ...this.currentItem,
                 show
             })
             this.lists = lists
@@ -121,31 +134,31 @@ export default {
         },
         getValue () {
             let params = {}
-            this.lists.forEach( list => {
+            this.lists.forEach( (list,i) => {
                 if (Array.isArray(list.name)) {
                     for (let index in list.name) {
                         const name = list.name[index]
                         const value = list.value[index]
                         params[name] = value
-						if (list.nameStr) {
-							const nameStr = list.nameStr[index]
-							const columns = this.$util.flatArrayDeep(list.columns)
-							const column = columns.find(column => column.value == value)
-							params[nameStr] = column.label
-						}
+                        if (list.nameStr) {
+                            const nameStr = list.nameStr[index]
+                            const columns = this.$util.flatArrayDeep(this.props[i].columns)
+                            const column = columns.find(column => column.value == value)
+                            params[nameStr] = column.label
+                        }
                     }
                 }
                 else if (list.datetime) {
                     params[list.name] = list.label
-					if (list.nameStr) {
-						params[list.nameStr] = list.label
-					}
+                    if (list.nameStr) {
+                        params[list.nameStr] = list.label
+                    }
                 }
                 else {
                     params[list.name] = list.value
-					if (list.nameStr) {
-						params[list.nameStr] = list.label
-					}
+                    if (list.nameStr) {
+                        params[list.nameStr] = list.label
+                    }
                 }
             })
             return params
