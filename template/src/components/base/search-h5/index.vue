@@ -27,7 +27,7 @@ props:
 <template>
 	<ul class="search-h5 van-hairline--bottom" :class="{'search-h5_fixed':fixed}">
 		<li v-for="(item,index) in lists" :key="index" @click="onShow(item,index)" v-if="!item.hidden">
-			<span>{{item.label}}</span>
+			<span class="line-1">{{item.label}}</span>
 			
 			<van-icon name="arrow-down" v-if="!item.disabled" />
 			
