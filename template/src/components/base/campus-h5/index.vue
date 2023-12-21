@@ -24,7 +24,7 @@
 								:class="{'active':campusId == option.value}">
 								{{option.label}}
 							</label>
-							<van-radio :name="option.value" :disabled="option.disabled">
+							<van-radio :name="option.value" :disabled="option.disabled" v-if="cache">
 								<template #icon="props">
 									<img class="campus-icon" :src="props.checked ? activeIcon : inactiveIcon" />
 								</template>
@@ -54,7 +54,12 @@ export default {
         'immediate-show':{
             type:Boolean,
             default:false
-        }
+        },
+		/* 是否需要cache按钮 */
+		'cache':{
+			type:Boolean,
+			default:true
+		}
     },
     watch:{
         'options':{
@@ -105,11 +110,13 @@ export default {
     },
     methods:{
         changeLocalStorageCampusId (campusId) {
-		    const campusOption = this.options.find( option => option.value == campusId)
-		    this.$tyToast({
-		        type:'success',
-		        message:'已将默认校区设置为<br /><span class="text-primary">'+campusOption.label+'</span>'
-		    })
+			if (this.cache) {
+				const campusOption = this.options.find( option => option.value == campusId)
+				this.$tyToast({
+				    type:'success',
+				    message:'已将默认校区设置为<br /><span class="text-primary">'+campusOption.label+'</span>'
+				})
+			}
         },
         onShow () {
             this.show = true
@@ -120,6 +127,11 @@ export default {
         onCampus (option) {
             this.campusId = option.value
             this.immediateShow && this.onClose()
+			
+			if (!this.cache) {
+				this.localStorageCampusId = this.campusId
+			}
+			
             this.$emit('change-campus',this.campusId)
         },
         onMousedown (e) {
@@ -195,7 +207,7 @@ export default {
 				line-height: 16px;
 				padding:7px 10px;
 				width: 160px;
-				margin-right: 20px;
+				// margin-right: 20px;
 				text-align: center;
 				border-radius: 4px;
 				color: $--color-text-secondary;
@@ -206,6 +218,7 @@ export default {
 				}
 			}
 			.campus-icon {
+				margin-left: 20px;
 				width: 20px;
 				height: 20px;
 				vertical-align: baseline;

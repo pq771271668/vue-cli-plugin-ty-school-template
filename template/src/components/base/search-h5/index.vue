@@ -34,6 +34,7 @@ props:
 			
 			<van-popup v-model="item.show" position="bottom" get-container="body" round>
 				<van-datetime-picker
+					v-model="item.value"
 					v-if="item.datetime"
 					v-bind="props[index]"
 					@confirm="onConfirm"
