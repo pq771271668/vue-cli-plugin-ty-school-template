@@ -24,7 +24,7 @@ module.exports = (api, options, rootOptions) => {
 			"vue-router": "^3.5.1",
 			"vuex": "^3.6.2",
 			"vuex-persistedstate": "^4.1.0",
-			"xe-utils": "^3.5.7"
+			"xe-utils": "3.5.7"
 		},
 		"devDependencies": {
 			"@vue/cli-plugin-babel": "~5.0.0",
