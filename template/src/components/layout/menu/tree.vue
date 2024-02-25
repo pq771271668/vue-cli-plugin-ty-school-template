@@ -16,10 +16,10 @@
 				</template>
 			</template>
 			<template v-else-if="menu.meta.iconfont">
-				<i class="item-icon iconfont" :class="menu.meta.icon"></i>
+				<i class="iconfont" :class="menu.meta.iconfont"></i>
 			</template>
 			<template v-else-if="menu.meta.iconpark">
-				<iconpark-icon :name="menu.meta.icon" width="18px" height="18px"></iconpark-icon>
+				<iconpark-icon :name="menu.meta.iconpark" width="18px" height="18px"></iconpark-icon>
 			</template>
 			<template v-else>
 				<i class="item-icon"></i>
@@ -39,10 +39,10 @@
 					</template>
 				</template>
 				<template v-else-if="menu.meta.iconfont">
-					<i class="item-icon iconfont" :class="menu.meta.icon"></i>
+					<i class="iconfont" :class="menu.meta.iconfont"></i>
 				</template>
 				<template v-else-if="menu.meta.iconpark">
-					<iconpark-icon :name="menu.meta.icon" width="18px" height="18px"></iconpark-icon>
+					<iconpark-icon :name="menu.meta.iconpark" width="18px" height="18px"></iconpark-icon>
 				</template>
 				<template v-else>
 					<i class="item-icon"></i>
@@ -76,5 +76,8 @@ export default {
 	.item-icon {
 		width: 18px;
 		height: 18px;
+	}
+	.iconfont {
+		font-size: 18px;
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="no-permission">
-		<el-empty :image="image" description="您暂时没有权限,请联系管理员" :image-size="300"></el-empty>
+		<el-empty :image="image" description="您暂时没有权限，请联系管理员" :image-size="300"></el-empty>
 	</div>
 </template>
 
@@ -9,7 +9,7 @@
 		name:'no-permission',
 		data () {
 			return {
-				image:require('@/assets/images/empty.png')
+				image:require('@/pages/safecampus/assets/images/empty.png')
 			}
 		},
 		methods:{}
